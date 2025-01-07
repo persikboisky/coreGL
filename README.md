@@ -36,116 +36,85 @@
 ## Системы движка
 >[!NOTE]
 >```sh
-> вся ниже предоставленная информация рассчитана на то, что вы будете использовать функции в main
-> все функции имеют стиль записи (НазваниеСистемы::функция())
+> в папке src/engineSoft расположены все системы и под системы движка
+> в файле src/main.cpp написан демонстрационный код
+> вся ниже предоставленная информация рассчитана на то, что вы не будете лезть в папку src/engineSoft
+> для подключения функций движка, есть заголовочный файл по пути src/engineSoft/engine.hpp
+> некоторые функции могут вызывать исключения, я ниже опишу значение всех исключений(вызвать их почти невозможно:))
 >```
 
-## система Window
+## система window, структура window
 ```sh
-Window::initializateWindow(name, width, height) - Создаёт окно
-name - заголовок окна(char*)
-width - ширина окна(int)
-height - высота окна(int)
+window::create(const char* title, int width, int height) - Создаёт окно
+title - заголовок окна
+width - ширина окна
+height - высота окна
+
+ИСКЛЮЧЕНИЯ:
+1. "GLFW_INIT_FAILED" - проблема с библиотекой glfw
+2. "FAILED_CREATE_WINDOW" - не удалось создать окно
+3. "FAILED_INIT_GLEW" - проблема с библиотекой glew
 ```
 ```sh
-Window::setWindowIcon(unsigned char* img, int width, int height) - устанавливает иконку окна
-принимает строчку изображения, ширину изображения, высоту изображения
+window::destroy() - удаляет окно и освобождает ресурсы библиотек из озу
 
-Window::terminate() - удаляет окно
-Window::isCloseWindow() - возвращает true при закрытие окна
+window::width - хранит текущую ширину(int) окна
+window::height - хранит текущую высоту(int) окна
 
-Window::setShouldClose(flag) - закрывает окно
-если в flag передать true то окно закроется
+void window::setIcon(const char* path) - устанавливает иконку окна
+принимает путь к png файлу
 
-Window::swapBuffer() - сменяет буфер
+window::close() - закрывает окно
+window::swapBuffer() - сменяет буфер
 ```
 > [!TIP]
-> в openGL двойная буферизация, то есть на одном мы рисуем, а второй выводится на экран 
+> в openGL двойная буферизация, то есть на одном мы рисуем, а второй выводится на экран
 
-## Система Shader
+
+## система window, пространство имён event
 ```sh
-shader::getShaderProgram(const char* frag, const char* vert);
-возвращает дескриптор шейдерной программы и создаёт её, принимает путь к шейдерам
+event::init() - инициализирует систему эвентов (обязательно)
+event::update() - проверяет на наличие эвентов и обновляет систему эвентов
+event::closeWindow() - проверяет окно на эвент закрытия, если окна закрывается,
+то эта функция вернёт true, иначе false
 
-shader::use(unsigned int id);
-включает шейдерную программу, принимает её дескриптор
+event::key::getKey(int keyCode) - возвращает true, если клавиша с номером, переданным в функцию, нажата
+event::mouse::GetMouseCordX() - возвраощает кординаты(double) курсора по оси-x
+event::mouse::GetMouseCordY() - возвраощает кординаты(double) курсора по оси-y
 
-shader::Delete(unsigned int id);
-удаляет шейдерную программу, принимает её дескриптор
-
-shader::setValueUniform(unsigned int id, const float value, const char* name);
-shader::setValueUniform(unsigned int id, glm::mat4 matrix, const char* name);
-обе функции имею одинаковые названия,
-первая передаёт float значение в uniform переменную в шейдере,
-вторая передаёт матрицу в uniform переменную в шейдере.
-Принимают дескриптор шейдерной программы, значение, название переменной в шейдере
+event::mouse::GetMouseLeftButton() - возвращает true, если нажата левая кнопка мыши
+event::mouse::GetMouseRightButton() - возвращает true, если нажата правая кнопка мыши
 ```
 
-## Система JSON
+## система window, структура cursor
 ```sh
-JSON::getValueFromJSON(const char* PATH, const char* object)
-возвращает значение записанное в json, работает только с int переменными, принимает путь и название объекта
-
-```
-> [!NOTE]
-> ```sh
-> файл должен иметь такую структуру
->
-> 
-> {
->  "название объекта": значениеТипа(int),
->}
-> ```
-
-## Система VAO
-```sh
-VAO название; - создаёт vao объект с указанным названием
-
-название.bind() - включает vao
-название.debind() - выключает vao
-
-addVBO({
-координаты вершин
-}) - добавляет vbo в vao
-
-название.draw(кол-во вершин) - рисует треугольник(и)
-3 вершины - один треугольник
-6 вершин - два треугольника
-и тд.
+cursor::setCursorMode(int mode) - включает выбранный режим курсора
+cursor::showCursor(bool flag) - если функция принимает true, то курсор становится не видимым
+cursor::disableCursor(bool flag) - если функция принимает true, то курсор выключается
+cursor::setPosition(double x, double y) - устанавливает курсор на указанные кординаты
 ```
 
-## Система Event
+## ситема graphics, структура vao
 ```sh
-Event::update() - обновляет буфер эвентов (проверяет эвенты)
+vao::create(float data[], int sizeOfByte) - зодаёт буффер вершинных аттрибутов и возвращает(unsigned int) дескриптор
+ИСКЛЮЧЕНИЕ:
+"FAILED_CREATE_VAO" - это исключение означает - ошибку создания vao,
+ может быть вызвана старой версией openGL, старыми драйверами, или проблемной библиотекой,
+ а также если вы создаёте vao до создания окна
 
-Event::Mouse::GetMouseCordY() - возвращает позицию мышки по осиY
-возвращает значение double
+vao::addAttribute(unsigned int id, int index, int n, int size, int indentation) создаёт вершинный атрибут,
+принимает дескриптор vao, номер вершинного атрибута (это то что прописывается в шейдере),
+количество элементов для атрибута, количество элементов на одну вершину, отступ
 
-Event::Mouse::GetMouseCordX() - возвращает позицию мышки по осиX
-возвращает значение double
+vao::draw(primitiveENUM primitive, unsigned int id, int first_vert, int finish_vert)
+рисует примитив(ы), принимает название примитива, дескриптор vao, номер первой вершины, номе последней вершины
 
-Event::Mouse::GetMouseRightButton()
-возвращает true если нажать на правую кнопку мыши
+ИСКЛЮЧЕНИЕ:
+"FAILED_BIND_VAO" - это исключение появится, если openGL не видит vao по указанному дескриптору 
 
-Event::Mouse::GetMouseLeftButton()
-возвращает true если нажать на левую кнопку мыши
-
-Event::Key::getKey[номер клавиши]
-возвращает true если клавиша нажата, и false если отпущена
+vao::Delete(unsigned int id) удаляет vao, принимает дескриптор
+vao::DeleteALL() удаляет все vao
 ```
-
-## Система PNG
-```sh
-png::loadPNG(const char* PATH);
-принимае путь к png изображению, возвращает строку этого изображения
-
-png::width, png::height, png::channels;
-хранят ширину, высоту, кол-во каналов в изображении
-```
-> [!NOTE]
-> при загрузки нового изображения, все переменные структуры png будут перезаписана
-
-
 
 
 
