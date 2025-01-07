@@ -28,7 +28,7 @@
 > [!TIP]
 >
 > ```sh
-> Чтобы указать другую версию openGL заходим в файл window.cpp (src/window/window.cpp)
+> Чтобы указать другую версию openGL заходим в файл window.cpp (src/engineSoft/window/window.cpp)
 > Находим эти строки (они в начале), и указываем версию
 > #define VERSION_MAJOR первое число
 > #define VERSION_MINOR второе число
