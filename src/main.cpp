@@ -1,6 +1,4 @@
-#include "window/window.hpp"
-#include "load/load.hpp"
-#include "graphics/graphics.hpp"
+#include "engineSoft/engine.hpp"
 
 unsigned int WIDTH = json::getValueFromJSON("./res/config.json", "WIDTH");
 unsigned int HEIGHT = json::getValueFromJSON("./res/config.json", "HEIGHT");
@@ -46,7 +44,7 @@ int main()
 	{
 		event::update();
 
-		cam.rotate(0, 0.01, 0);
+		cam.rotate(0, 0, 0.01);
 
 		shader::use(Shader);
 		shader::setValueUniform(cam.getProj(), "project");
