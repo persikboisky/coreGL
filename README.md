@@ -1,3 +1,5 @@
+# ![voxel-core](res/cubes.png) VoxelCore
+
 ## Build in macOS and Linux
 >[!NOTE]
 >
