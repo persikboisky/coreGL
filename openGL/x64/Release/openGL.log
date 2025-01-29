@@ -1,0 +1,8 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: каталог Output заканчивается не косой чертой.  Этот экземпляр сборки добавит косую черту, поскольку она необходима для правильного определения каталога Output.
+  main.cpp
+  Создание кода
+  Previous IPDB and IOBJ mismatch, fall back to full compilation.
+C:\Users\kisly\Desktop\openGL\src\core\window\Event.cpp(55): warning C4715: Event::getKey: значение возвращается не при всех путях выполнения
+  All 513 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Создание кода завершено
+  openGL.vcxproj -> C:\Users\kisly\Desktop\openGL\x64\openGL.exe
