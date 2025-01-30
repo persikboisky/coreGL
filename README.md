@@ -88,8 +88,14 @@ vao::addAttribute(unsigned int id, int index, int n, int size, int indentation) 
 количество элементов на всю вершину,
 отступ массиве элементов
 
-Delete(unsigned int id) удаляет vao
+vao::Delete(unsigned int id) удаляет vao
 принимает дескриптор vao
+
+vao::DeleteALL() удаляет все vao
+
+vao::draw(primitive Primitive, unsigned int id, int first_vert, int count_vert) отрисовывает примитив
+
+shader::createFromCode(const char* codeVert, const char* codeFrag) создаёт шейдер
 ```
 
 
