@@ -11,6 +11,7 @@ float vert[] = {
 
 int main()
 {
+	std::cout << toml::searchString("WIDTH", "./res/config.toml") << std::endl;
 
 	try
 	{

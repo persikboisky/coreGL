@@ -1,5 +1,5 @@
 #include "shader.h"
-#include "../loaders/text.h"
+#include "../file/text.h"
 #include "../util/vector.h"
 #include <GL/glew.h>
 #include <glm/gtc/type_ptr.hpp>
