@@ -47,7 +47,7 @@ Window(const char* title, int width, int height) конструктор созд
 Далее все методы рассматриваются относительно созданного вами объекта окна
 
 ~Window() - деструктор удаляет окно
-width, height - хранят текущий размер окна
+width, height - эти переменые хранят текущий размер окна
 swapBuffers() - сменяет буфер окна
 setSizeBuffer(int width, int height) - Устанавливает размер буфера
 setIcon(const char* path) - Устанавливает png иконку для окна
