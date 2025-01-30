@@ -1,0 +1,12 @@
+C:\Users\kisly\Desktop\core\src\core\file\png.cpp;C:\Users\kisly\Desktop\core\core\x64\Release\png.obj
+C:\Users\kisly\Desktop\core\src\core\file\text.cpp;C:\Users\kisly\Desktop\core\core\x64\Release\text.obj
+C:\Users\kisly\Desktop\core\src\core\file\toml_file.cpp;C:\Users\kisly\Desktop\core\core\x64\Release\toml_file.obj
+C:\Users\kisly\Desktop\core\src\core\graphics\Camera.cpp;C:\Users\kisly\Desktop\core\core\x64\Release\Camera.obj
+C:\Users\kisly\Desktop\core\src\core\graphics\shader.cpp;C:\Users\kisly\Desktop\core\core\x64\Release\shader.obj
+C:\Users\kisly\Desktop\core\src\core\graphics\texture.cpp;C:\Users\kisly\Desktop\core\core\x64\Release\texture.obj
+C:\Users\kisly\Desktop\core\src\core\graphics\vao.cpp;C:\Users\kisly\Desktop\core\core\x64\Release\vao.obj
+C:\Users\kisly\Desktop\core\src\core\util\vector.cpp;C:\Users\kisly\Desktop\core\core\x64\Release\vector.obj
+C:\Users\kisly\Desktop\core\src\core\window\Cursor.cpp;C:\Users\kisly\Desktop\core\core\x64\Release\Cursor.obj
+C:\Users\kisly\Desktop\core\src\core\window\Event.cpp;C:\Users\kisly\Desktop\core\core\x64\Release\Event.obj
+C:\Users\kisly\Desktop\core\src\core\window\Window.cpp;C:\Users\kisly\Desktop\core\core\x64\Release\Window.obj
+C:\Users\kisly\Desktop\core\src\main.cpp;C:\Users\kisly\Desktop\core\core\x64\Release\main.obj
