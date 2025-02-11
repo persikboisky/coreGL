@@ -139,6 +139,7 @@ int main()
 			window.swapBuffers();
 		}
 
+		vao::DeleteALL();
 		shader::DeleteALL();
 	}
 
