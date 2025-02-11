@@ -3,6 +3,7 @@
 
 #define MAX_KEY_CODE 360
 
+enum Key_code;
 struct GLFWwindow;
 typedef void (*GLFWkeyfun)(GLFWwindow* window, int key, int scancode, int action, int mods);
 
@@ -21,7 +22,7 @@ public:
 	bool close();
 	bool GetMouseLeftButton();
 	bool GetMouseRightButton();
-	bool getKey(int keyCode);
+	bool getKey(Key_code key);
 };
 
 #endif // !SRC_CORE_WINDOW_EVENT_H_

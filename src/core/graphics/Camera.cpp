@@ -2,6 +2,7 @@
 #include "../window/Window.h"
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
+#include <iostream>
 
 Camera::Camera(float posX, float posY, float posZ, float fov)
 {
@@ -38,7 +39,7 @@ void Camera::move(float x, float y, float z)
 
 glm::mat4 Camera::getProj(int width, int height)
 {
-	float aspect = float(width / height);
+	float aspect = (float)width / (float)height;
 	return glm::perspective(this->fov, aspect, 0.01f, 100.0f);
 }
 

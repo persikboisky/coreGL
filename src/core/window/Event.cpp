@@ -16,7 +16,7 @@ void key_callbac(GLFWwindow* window, int key, int scancode, int action, int mods
 	}
 }
 
-void Event::setCallbackKey(GLFWwindow* window, GLFWkeyfun callback)
+inline void Event::setCallbackKey(GLFWwindow* window, GLFWkeyfun callback)
 {
 	glfwSetKeyCallback(window, callback);
 }
@@ -37,19 +37,19 @@ bool Event::close()
 	return glfwWindowShouldClose(this->window);
 }
 
-bool Event::GetMouseLeftButton()
+inline bool Event::GetMouseLeftButton()
 {
 	return glfwGetMouseButton(this->window, GLFW_MOUSE_BUTTON_LEFT);
 }
 
-bool Event::GetMouseRightButton()
+inline bool Event::GetMouseRightButton()
 {
 	return glfwGetMouseButton(this->window, GLFW_MOUSE_BUTTON_RIGHT);
 }
 
-bool Event::getKey(int keyCode)
+bool Event::getKey(Key_code key)
 {
-	if (keyCode >= MAX_KEY_CODE) std::cerr << "there is no such key in the buffer" << std::endl;
+	if (key >= MAX_KEY_CODE) std::cerr << "there is no such key in the buffer" << std::endl;
 
-	else return Key[keyCode];
+	else return Key[key];
 }

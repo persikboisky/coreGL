@@ -16,8 +16,12 @@ public:
 
 	static void use(unsigned int id);
 
-	static void setValueUniform(const float value, const char* name);
-    static void setValueUniform(glm::mat4 matrix, const char* name);
+    static void UniformMat4(glm::mat4 matrix, const char* name);
+	static void Uniform1F(const float value, const char* name);
+	static void Uniform2F(glm::vec2 vec2, const char* name);
+	static void Uniform3F(glm::vec3 vec3, const char* name);
+	static void Uniform4F(glm::vec4 vec4, const char* name);
+
 
 	static void Delete(unsigned int id);
 	static void DeleteALL();

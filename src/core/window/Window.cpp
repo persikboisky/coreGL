@@ -4,7 +4,7 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
-void Window::getSizeWindow()
+inline void Window::getSizeWindow()
 {
 	glfwGetWindowSize(this->window, &this->width, &this->height);
 }

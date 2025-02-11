@@ -20,6 +20,11 @@ private:
 
 public:
 
+	GLFWwindow* getWindowObject()
+	{
+		return this->window;
+	}
+
 	Event* event;
 	Cursor* cursor;
 

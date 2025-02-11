@@ -13,7 +13,7 @@ void Cursor::setCursorMode(int mode)
 
 void Cursor::showCursor(bool flag)
 {
-	if (flag) setCursorMode(GLFW_CURSOR_HIDDEN);
+	if (!flag) setCursorMode(GLFW_CURSOR_HIDDEN);
 	else setCursorMode(GLFW_CURSOR_NORMAL);
 }
 

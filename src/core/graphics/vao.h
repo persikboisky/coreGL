@@ -12,7 +12,10 @@ private:
 	static void bind(unsigned int id);
 
 public:
-	static unsigned int create(float vert[], int sizeOfFloat);
+	static std::vector<float> loadFromOBJ(const char* path);
+
+	static unsigned int create(float data[], int sizeOfByte);
+	static unsigned int create(std::vector<float> data);
 	static void addAttribute(unsigned int id, int index, int n, int size, int indentation);
 
 	static void Delete(unsigned int id);

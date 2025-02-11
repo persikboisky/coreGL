@@ -1,5 +1,6 @@
 #include "vao.h"
 #include "../util/vector.h"
+#include "../file/obj.h"
 #include <GL/glew.h>
 #include <iostream>
 #include <vector>
@@ -15,6 +16,36 @@ void vao::bind(unsigned int id)
     // }
 
     glBindVertexArray(id);
+}
+
+std::vector<float> vao::loadFromOBJ(const char* path)
+{
+    std::vector<float> v;
+    std::vector<int> f;
+    std::vector<float> result;
+    obj::load(v, f, path);
+    for (unsigned int vert = 0; vert < f.size() / 9; vert++)
+    {
+        int nVertex1 = f[vert * 9] - 1;
+        int nVertex2 = f[vert * 9 + 3] - 1;
+        int nVertex3 = f[vert * 9 + 6] - 1;
+        //std::cout << nVertex1 << nVertex2 << nVertex3 << std::endl;
+        //std::cout << v[2 * 3] << " : " << v[2 * 3 + 1] << " : " << v[2 * 3 + 2] << std::endl;
+        
+        // вершина 1
+        result.push_back(v[nVertex1 * 3]);
+        result.push_back(v[nVertex1 * 3 + 1]);
+        result.push_back(v[nVertex1 * 3 + 2]);
+        // вершина 2
+        result.push_back(v[nVertex2 * 3]);
+        result.push_back(v[nVertex2 * 3 + 1]);
+        result.push_back(v[nVertex2 * 3 + 2]);
+        // вершина 3
+        result.push_back(v[nVertex3 * 3]);
+        result.push_back(v[nVertex3 * 3 + 1]);
+        result.push_back(v[nVertex3 * 3 + 2]);
+    }
+    return result;
 }
 
 unsigned int vao::create(float data[], int sizeOfByte)
@@ -48,6 +79,42 @@ unsigned int vao::create(float data[], int sizeOfByte)
     bind(VAO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeOfByte, data, GL_STATIC_DRAW);
+    bind(0);
+
+    return VAO;
+}
+
+unsigned int vao::create(std::vector<float> data)
+{
+    unsigned int VAO, VBO;
+
+    glGenVertexArrays(1, &VAO);
+    glGenBuffers(1, &VBO);
+
+    bool flag = true;
+    int index = vector::searchElemntForValue(vao::id, 0);
+    if (index != -1 && VAO != 0)
+    {
+        vao::id[index] = VAO;
+        flag = false;
+    }
+
+    if (flag)
+    {
+        if (VAO != 0)
+        {
+            vao::id.push_back(VAO);
+        }
+        else
+        {
+            std::cerr << "Failed create VAO: " << VAO << "\n";
+            throw "FAILED_CREATE_VAO";
+        }
+    }
+
+    bind(VAO);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, data.size() * 4, data.data(), GL_STATIC_DRAW);
     bind(0);
 
     return VAO;

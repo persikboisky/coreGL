@@ -119,7 +119,21 @@ void shader::DeleteALL()
     }
 }
 
-void shader::setValueUniform(const float value, const char* name)
+void shader::UniformMat4(glm::mat4 matrix, const char* name)
+{
+    GLint locate = glGetUniformLocation(SelectID, name);
+    if (locate >= 0)
+    {
+        glUniformMatrix4fv(locate, 1, GL_FALSE, glm::value_ptr(matrix));
+    }
+    else
+    {
+        std::cerr << "Failed locate Uniform: " << name << std::endl;
+        throw "Failed locate Uniform";
+    }
+}
+
+void shader::Uniform1F(const float value, const char* name)
 {
     GLint locate = glGetUniformLocation(SelectID, name);
     if (locate >= 0)
@@ -133,12 +147,41 @@ void shader::setValueUniform(const float value, const char* name)
     }
 }
 
-void shader::setValueUniform(glm::mat4 matrix, const char* name)
+void shader::Uniform2F(glm::vec2 vec2, const char* name)
 {
     GLint locate = glGetUniformLocation(SelectID, name);
     if (locate >= 0)
     {
-        glUniformMatrix4fv(locate, 1, GL_FALSE, glm::value_ptr(matrix));
+        glUniform2f(locate, vec2.x, vec2.y);
+    }
+    else
+    {
+        std::cerr << "Failed locate Uniform: " << name << std::endl;
+        throw "Failed locate Uniform";
+    }
+}
+
+void shader::Uniform3F(glm::vec3 vec3, const char* name)
+{
+    GLint locate = glGetUniformLocation(SelectID, name);
+    if (locate >= 0)
+    {
+        glUniform3f(locate, vec3.x, vec3.y, vec3.z);
+    }
+    else
+    {
+        std::cerr << "Failed locate Uniform: " << name << std::endl;
+        throw "Failed locate Uniform";
+    }
+}
+
+
+void shader::Uniform4F(glm::vec4 vec4, const char* name)
+{
+    GLint locate = glGetUniformLocation(SelectID, name);
+    if (locate >= 0)
+    {
+        glUniform4f(locate, vec4.x, vec4.y, vec4.z, vec4.w);
     }
     else
     {
