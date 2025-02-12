@@ -28,6 +28,8 @@ Window::Window(const char* title, int width, int height) : width(width), height(
 	
 Window::~Window()
 {
+	delete this->cursor;
+	delete this->event;
 	glfwDestroyWindow(this->window);
 }
 

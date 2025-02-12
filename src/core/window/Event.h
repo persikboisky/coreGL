@@ -13,7 +13,6 @@ private:
 	GLFWwindow* window;
 	//void key_callbac(GLFWwindow* window, int key, int scancode, int action, int mods);
 	void setCallbackKey(GLFWwindow* window, GLFWkeyfun callback);
-	//static bool key() для взаимодейсвия с массивом
 
 public:
 	Event(GLFWwindow& addrWindow);
