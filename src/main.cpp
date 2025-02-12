@@ -72,9 +72,6 @@ int main()
 			window.setSizeBuffer(window.width, window.height);
 		}
 
-		vao::DeleteAll();
-
-
 		vao::DeleteALL();
 		shader::DeleteALL();
 	}
