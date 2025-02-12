@@ -32,15 +32,15 @@ std::vector<float> vao::loadFromOBJ(const char* path)
         //std::cout << nVertex1 << nVertex2 << nVertex3 << std::endl;
         //std::cout << v[2 * 3] << " : " << v[2 * 3 + 1] << " : " << v[2 * 3 + 2] << std::endl;
         
-        // âåðøèíà 1
+        // Ã¢Ã¥Ã°Ã¸Ã¨Ã­Ã  1
         result.push_back(v[nVertex1 * 3]);
         result.push_back(v[nVertex1 * 3 + 1]);
         result.push_back(v[nVertex1 * 3 + 2]);
-        // âåðøèíà 2
+        // Ã¢Ã¥Ã°Ã¸Ã¨Ã­Ã  2
         result.push_back(v[nVertex2 * 3]);
         result.push_back(v[nVertex2 * 3 + 1]);
         result.push_back(v[nVertex2 * 3 + 2]);
-        // âåðøèíà 3
+        // Ã¢Ã¥Ã°Ã¸Ã¨Ã­Ã  3
         result.push_back(v[nVertex3 * 3]);
         result.push_back(v[nVertex3 * 3 + 1]);
         result.push_back(v[nVertex3 * 3 + 2]);
@@ -140,7 +140,7 @@ void vao::Delete(unsigned int id)
     }
 }
 
-void vao::DeleteAll()
+void vao::DeleteALL()
 {
     for (int i = 0; i < vao::id.size(); i++)
     {
