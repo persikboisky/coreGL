@@ -19,7 +19,7 @@ public:
 	static void addAttribute(unsigned int id, int index, int n, int size, int indentation);
 
 	static void Delete(unsigned int id);
-	static void DeleteAll();
+	static void DeleteALL();
 
 	static void draw(primitive Primitive, unsigned int id, int first_vert, int count_vert);
 };
