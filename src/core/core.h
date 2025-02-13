@@ -21,6 +21,7 @@
 #include "graphics/texture.h"
 #include "util/vector.h"
 #include "util/string.h"
+#include "util/array.h"
 
 enum primitive {
 	TRIANGLE_STRIP = GL_TRIANGLES,
@@ -41,6 +42,10 @@ enum Key_code {
 	ESCAPE = GLFW_KEY_ESCAPE,
 	LEFT_SHIFT = GLFW_KEY_LEFT_SHIFT,
 	LEFT_CONTROL = GLFW_KEY_LEFT_CONTROL
+};
+
+enum Cursor_mode {
+
 };
 
 struct core

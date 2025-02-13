@@ -1,6 +1,8 @@
 #include "core/core.h"
 #include "Player.h"
 #include <vector>
+#include <array>
+#include <algorithm> 
 
 double mouseX, mouseY;
 bool key[7];
@@ -11,18 +13,24 @@ int main()
 {
 	try
 	{
-		std::vector<float> OBJ = vao::loadFromOBJ("./res/obj/five_number.obj");
+		//init
+		int sizeOfArray = 0;
+		float* vert = vao::compileToArrayFloat("./res/obj/five_number.obj", sizeOfArray);
 		core::Init();
 
+		//create window
 		Window window("openGL", 1280, 720);
 		window.setContext();
 
-		unsigned int VAO = vao::create(OBJ);
+		//create vao and shaderProgramm
+		unsigned int VAO = vao::create(vert, sizeOfArray * 4);
 		vao::addAttribute(VAO, 0, 3, 3, 0);
 		unsigned int shader = shader::createFromFile("./res/shaders/mainv.glsl", "./res/shaders/mainf.glsl");
 		
+		//creat player
 		Player persikboisky(0, 0, 4, 70);
 
+		//game Circle
 		while (!window.event->close())
 		{
 			window.event->update();
@@ -71,7 +79,6 @@ int main()
 			window.swapBuffers();
 			window.setSizeBuffer(window.width, window.height);
 		}
-
 		vao::DeleteALL();
 		shader::DeleteALL();
 	}

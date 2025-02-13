@@ -1,6 +1,7 @@
 #ifndef SRC_CORE_WINDOW_CURSOR_H
 #define SRC_CORE_WINDOW_CURSOR_H
 
+enum Cursor_mode;
 struct GLFWwindow;
 
 class Cursor 
