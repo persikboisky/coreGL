@@ -133,6 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\core\file\obj.cpp" />
     <ClCompile Include="src\core\file\png.cpp" />
     <ClCompile Include="src\core\file\text.cpp" />
     <ClCompile Include="src\core\file\toml_file.cpp" />
@@ -140,14 +141,18 @@
     <ClCompile Include="src\core\graphics\shader.cpp" />
     <ClCompile Include="src\core\graphics\texture.cpp" />
     <ClCompile Include="src\core\graphics\vao.cpp" />
+    <ClCompile Include="src\core\util\array.cpp" />
+    <ClCompile Include="src\core\util\string.cpp" />
     <ClCompile Include="src\core\util\vector.cpp" />
     <ClCompile Include="src\core\window\Cursor.cpp" />
     <ClCompile Include="src\core\window\Event.cpp" />
     <ClCompile Include="src\core\window\Window.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\core.h" />
+    <ClInclude Include="src\core\file\obj.h" />
     <ClInclude Include="src\core\file\png.h" />
     <ClInclude Include="src\core\file\text.h" />
     <ClInclude Include="src\core\file\toml_file.h" />
@@ -155,10 +160,17 @@
     <ClInclude Include="src\core\graphics\shader.h" />
     <ClInclude Include="src\core\graphics\texture.h" />
     <ClInclude Include="src\core\graphics\vao.h" />
+    <ClInclude Include="src\core\util\array.h" />
+    <ClInclude Include="src\core\util\string.h" />
     <ClInclude Include="src\core\util\vector.h" />
     <ClInclude Include="src\core\window\Cursor.h" />
     <ClInclude Include="src\core\window\Event.h" />
     <ClInclude Include="src\core\window\Window.h" />
+    <ClInclude Include="src\Player.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\shaders\mainf.glsl" />
+    <None Include="res\shaders\mainv.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
