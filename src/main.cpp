@@ -15,7 +15,7 @@ int main()
 	{
 		//init
 		int sizeOfArray = 0;
-		float* vert = vao::compileToArrayFloat("./res/obj/five_number.obj", sizeOfArray);
+		float* vert = vao::compileToArrayFloat("./res/obj/dragon_head1.obj", sizeOfArray);
 		core::Init();
 
 		//create window
@@ -74,7 +74,7 @@ int main()
 			persikboisky.move(key);
 			persikboisky.render("view", "proj", window.width, window.height, mouseX, mouseY);
 
-			vao::draw(TRIANGLE_STRIP, VAO, 0, 180);
+			vao::draw(TRIANGLE_STRIP, VAO, 0, 300090);
 
 			window.swapBuffers();
 			window.setSizeBuffer(window.width, window.height);

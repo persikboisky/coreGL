@@ -66,7 +66,15 @@ void obj::load(std::vector<float> &vert, std::vector<int> &face, const char* pat
 				{
 					for (unsigned int i = index_3; i < vertStr.length() + 1; i++)
 					{
-						if (vertStr[i] == '/' || vertStr[i] == ' ' || vertStr[i] == specSymbol[0] || i == vertStr.length())
+						if (vertStr[i] == '/' && vertStr[i + 1] == '/')
+						{
+							face.push_back(std::stof(result));
+							face.push_back(0);
+							i++;
+							result = "";
+							continue;
+						}
+						else if (vertStr[i] == '/' || vertStr[i] == ' ' || vertStr[i] == specSymbol[0] || i == vertStr.length())
 						{
 							//std::cout << result << std::endl;
 							face.push_back(std::stof(result));
