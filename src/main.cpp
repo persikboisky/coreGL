@@ -74,6 +74,7 @@ int main()
 			persikboisky.move(key);
 			persikboisky.render("view", "proj", window.width, window.height, mouseX, mouseY);
 
+			shader::Uniform3F(glm::vec3(0, 0, 2), "position");
 			vao::draw(TRIANGLE_STRIP, VAO, 0, 300090);
 
 			window.swapBuffers();
