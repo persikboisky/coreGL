@@ -93,7 +93,7 @@ vao::Delete(unsigned int id) удаляет vao
 
 vao::DeleteALL() удаляет все vao
 
-vao::draw(primitive Primitive, unsigned int id, int first_vert, int count_vert) отрисовывает примитив
+vao::draw(primitive Primitive, unsigned int id, int first_vert, int count_vert) отрисовывает примитив(ы)
 
 shader::createFromCode(const char* codeVert, const char* codeFrag) создаёт шейдер
 ```
