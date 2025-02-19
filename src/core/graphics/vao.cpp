@@ -5,7 +5,11 @@
 #include <GL/glew.h>
 #include <iostream>
 #include <vector>
-#include <algorithm> 
+
+// настройка obj компилятора
+#define N_FLOAT_CORD_TO_VERT 3
+#define N_FLOAT_NORMAL_TO_VERT 3
+#define N_FLOAT_TEXTURE_CORD_TO_VERT 2
 
 std::vector<unsigned int> vao::id;
 
@@ -20,42 +24,74 @@ void vao::bind(unsigned int id)
     glBindVertexArray(id);
 }
 
-std::vector<float> vao::compileToVectorFloat(const char* pathToObj)
+std::vector<float> vao::FileOBJtoVVO(const char* pathToObj, bool normal, bool textCoord)
 {
     std::vector<float> v;
-    std::vector<int> f;
+    std::vector<float> v_n;
+    std::vector<float> v_t;
     std::vector<float> result;
-    obj::load(v, f, pathToObj);
+    std::vector<int> f;
+
+    obj::load(v, f, v_n, v_t, pathToObj);
+
+    unsigned int n_element = N_FLOAT_CORD_TO_VERT;
+    if (normal) n_element += N_FLOAT_NORMAL_TO_VERT;
+    if (textCoord) n_element += N_FLOAT_TEXTURE_CORD_TO_VERT;
+
     for (unsigned int vert = 0; vert < f.size() / 9; vert++)
     {
         int nVertex1 = f[vert * 9] - 1;
         int nVertex2 = f[vert * 9 + 3] - 1;
         int nVertex3 = f[vert * 9 + 6] - 1;
-        //std::cout << nVertex1 << nVertex2 << nVertex3 << std::endl;
-        //std::cout << v[2 * 3] << " : " << v[2 * 3 + 1] << " : " << v[2 * 3 + 2] << std::endl;
-        
-        // вершина 1
-        result.push_back(v[nVertex1 * 3]);
-        result.push_back(v[nVertex1 * 3 + 1]);
-        result.push_back(v[nVertex1 * 3 + 2]);
-        // вершина 2
-        result.push_back(v[nVertex2 * 3]);
-        result.push_back(v[nVertex2 * 3 + 1]);
-        result.push_back(v[nVertex2 * 3 + 2]);
-        // вершина 3
-        result.push_back(v[nVertex3 * 3]);
-        result.push_back(v[nVertex3 * 3 + 1]);
-        result.push_back(v[nVertex3 * 3 + 2]);
+
+        int nVertex[] = { f[vert * 9] - 1, f[vert * 9 + 3] - 1, f[vert * 9 + 6] - 1 };
+        for (unsigned int n = 0; n < 3; n++)
+        {
+            result.push_back(v[nVertex[n] * n_element]);
+            result.push_back(v[nVertex[n] * n_element + 1]);
+            result.push_back(v[nVertex[n] * n_element + 2]);
+        }
     }
     return result;
 }
 
-float* vao::compileToArrayFloat(const char* pathToObj, int& sizeArray)
+float* vao::FileOBJtoVAO(const char* pathToObj, int& sizeArray, bool normal, bool textCoord)
 {
-    std::vector<float> vec = vao::compileToVectorFloat(pathToObj);
+    std::vector<float> vec = vao::FileOBJtoVVO(pathToObj, normal, textCoord);
     sizeArray = vec.size();
     size_t size;
     return array::vectorToArray(vec, size);
+}
+
+std::vector<float> vao::addElementToVVO(std::vector<float> data, int n_elementForVert, std::vector<float> democratedData, int n_democratedElementForVert)
+{
+    std::vector<float> new_vectore;
+
+    const unsigned char finishVertIndex = n_elementForVert + n_democratedElementForVert;
+    const unsigned int finishElementIndex = data.size() + democratedData.size();
+
+    unsigned int i = 0, finish_i = n_elementForVert;
+    unsigned int j = 0, finish_j = n_democratedElementForVert;
+
+    for (unsigned int index = 0; index < finishElementIndex; index += finishVertIndex)
+    {
+        while (i < finish_i)
+        {
+            new_vectore.push_back(data[i]);
+            i++;
+        }
+
+        while (j < finish_j)
+        {
+            new_vectore.push_back(democratedData[j]);
+            j++;
+        }
+        
+        finish_i += n_elementForVert;
+        finish_j += n_democratedElementForVert;
+    }
+
+    return new_vectore;
 }
 
 unsigned int vao::create(float* data, int sizeOfByte)
@@ -164,9 +200,7 @@ void vao::DeleteALL()
     }
 }
 
-void vao::draw(primitive Primitive, unsigned int id, int first_vert, int count_vert)
+void vao::draw(primitive Primitive, int first_vert, int count_vert)
 {
-    bind(id);
     glDrawArrays(Primitive, first_vert, count_vert);
-    bind(0);
 }

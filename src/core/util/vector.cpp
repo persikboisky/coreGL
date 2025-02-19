@@ -50,3 +50,15 @@ int vector::searchElemntForValue(std::vector<unsigned int> vec, int value)
 
 	return index;
 }
+
+std::vector<float> vector::arrayToVector(float* array, unsigned int size_array)
+{
+	std::vector<float> new_vector;
+
+	for (unsigned int index = 0; index < size_array; index++)
+	{
+		new_vector.push_back(array[index]);
+	}
+
+	return new_vector;
+}

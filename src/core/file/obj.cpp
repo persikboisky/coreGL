@@ -7,7 +7,23 @@
 
 const std::string specSymbol = "\n";
 
-void obj::load(std::vector<float> &vert, std::vector<int> &face, const char* path)
+//static std::string loadStringFromVert(unsigned int& index, std::string fileCode)
+//{
+//	std::string str = "";
+//	for (unsigned int index_2 = index + 1;; index_2++)
+//	{
+//		if (fileCode[index_2] == '\n')
+//		{
+//			index = index_2;
+//			std::cout << index_2 << std::endl;
+//			break;
+//		}
+//		str += fileCode[index_2];
+//	}
+//	return str;
+//}
+
+void obj::load(std::vector<float> &vert, std::vector<int> &face, std::vector<float>& vert_normal, std::vector<float> &coord_texture, const char* path)
 {
 	std::string fileCode = text::read(path);
 	std::string vertStr = "";
@@ -24,6 +40,8 @@ void obj::load(std::vector<float> &vert, std::vector<int> &face, const char* pat
 				}
 				vertStr += fileCode[index_2];
 			}
+
+			//vertStr += loadStringFromVert(index, fileCode);
 
 			std::string result = "";
 			for (unsigned int index_3 = 0; index_3 < vertStr.length(); index_3++)
@@ -46,6 +64,37 @@ void obj::load(std::vector<float> &vert, std::vector<int> &face, const char* pat
 				}
 			}
 			vertStr = "";
+		}
+		else if (fileCode[index] == 'v' && fileCode[index + 1] == 't')
+		{
+			for (unsigned int index_2 = index + 1;; index_2++)
+			{
+				if (fileCode[index_2] == specSymbol[0])
+				{
+					index = index_2;
+					break;
+				}
+				vertStr += fileCode[index_2];
+			}
+			std::string result = "";
+			for (unsigned int index_3 = 0; index_3 < vertStr.length(); index_3++)
+			{
+				if (vertStr[index_3] != ' ')
+				{
+					for (unsigned int i = index_3; i < vertStr.length() + 1; i++)
+					{
+						if (vertStr[i] == ' ' || vertStr[i] == specSymbol[0] || i == vertStr.length())
+						{
+							coord_texture.push_back(std::stof(result));
+							result = "";
+							continue;
+						}
+
+						result += vertStr[i];
+						index_3 = i;
+					}
+				}
+			}
 		}
 		else if (fileCode[index] == 'f' && fileCode[index + 1] == ' ')
 		{
@@ -88,9 +137,6 @@ void obj::load(std::vector<float> &vert, std::vector<int> &face, const char* pat
 				}
 			}
 			vertStr = "";
-		}
-		else if (fileCode[index] == 'v' && fileCode[index + 1] == 't')
-		{
 		}
 		else;
 	}

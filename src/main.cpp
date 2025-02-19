@@ -9,13 +9,30 @@ bool key[7];
 bool cursor = false;
 int tic = 0;
 
+std::vector <float> data{
+	1, 2, 3,
+	1, 2, 3
+};
+
+std::vector <float> new_data{
+	0, 1,
+	1, 1
+};
+
 int main()
 {
+
+	std::vector<float> v = vao::addElementToVVO(data, 3, new_data, 2);
+	for (int i = 0; i < v.size(); i++)
+	{
+		std::cout << v[i] << std::endl;
+	}
+
 	try
 	{
 		//init
 		int sizeOfArray = 0;
-		float* vert = vao::compileToArrayFloat("./res/obj/dragon_head1.obj", sizeOfArray);
+		float* vert = vao::FileOBJtoVAO("./res/obj/dragon_head1.obj", sizeOfArray, false, false);
 		core::Init();
 
 		//create window
@@ -25,6 +42,7 @@ int main()
 		//create vao and shaderProgramm
 		unsigned int VAO = vao::create(vert, sizeOfArray * 4);
 		vao::addAttribute(VAO, 0, 3, 3, 0);
+		vao::bind(VAO);
 		unsigned int shader = shader::createFromFile("./res/shaders/mainv.glsl", "./res/shaders/mainf.glsl");
 		
 		//creat player
@@ -74,8 +92,10 @@ int main()
 			persikboisky.move(key);
 			persikboisky.render("view", "proj", window.width, window.height, mouseX, mouseY);
 
+			shader::Uniform4F(glm::vec4(1, 1, 1, 1), "color");
 			shader::Uniform3F(glm::vec3(0, 0, 2), "position");
-			vao::draw(TRIANGLE_STRIP, VAO, 0, 300090);
+				
+			vao::draw(TRIANGLE_STRIP, 0, 350000);
 
 			window.swapBuffers();
 			window.setSizeBuffer(window.width, window.height);
@@ -91,4 +111,4 @@ int main()
 
 	core::Terminate();
 	return 0;
-}
+};

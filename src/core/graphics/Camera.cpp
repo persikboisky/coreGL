@@ -37,13 +37,25 @@ void Camera::move(float x, float y, float z)
 	this->pos.z += z;
 }
 
-glm::mat4 Camera::getProj(int width, int height)
+void Camera::getPos3f(glm::vec3& pos) const
+{
+	pos = this->pos;
+}
+
+void Camera::getPos(float& x, float& y, float& z) const
+{
+	x = this->pos.x;
+	y = this->pos.y;
+	z = this->pos.z;
+}
+
+glm::mat4 Camera::getProj(int width, int height) const
 {
 	float aspect = (float)width / (float)height;
 	return glm::perspective(this->fov, aspect, 0.01f, 100.0f);
 }
 
-glm::mat4 Camera::getView()
+glm::mat4 Camera::getView() const
 {
 	return glm::lookAt(this->pos, this->pos + this->z, this->y);
 }

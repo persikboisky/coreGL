@@ -9,20 +9,24 @@ struct vao
 {
 private:
 	static std::vector<unsigned int> id;
-	static void bind(unsigned int id);
 
 public:
-	static std::vector<float> compileToVectorFloat(const char* pathToObj);
-	static float* compileToArrayFloat(const char* pathToObj, int& sizeArray);
+	static void bind(unsigned int id);
+
+	static std::vector<float> FileOBJtoVVO(const char* pathToObj, bool normal, bool textCoord);
+	static float* FileOBJtoVAO(const char* pathToObj, int& sizeArray, bool normal, bool textCoord);
+
+	static std::vector<float> addElementToVVO(std::vector<float> data, int n_elementForVert, std::vector<float> democratedData, int n_democratedElementForVert);
 
 	static unsigned int create(float* data, int sizeOfByte);
 	static unsigned int create(std::vector<float> data);
+
 	static void addAttribute(unsigned int id, int index, int n, int size, int indentation);
 
 	static void Delete(unsigned int id);
 	static void DeleteALL();
 
-	static void draw(primitive Primitive, unsigned int id, int first_vert, int count_vert);
+	static void draw(primitive Primitive, int first_vert, int count_vert);
 };
 
 #endif // !SRC_CORE_GRAPHICS_VAO_H_
