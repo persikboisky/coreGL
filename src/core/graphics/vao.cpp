@@ -38,13 +38,14 @@ std::vector<float> vao::FileOBJtoVVO(const char* pathToObj, bool normal, bool te
     if (normal) n_element += N_FLOAT_NORMAL_TO_VERT;
     if (textCoord) n_element += N_FLOAT_TEXTURE_CORD_TO_VERT;
 
-    for (unsigned int vert = 0; vert < f.size() / 9; vert++)
+    for (unsigned int vert = 0; vert < f.size() / 9; vert += 1)
     {
         int nVertex1 = f[vert * 9] - 1;
         int nVertex2 = f[vert * 9 + 3] - 1;
         int nVertex3 = f[vert * 9 + 6] - 1;
 
         int nVertex[] = { f[vert * 9] - 1, f[vert * 9 + 3] - 1, f[vert * 9 + 6] - 1 };
+
         for (unsigned int n = 0; n < 3; n++)
         {
             result.push_back(v[nVertex[n] * n_element]);
@@ -203,4 +204,11 @@ void vao::DeleteALL()
 void vao::draw(primitive Primitive, int first_vert, int count_vert)
 {
     glDrawArrays(Primitive, first_vert, count_vert);
+}
+
+void vao::draw(primitive Primitive, unsigned int VAO, int first_vert, int count_vert)
+{
+    bind(VAO);
+    glDrawArrays(Primitive, first_vert, count_vert);
+    bind(0);
 }

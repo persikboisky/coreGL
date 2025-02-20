@@ -27,6 +27,7 @@ public:
 	static void DeleteALL();
 
 	static void draw(primitive Primitive, int first_vert, int count_vert);
+	static void draw(primitive Primitive, unsigned int VAO, int first_vert, int count_vert);
 };
 
 #endif // !SRC_CORE_GRAPHICS_VAO_H_

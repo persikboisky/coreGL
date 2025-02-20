@@ -9,44 +9,54 @@ bool key[7];
 bool cursor = false;
 int tic = 0;
 
-std::vector <float> data{
-	1, 2, 3,
-	1, 2, 3
-};
+float v_r = -0.25f;
+float v_g = 0.0f;
+float v_b = 0.0f;
 
-std::vector <float> new_data{
-	0, 1,
-	1, 1
-};
+float r = 1.0f;
+float g = 1.0f;
+float b = 1.0f;
 
 int main()
 {
 
-	std::vector<float> v = vao::addElementToVVO(data, 3, new_data, 2);
-	for (int i = 0; i < v.size(); i++)
-	{
-		std::cout << v[i] << std::endl;
-	}
-
 	try
 	{
-		//init
-		int sizeOfArray = 0;
-		float* vert = vao::FileOBJtoVAO("./res/obj/dragon_head1.obj", sizeOfArray, false, false);
-		core::Init();
+		std::vector<float> vert1 = vao::FileOBJtoVVO("./res/obj/cube.obj", false, false);
+		std::vector<float> v_color;
+		std::cout << vert1.size() << std::endl;
+		int put = 0;
+		for (unsigned int i = 0; i < vert1.size() / 3; i++)
+		{
+			v_color.push_back(r); // r
+			v_color.push_back(1); // g
+			v_color.push_back(1); // b
+			v_color.push_back(1); // a
 
+			r += v_r;
+			g += v_g;
+			b += v_b;
+
+			if (r <= 0 || r >= 1) v_r = -v_r;
+		}
+		std::vector<float> vert = vao::addElementToVVO(vert1, 3, v_color, 4);
+
+		core::Init();
 		//create window
 		Window window("openGL", 1280, 720);
 		window.setContext();
 
 		//create vao and shaderProgramm
-		unsigned int VAO = vao::create(vert, sizeOfArray * 4);
-		vao::addAttribute(VAO, 0, 3, 3, 0);
+		unsigned int VAO = vao::create(vert);
+		vao::addAttribute(VAO, 0, 3, 7, 0);
+		vao::addAttribute(VAO, 1, 4, 7, 3);
 		vao::bind(VAO);
 		unsigned int shader = shader::createFromFile("./res/shaders/mainv.glsl", "./res/shaders/mainf.glsl");
 		
 		//creat player
 		Player persikboisky(0, 0, 4, 70);
+
+		glEnable(GL_DEPTH_TEST);
 
 		//game Circle
 		while (!window.event->close())
@@ -84,7 +94,7 @@ int main()
 			tic += 1;
 			if (tic >= 10000000) tic = 100;
 
-			glClear(GL_COLOR_BUFFER_BIT);
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			glClearColor(0, 0, 0, 0);
 
 			shader::use(shader);
@@ -92,10 +102,9 @@ int main()
 			persikboisky.move(key);
 			persikboisky.render("view", "proj", window.width, window.height, mouseX, mouseY);
 
-			shader::Uniform4F(glm::vec4(1, 1, 1, 1), "color");
-			shader::Uniform3F(glm::vec3(0, 0, 2), "position");
+			shader::Uniform3F(glm::vec3(0, 0, -2), "position");
 				
-			vao::draw(TRIANGLE_STRIP, 0, 350000);
+			vao::draw(TRIANGLE_STRIP, 0, 36/*350000*/);
 
 			window.swapBuffers();
 			window.setSizeBuffer(window.width, window.height);

@@ -67,7 +67,8 @@ void obj::load(std::vector<float> &vert, std::vector<int> &face, std::vector<flo
 		}
 		else if (fileCode[index] == 'v' && fileCode[index + 1] == 't')
 		{
-			for (unsigned int index_2 = index + 1;; index_2++)
+			for (unsigned int index_2 = index + 2 /*тут было "+ 1" эта хуйня не работала, как же она заебала вызывать исключение*/;; index_2++)
+			// оказалось, что сивол 't' записывался в строку, и программа не могла превратить строку в число, но это удалось исправить, написав '+ 2' за место '+ 1'
 			{
 				if (fileCode[index_2] == specSymbol[0])
 				{
