@@ -65,6 +65,39 @@ void obj::load(std::vector<float> &vert, std::vector<int> &face, std::vector<flo
 			}
 			vertStr = "";
 		}
+		else if (fileCode[index] == 'v' && fileCode[index + 1] == 'n')
+		{
+			for (unsigned int index_2 = index + 2;; index_2++)
+			{
+				if (fileCode[index_2] == specSymbol[0])
+				{
+					index = index_2;
+					break;
+				}
+				vertStr += fileCode[index_2];
+			}
+
+			std::string result = "";
+			for (unsigned int index_3 = 0; index_3 < vertStr.length(); index_3++)
+			{
+				if (vertStr[index_3] != ' ')
+				{
+					for (unsigned int i = index_3; i < vertStr.length() + 1; i++)
+					{
+						if (vertStr[i] == ' ' || vertStr[i] == specSymbol[0] || i == vertStr.length())
+						{
+							vert_normal.push_back(std::stof(result));
+							result = "";
+							continue;
+						}
+
+						result += vertStr[i];
+						index_3 = i;
+					}
+				}
+			}
+			vertStr = "";
+		}
 		else if (fileCode[index] == 'v' && fileCode[index + 1] == 't')
 		{
 			for (unsigned int index_2 = index + 2 /*тут было "+ 1" эта хуйня не работала, как же она заебала вызывать исключение*/;; index_2++)

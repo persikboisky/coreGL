@@ -6,22 +6,26 @@
 #include <iostream>
 #include <vector>
 
-// настройка obj компилятора
+// настройка obj компилятора (не менять)
 #define N_FLOAT_CORD_TO_VERT 3
 #define N_FLOAT_NORMAL_TO_VERT 3
 #define N_FLOAT_TEXTURE_CORD_TO_VERT 2
 
 std::vector<unsigned int> vao::id;
+unsigned int saveID;
 
 void vao::bind(unsigned int id)
 {
-    // if (id > vao::id.size())
-    //{
-    //     std::cerr << "Failed bind vao: " << id << "\n";
-    //     throw "FAILED_BIND_VAO";
-    // }
-
+    if (id != saveID)
+    {
+        if (vector::searchElemntForValue(vao::id, id) == -1)
+        {
+            std::cerr << "FAILED: not found VAO width id: " << id << std::endl;
+            throw "FAILED_BIND_VAO";
+        }
+    }
     glBindVertexArray(id);
+    saveID = id;
 }
 
 std::vector<float> vao::FileOBJtoVVO(const char* pathToObj, bool normal, bool textCoord)
@@ -40,17 +44,13 @@ std::vector<float> vao::FileOBJtoVVO(const char* pathToObj, bool normal, bool te
 
     for (unsigned int vert = 0; vert < f.size() / 9; vert += 1)
     {
-        int nVertex1 = f[vert * 9] - 1;
-        int nVertex2 = f[vert * 9 + 3] - 1;
-        int nVertex3 = f[vert * 9 + 6] - 1;
-
         int nVertex[] = { f[vert * 9] - 1, f[vert * 9 + 3] - 1, f[vert * 9 + 6] - 1 };
 
         for (unsigned int n = 0; n < 3; n++)
         {
-            result.push_back(v[nVertex[n] * n_element]);
-            result.push_back(v[nVertex[n] * n_element + 1]);
-            result.push_back(v[nVertex[n] * n_element + 2]);
+            result.push_back(v[nVertex[n] * N_FLOAT_CORD_TO_VERT]);
+            result.push_back(v[nVertex[n] * N_FLOAT_CORD_TO_VERT + 1]);
+            result.push_back(v[nVertex[n] * N_FLOAT_CORD_TO_VERT + 2]);
         }
     }
     return result;
