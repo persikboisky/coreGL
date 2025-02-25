@@ -64,7 +64,7 @@ int main()
 		while (!window.event->close())
 		{
 			window.event->update();
-			if (window.event->getKey(ESCAPE))
+			if (window.event->getKey(K_ESCAPE))
 			{
 				window.close();
 			}
@@ -76,19 +76,19 @@ int main()
 			}
 			window.cursor->disableCursor(!cursor);
 
-			key[0] = window.event->getKey(W);
-			key[1] = window.event->getKey(S);
-			key[2] = window.event->getKey(A);
-			key[3] = window.event->getKey(D);
-			key[6] = window.event->getKey(SPACE);
-			key[4] = window.event->getKey(LEFT_SHIFT);
-			key[5] = window.event->getKey(LEFT_CONTROL);
+			key[0] = window.event->getKey(K_W);
+			key[1] = window.event->getKey(K_S);
+			key[2] = window.event->getKey(K_A);
+			key[3] = window.event->getKey(K_D);
+			key[6] = window.event->getKey(K_SPACE);
+			key[4] = window.event->getKey(K_LEFT_SHIFT);
+			key[5] = window.event->getKey(K_LEFT_CONTROL);
 
-			if (window.event->getKey(ESCAPE))
+			if (window.event->getKey(K_ESCAPE))
 			{
 				window.close();
 			}
-			if (window.event->getKey(F1) && tic > 75)
+			if (window.event->getKey(K_F1) && tic > 75)
 			{
 				tic = 0;
 				cursor = !cursor;

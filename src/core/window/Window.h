@@ -20,7 +20,7 @@ private:
 
 public:
 
-	GLFWwindow* getWindowObject()
+	GLFWwindow* getGlfwWindowObject()
 	{
 		return this->window;
 	}
