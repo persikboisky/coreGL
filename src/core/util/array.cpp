@@ -2,7 +2,7 @@
 #include <vector>
 #include <algorithm> 
 
-float* array::vectorToArray(std::vector<float> vector, size_t& sizeAr)
+float* array::vectorToArray(std::vector<float> vector, int& sizeAr)
 {
     const int size = vector.size();
     float* arr = new float[size];

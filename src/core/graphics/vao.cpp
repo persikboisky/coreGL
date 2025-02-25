@@ -60,7 +60,7 @@ float* vao::FileOBJtoVAO(const char* pathToObj, int& sizeArray, bool normal, boo
 {
     std::vector<float> vec = vao::FileOBJtoVVO(pathToObj, normal, textCoord);
     sizeArray = vec.size();
-    size_t size;
+    int size;
     return array::vectorToArray(vec, size);
 }
 
@@ -93,6 +93,16 @@ std::vector<float> vao::addElementToVVO(std::vector<float> data, int n_elementFo
     }
 
     return new_vectore;
+}
+
+float* vao::addElementToVAO(float* data, int size_data, int n_elementForVert, float* democratedData, int size_democratedData, int n_democratedElementForVert, int& size_VAO)
+{
+    std::vector<float> v_data = vector::arrayToVector_float(data, size_data);
+    std::vector<float> v_democratedData = vector::arrayToVector_float(democratedData, size_democratedData);
+
+    std::vector<float> new_vectore = vao::addElementToVVO(v_data, n_elementForVert, v_democratedData, n_democratedElementForVert);
+
+    return array::vectorToArray(new_vectore, size_VAO);
 }
 
 unsigned int vao::create(float* data, int sizeOfByte)

@@ -51,7 +51,7 @@ int vector::searchElemntForValue(std::vector<unsigned int> vec, int value)
 	return index;
 }
 
-std::vector<float> vector::arrayToVector(float* array, unsigned int size_array)
+std::vector<float> vector::arrayToVector_float(float* array, unsigned int size_array)
 {
 	std::vector<float> new_vector;
 
@@ -63,7 +63,7 @@ std::vector<float> vector::arrayToVector(float* array, unsigned int size_array)
 	return new_vector;
 }
 
-std::vector<int> vector::IarrayToIVector(int* array, int size_array)
+std::vector<int> vector::arrayToVector_int(int* array, int size_array)
 {
 	std::vector<int> new_vector;
 

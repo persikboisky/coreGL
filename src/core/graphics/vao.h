@@ -17,6 +17,7 @@ public:
 	static float* FileOBJtoVAO(const char* pathToObj, int& sizeArray, bool normal, bool textCoord);
 
 	static std::vector<float> addElementToVVO(std::vector<float> data, int n_elementForVert, std::vector<float> democratedData, int n_democratedElementForVert);
+	static float* addElementToVAO(float* data, int size_data, int n_elementForVert, float* democratedData, int size_democratedData, int n_democratedElementForVert, int& size_VAO);
 
 	static unsigned int create(float* data, int sizeOfByte);
 	static unsigned int create(std::vector<float> data);
