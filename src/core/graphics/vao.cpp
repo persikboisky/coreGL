@@ -7,9 +7,10 @@
 #include <vector>
 
 // настройка obj компилятора (не менять)
-#define N_FLOAT_CORD_TO_VERT 3
-#define N_FLOAT_NORMAL_TO_VERT 3
-#define N_FLOAT_TEXTURE_CORD_TO_VERT 2
+#define N_ELEMENT_TO_FACE 3
+#define N_ELEMENT_TO_VERT 3
+#define N_ELEMENT_TO_NORMAL_VERT 3
+#define N_ELEMENT_TO_TEXTURE_VERT 2
 
 std::vector<unsigned int> vao::id;
 unsigned int saveID;
@@ -38,21 +39,32 @@ std::vector<float> vao::FileOBJtoVVO(const char* pathToObj, bool normal, bool te
 
     obj::load(v, f, v_n, v_t, pathToObj);
 
-    unsigned int n_element = N_FLOAT_CORD_TO_VERT;
-    if (normal) n_element += N_FLOAT_NORMAL_TO_VERT;
-    if (textCoord) n_element += N_FLOAT_TEXTURE_CORD_TO_VERT;
-
-    for (unsigned int vert = 0; vert < f.size() / 9; vert += 1)
+    for (unsigned int index = 0; index < f.size() / N_ELEMENT_TO_FACE; index++)
     {
-        int nVertex[] = { f[vert * 9] - 1, f[vert * 9 + 3] - 1, f[vert * 9 + 6] - 1 };
+        unsigned int v_index = f[index * N_ELEMENT_TO_FACE] - 1;
 
-        for (unsigned int n = 0; n < 3; n++)
+        result.push_back(v[v_index * N_ELEMENT_TO_VERT]);
+        result.push_back(v[v_index * N_ELEMENT_TO_VERT + 1]);
+        result.push_back(v[v_index * N_ELEMENT_TO_VERT + 2]);
+
+        if (normal)
         {
-            result.push_back(v[nVertex[n] * N_FLOAT_CORD_TO_VERT]);
-            result.push_back(v[nVertex[n] * N_FLOAT_CORD_TO_VERT + 1]);
-            result.push_back(v[nVertex[n] * N_FLOAT_CORD_TO_VERT + 2]);
+            unsigned int vn_index = f[index * N_ELEMENT_TO_FACE + 2] - 1;
+            //std::cout << v_n[vn_index * N_ELEMENT_TO_NORMAL_VERT] << std::endl;
+            result.push_back(v_n[vn_index * N_ELEMENT_TO_NORMAL_VERT]);
+            result.push_back(v_n[vn_index * N_ELEMENT_TO_NORMAL_VERT + 1]);
+            result.push_back(v_n[vn_index * N_ELEMENT_TO_NORMAL_VERT + 2]);
+        }
+
+        if (textCoord)
+        {
+            unsigned int vt_index = f[index * N_ELEMENT_TO_FACE - 1] - 1;
+
+            result.push_back(v_t[vt_index * N_ELEMENT_TO_TEXTURE_VERT]);
+            result.push_back(v_t[vt_index * N_ELEMENT_TO_TEXTURE_VERT + 1]);
         }
     }
+
     return result;
 }
 

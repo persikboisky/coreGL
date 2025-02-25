@@ -22,9 +22,10 @@ int main()
 
 	try
 	{
-		std::vector<float> vert1 = vao::FileOBJtoVVO("./res/obj/cube.obj", false, false);
+		std::vector<float> vert1 = vao::FileOBJtoVVO("./res/obj/cube.obj", true, false);
 		std::vector<float> v_color;
-		std::cout << vert1.size() << std::endl;
+
+		//std::cout << vert1.size() << std::endl;
 		int put = 0;
 		for (unsigned int i = 0; i < vert1.size() / 3; i++)
 		{
@@ -39,7 +40,7 @@ int main()
 
 			if (r <= 0 || r >= 1) v_r = -v_r;
 		}
-		std::vector<float> vert = vao::addElementToVVO(vert1, 3, v_color, 4);
+		std::vector<float> vert = vao::addElementToVVO(vert1, 6, v_color, 4);
 
 		core::Init();
 		//create window
@@ -48,8 +49,9 @@ int main()
 
 		//create vao and shaderProgramm
 		unsigned int VAO = vao::create(vert);
-		vao::addAttribute(VAO, 0, 3, 7, 0);
-		vao::addAttribute(VAO, 1, 4, 7, 3);
+		vao::addAttribute(VAO, 0, 3, 10, 0);
+		vao::addAttribute(VAO, 1, 3, 10, 3);
+		vao::addAttribute(VAO, 2, 4, 10, 6);
 		vao::bind(VAO);
 		unsigned int shader = shader::createFromFile("./res/shaders/mainv.glsl", "./res/shaders/mainf.glsl");
 		
