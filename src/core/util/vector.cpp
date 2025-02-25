@@ -62,3 +62,15 @@ std::vector<float> vector::arrayToVector(float* array, unsigned int size_array)
 
 	return new_vector;
 }
+
+std::vector<int> vector::IarrayToIVector(int* array, int size_array)
+{
+	std::vector<int> new_vector;
+
+	for (unsigned int index = 0; index < size_array; index++)
+	{
+		new_vector.push_back(array[index]);
+	}
+
+	return new_vector;
+}

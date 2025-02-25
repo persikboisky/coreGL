@@ -16,14 +16,14 @@ unsigned int saveID;
 
 void vao::bind(unsigned int id)
 {
-    if (id != saveID)
-    {
-        if (vector::searchElemntForValue(vao::id, id) == -1)
-        {
-            std::cerr << "FAILED: not found VAO width id: " << id << std::endl;
-            throw "FAILED_BIND_VAO";
-        }
-    }
+    //if (id != saveID)
+    //{
+    //    if (vector::searchElemntForValue(vao::id, id) == -1)
+    //    {
+    //        std::cerr << "FAILED: not found VAO width id: " << id << std::endl;
+    //        throw "FAILED_BIND_VAO";
+    //    }
+    //}
     glBindVertexArray(id);
     saveID = id;
 }
