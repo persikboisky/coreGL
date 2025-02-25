@@ -6,7 +6,7 @@
 #include <iostream>
 #include <vector>
 
-// настройка obj компилятора (не менять)
+// РЅР°СЃС‚СЂРѕР№РєР° obj РєРѕРјРїРёР»СЏС‚РѕСЂР° (РЅРµ РёР·РјРµРЅСЏС‚СЊ РїР°СЂР°РјРµС‚СЂС‹)
 #define N_ELEMENT_TO_FACE 3
 #define N_ELEMENT_TO_VERT 3
 #define N_ELEMENT_TO_NORMAL_VERT 3
