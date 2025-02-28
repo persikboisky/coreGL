@@ -9,6 +9,10 @@ struct vao
 {
 private:
 	static std::vector<unsigned int> id;
+	static unsigned int selectID;
+
+protected:
+	static unsigned int getSelectId();
 
 public:
 	static void bind(unsigned int id);
@@ -29,6 +33,21 @@ public:
 
 	static void draw(primitive Primitive, int first_vert, int count_vert);
 	static void draw(primitive Primitive, unsigned int VAO, int first_vert, int count_vert);
+};
+
+class VAO: private vao
+{
+private:
+	unsigned int id = 0;
+	void bind();
+
+public:
+	VAO(float* data, int sizeOfByte);
+	VAO(std::vector<float> data);
+	~VAO();
+
+	void addAttribute(int index, int n, int size, int indentation);
+	void draw(primitive Primitive, int first_vert, int count_vert);
 };
 
 #endif // !SRC_CORE_GRAPHICS_VAO_H_

@@ -13,7 +13,13 @@
 #define N_ELEMENT_TO_TEXTURE_VERT 2
 
 std::vector<unsigned int> vao::id;
+unsigned int vao::selectID;
 unsigned int saveID;
+
+unsigned int vao::getSelectId()
+{
+    return vao::selectID;
+}
 
 void vao::bind(unsigned int id)
 {
@@ -27,6 +33,7 @@ void vao::bind(unsigned int id)
     //}
     glBindVertexArray(id);
     saveID = id;
+    selectID = id;
 }
 
 std::vector<float> vao::FileOBJtoVVO(const char* pathToObj, bool normal, bool textCoord)
@@ -233,4 +240,38 @@ void vao::draw(primitive Primitive, unsigned int VAO, int first_vert, int count_
     bind(VAO);
     glDrawArrays(Primitive, first_vert, count_vert);
     bind(0);
+}
+
+VAO::VAO(float* data, int sizeOfByte)
+{
+    this->id = vao::create(data, sizeOfByte);
+}
+
+VAO::VAO(std::vector<float> data)
+{
+    this->id = vao::create(data);
+}
+
+VAO::~VAO()
+{
+    vao::Delete(this->id);
+}
+
+void VAO::addAttribute(int index, int n, int size, int indentation)
+{
+    vao::addAttribute(this->id, index, n, size, indentation);
+}
+
+void VAO::bind()
+{
+    vao::bind(this->id);
+}
+
+void VAO::draw(primitive Primitive, int first_vert, int count_vert)
+{
+    if (vao::getSelectId() != this->id)
+    {
+        this->bind();
+    }
+    vao::draw(Primitive, first_vert, count_vert);
 }

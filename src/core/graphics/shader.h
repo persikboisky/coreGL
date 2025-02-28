@@ -22,7 +22,6 @@ public:
 	static void Uniform3F(glm::vec3 vec3, const char* name);
 	static void Uniform4F(glm::vec4 vec4, const char* name);
 
-
 	static void Delete(unsigned int id);
 	static void DeleteALL();
 };

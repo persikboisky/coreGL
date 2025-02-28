@@ -23,27 +23,22 @@ int main()
 	try
 	{
 
-		std::vector <float> submarine = vao::FileOBJtoVVO("./res/obj/submarine.obj", true, false);
-		std::vector <float> dragon_head = vao::FileOBJtoVVO("./res/obj/dragon_head.obj", true, false);
-		std::vector <float> ball = vao::FileOBJtoVVO("./res/obj/ball.obj", true, false);
-
 		core::Init();
 		//create window
 		Window window("openGL", 1280, 720);
 		window.setContext();
 
-		//create vao and shaderProgramm
-		unsigned int VAO_submarine = vao::create(submarine);
-		vao::addAttribute(VAO_submarine, 0, 3, 6, 0);
-		vao::addAttribute(VAO_submarine, 1, 3, 6, 3);
+		VAO* submarine = new VAO(vao::FileOBJtoVVO("./res/obj/submarine.obj", true, false));
+		submarine->addAttribute(0, 3, 6, 0);
+		submarine->addAttribute(1, 3, 6, 3);
 
-		unsigned int VAO_dragon_head = vao::create(dragon_head);
-		vao::addAttribute(VAO_dragon_head, 0, 3, 6, 0);
-		vao::addAttribute(VAO_dragon_head, 1, 3, 6, 3);
+		VAO* dragonHead = new VAO(vao::FileOBJtoVVO("./res/obj/dragon_head.obj", true, false));
+		dragonHead->addAttribute(0, 3, 6, 0);
+		dragonHead->addAttribute(1, 3, 6, 3);
 
-		unsigned int VAO_ball = vao::create(ball);
-		vao::addAttribute(VAO_ball, 0, 3, 6, 0);
-		vao::addAttribute(VAO_ball, 1, 3, 6, 3);
+		VAO* Ball = new VAO(vao::FileOBJtoVVO("./res/obj/ball.obj", true, false));
+		Ball->addAttribute(0, 3, 6, 0);
+		Ball->addAttribute(1, 3, 6, 3);
 
 		unsigned int shader = shader::createFromFile("./res/shaders/mainv.glsl", "./res/shaders/mainf.glsl");
 
@@ -96,22 +91,17 @@ int main()
 			persikboisky.move(key);
 			persikboisky.render("view", "proj", window.width, window.height, mouseX, mouseY);
 
-
-			vao::bind(VAO_submarine);
 			shader::Uniform3F(glm::vec3(0, 0, -2), "u_position");
 			shader::Uniform4F(glm::vec4(1, 0.8, 0.03, 1), "u_color");
-			vao::draw(TRIANGLE_STRIP, 0, 93660/*350000*/);
+			submarine->draw(TRIANGLE_STRIP, 0, 93660);
 
-
-			vao::bind(VAO_dragon_head);
 			shader::Uniform3F(glm::vec3(0, -2, -2), "u_position");
 			shader::Uniform4F(glm::vec4(1, 0.8, 0.03, 1), "u_color");
-			vao::draw(TRIANGLE_STRIP, 0, 1018944/*350000*/);
+			dragonHead->draw(TRIANGLE_STRIP, 0, 1018944);
 
-			vao::bind(VAO_ball);
 			shader::Uniform3F(glm::vec3(0, -2, 2), "u_position");
 			shader::Uniform4F(glm::vec4(1, 0.8, 0.03, 1), "u_color");
-			vao::draw(TRIANGLE_STRIP, 0, 1018944/*350000*/);
+			Ball->draw(TRIANGLE_STRIP, 0, 1018944);
 
 			window.swapBuffers();
 			window.setSizeBuffer(window.width, window.height);
