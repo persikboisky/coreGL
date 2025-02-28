@@ -40,7 +40,7 @@ int main()
 		Ball->addAttribute(0, 3, 6, 0);
 		Ball->addAttribute(1, 3, 6, 3);
 
-		unsigned int shader = shader::createFromFile("./res/shaders/mainv.glsl", "./res/shaders/mainf.glsl");
+		Shader* shader = new Shader("./res/shaders/mainv.glsl", "./res/shaders/mainf.glsl");
 
 		//creat player
 		Player persikboisky(0, 0, 4, 70);
@@ -86,21 +86,21 @@ int main()
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			glClearColor(0, 0, 0, 0);
 
-			shader::use(shader);
+			shader->use();
 
 			persikboisky.move(key);
 			persikboisky.render("view", "proj", window.width, window.height, mouseX, mouseY);
 
-			shader::Uniform3F(glm::vec3(0, 0, -2), "u_position");
-			shader::Uniform4F(glm::vec4(1, 0.8, 0.03, 1), "u_color");
+			shader->Uniform3F(glm::vec3(0, 0, -2), "u_position");
+			shader->Uniform4F(glm::vec4(1, 0.8, 0.03, 1), "u_color");
 			submarine->draw(TRIANGLE_STRIP, 0, 93660);
 
-			shader::Uniform3F(glm::vec3(0, -2, -2), "u_position");
-			shader::Uniform4F(glm::vec4(1, 0.8, 0.03, 1), "u_color");
+			shader->Uniform3F(glm::vec3(0, -2, -2), "u_position");
+			shader->Uniform4F(glm::vec4(1, 0.8, 0.03, 1), "u_color");
 			dragonHead->draw(TRIANGLE_STRIP, 0, 1018944);
 
-			shader::Uniform3F(glm::vec3(0, -2, 2), "u_position");
-			shader::Uniform4F(glm::vec4(1, 0.8, 0.03, 1), "u_color");
+			shader->Uniform3F(glm::vec3(0, -2, 2), "u_position");
+			shader->Uniform4F(glm::vec4(1, 0.8, 0.03, 1), "u_color");
 			Ball->draw(TRIANGLE_STRIP, 0, 1018944);
 
 			window.swapBuffers();

@@ -9,6 +9,11 @@
 std::vector<unsigned int> shader::id;
 unsigned int shader::SelectID;
 
+unsigned int shader::getSelectID()
+{
+    return SelectID;
+}
+
 unsigned int shader::createFromCode(const char* codeVert, const char* codeFrag)
 {
 	unsigned int vertexShaderID = glCreateShader(GL_VERTEX_SHADER);
@@ -188,4 +193,49 @@ void shader::Uniform4F(glm::vec4 vec4, const char* name)
         std::cerr << "Failed locate Uniform: " << name << std::endl;
         throw "Failed locate Uniform";
     }
+}
+
+Shader::Shader(const char* pathVert, const char* pathFrag)
+{
+    this->id = shader::createFromFile(pathVert, pathFrag);
+}
+
+Shader::~Shader()
+{
+    shader::Delete(this->id);
+}
+
+void Shader::use()
+{
+    shader::use(this->id);
+}
+
+void Shader::UniformMat4(glm::mat4 matrix, const char* name)
+{
+    if (shader::getSelectID() != this->id) this->use();
+    shader::UniformMat4(matrix, name);
+}
+
+void Shader::Uniform1F(const float value, const char* name)
+{
+    if (shader::getSelectID() != this->id) this->use();
+    shader::Uniform1F(value, name);
+}
+
+void Shader::Uniform2F(glm::vec2 vec2, const char* name)
+{
+    if (shader::getSelectID() != this->id) this->use();
+    shader::Uniform2F(vec2, name);
+}
+
+void Shader::Uniform3F(glm::vec3 vec3, const char* name)
+{
+    if (shader::getSelectID() != this->id) this->use();
+    shader::Uniform3F(vec3, name);
+}
+
+void Shader::Uniform4F(glm::vec4 vec4, const char* name)
+{
+    if (shader::getSelectID() != this->id) this->use();
+    shader::Uniform4F(vec4, name);
 }
