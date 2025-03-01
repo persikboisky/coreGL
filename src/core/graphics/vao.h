@@ -17,7 +17,7 @@ protected:
 public:
 	static void bind(unsigned int id);
 
-	static std::vector<float> FileOBJtoVVO(const char* pathToObj, bool normal, bool textCoord);
+	static std::vector<float> FileOBJtoVVO(const char* pathToObj, bool normal = false, bool textCoord = false);
 	static float* FileOBJtoVAO(const char* pathToObj, int& sizeArray, bool normal, bool textCoord);
 
 	static std::vector<float> addElementToVVO(std::vector<float> data, int n_elementForVert, std::vector<float> democratedData, int n_democratedElementForVert);
@@ -39,15 +39,17 @@ class VAO: private vao
 {
 private:
 	unsigned int id = 0;
+	unsigned int elementToVert;
+	int size;
 	void bind();
 
 public:
-	VAO(float* data, int sizeOfByte);
-	VAO(std::vector<float> data);
+	VAO(float* data, int sizeOfByte, int elementToVert);
+	VAO(std::vector<float> data, int elementToVert);
 	~VAO();
 
-	void addAttribute(int index, int n, int size, int indentation);
-	void draw(primitive Primitive, int first_vert, int count_vert);
+	void addAttribute(int index, int n, int indentation);
+	void draw(primitive Primitive, int first_vert = 0, int count_vert = 0);
 };
 
 #endif // !SRC_CORE_GRAPHICS_VAO_H_

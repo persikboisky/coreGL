@@ -17,6 +17,7 @@
 #include "file/text.h"
 #include "file/toml_file.h"
 #include "file/obj.h"
+#include "file/mtl.h"
 #include "graphics/vao.h"
 #include "graphics/shader.h"
 #include "graphics/Camera.h"

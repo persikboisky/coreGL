@@ -65,7 +65,7 @@ std::vector<float> vao::FileOBJtoVVO(const char* pathToObj, bool normal, bool te
 
         if (textCoord)
         {
-            unsigned int vt_index = f[index * N_ELEMENT_TO_FACE - 1] - 1;
+            unsigned int vt_index = f[index * N_ELEMENT_TO_FACE + 1] - 1;
 
             result.push_back(v_t[vt_index * N_ELEMENT_TO_TEXTURE_VERT]);
             result.push_back(v_t[vt_index * N_ELEMENT_TO_TEXTURE_VERT + 1]);
@@ -242,12 +242,12 @@ void vao::draw(primitive Primitive, unsigned int VAO, int first_vert, int count_
     bind(0);
 }
 
-VAO::VAO(float* data, int sizeOfByte)
+VAO::VAO(float* data, int sizeOfByte, int elementToVert) : elementToVert(elementToVert), size(sizeOfByte / sizeof(float))
 {
     this->id = vao::create(data, sizeOfByte);
 }
 
-VAO::VAO(std::vector<float> data)
+VAO::VAO(std::vector<float> data, int elementToVert) : elementToVert(elementToVert), size(data.size())
 {
     this->id = vao::create(data);
 }
@@ -257,9 +257,9 @@ VAO::~VAO()
     vao::Delete(this->id);
 }
 
-void VAO::addAttribute(int index, int n, int size, int indentation)
+void VAO::addAttribute(int index, int n, int indentation)
 {
-    vao::addAttribute(this->id, index, n, size, indentation);
+    vao::addAttribute(this->id, index, n, this->elementToVert, indentation);
 }
 
 void VAO::bind()
@@ -273,5 +273,13 @@ void VAO::draw(primitive Primitive, int first_vert, int count_vert)
     {
         this->bind();
     }
-    vao::draw(Primitive, first_vert, count_vert);
+
+    if (count_vert == 0)
+    {
+        vao::draw(Primitive, first_vert, this->size / this->elementToVert * 3);
+    }
+    else
+    {
+        vao::draw(Primitive, first_vert, count_vert);
+    }
 }

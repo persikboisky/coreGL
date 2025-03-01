@@ -28,19 +28,12 @@ int main()
 		Window window("openGL", 1280, 720);
 		window.setContext();
 
-		VAO* submarine = new VAO(vao::FileOBJtoVVO("./res/obj/submarine.obj", true, false));
-		submarine->addAttribute(0, 3, 6, 0);
-		submarine->addAttribute(1, 3, 6, 3);
-
-		VAO* dragonHead = new VAO(vao::FileOBJtoVVO("./res/obj/dragon_head.obj", true, false));
-		dragonHead->addAttribute(0, 3, 6, 0);
-		dragonHead->addAttribute(1, 3, 6, 3);
-
-		VAO* Ball = new VAO(vao::FileOBJtoVVO("./res/obj/ball.obj", true, false));
-		Ball->addAttribute(0, 3, 6, 0);
-		Ball->addAttribute(1, 3, 6, 3);
-
+		VAO* Ball = new VAO(vao::FileOBJtoVVO("./res/obj/bongo/10370_Bongo_v1_L3.obj", true), 6);
+		Ball->addAttribute(0, 3, 0);
+		Ball->addAttribute(1, 3, 3);
+		 
 		Shader* shader = new Shader("./res/shaders/mainv.glsl", "./res/shaders/mainf.glsl");
+		//Shader* shader_2 = new Shader("./res/shaders/mainv.glsl", "./res/shaders/main2f.glsl");
 
 		//creat player
 		Player persikboisky(0, 0, 4, 70);
@@ -93,15 +86,9 @@ int main()
 
 			shader->Uniform3F(glm::vec3(0, 0, -2), "u_position");
 			shader->Uniform4F(glm::vec4(1, 0.8, 0.03, 1), "u_color");
-			submarine->draw(TRIANGLE_STRIP, 0, 93660);
-
-			shader->Uniform3F(glm::vec3(0, -2, -2), "u_position");
-			shader->Uniform4F(glm::vec4(1, 0.8, 0.03, 1), "u_color");
-			dragonHead->draw(TRIANGLE_STRIP, 0, 1018944);
-
-			shader->Uniform3F(glm::vec3(0, -2, 2), "u_position");
-			shader->Uniform4F(glm::vec4(1, 0.8, 0.03, 1), "u_color");
-			Ball->draw(TRIANGLE_STRIP, 0, 1018944);
+			Ball->draw(TRIANGLE_STRIP);
+			
+			//shader_2->use();
 
 			window.swapBuffers();
 			window.setSizeBuffer(window.width, window.height);
