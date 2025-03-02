@@ -6,7 +6,7 @@
 #include <iostream>
 
 const float SPEED_MOUSE = 1.5f;
-const float SPEED_CAMERA = 0.05f;
+const float SPEED_CAMERA = 0.02f;
 const float acceleration = 2.0f;
 
 float deltaX = 0;

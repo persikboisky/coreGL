@@ -32,16 +32,22 @@ int main()
 		bongo->addAttribute(0, 3, 0);
 		bongo->addAttribute(1, 3, 3);
 		bongo->addAttribute(2, 2, 6);
+
+		VAO* Smoke = new VAO(vao::FileOBJtoVVO("./res/obj/smoke/smoke.obj", true, true), 8);
+		Smoke->addAttribute(0, 3, 0);
+		Smoke->addAttribute(1, 3, 3);
+		Smoke->addAttribute(2, 2, 6);
 		 
 		//Shader* shader = new Shader("./res/shaders/mainv.glsl", "./res/shaders/mainf.glsl");
 		Shader* shader_2 = new Shader("./res/shaders/mainv.glsl", "./res/shaders/main2f.glsl");
+
 		unsigned int Texture = texture::load("./res/obj/ak-47/ak74m_2DView.png");
+		unsigned int TextureSmoke = texture::load("./res/obj/smoke/BTV_1_BaseColor.png");
 
 		//creat player
 		Player persikboisky(0, 0, 4, 70);
 
 		glEnable(GL_DEPTH_TEST);
-		texture::bind(Texture);
 
 		//game Circle
 		while (!window.event->close())
@@ -89,7 +95,12 @@ int main()
 
 			shader_2->Uniform3F(glm::vec3(0, 0, 0), "u_position");
 			shader_2->Uniform4F(glm::vec4(1, 1, 1, 1), "u_color");
+			texture::bind(Texture);
 			bongo->draw(TRIANGLE_STRIP);
+
+			shader_2->Uniform3F(glm::vec3(0, 0, -0.5), "u_position");
+			texture::bind(TextureSmoke);
+			Smoke->draw(TRIANGLE_STRIP);
 
 			window.swapBuffers();
 			window.setSizeBuffer(window.width, window.height);
