@@ -1,3 +1,4 @@
+#pragma shader
 #include "shader.h"
 #include "../file/text.h"
 #include "../util/vector.h"
@@ -195,6 +196,7 @@ void shader::Uniform4F(glm::vec4 vec4, const char* name)
     }
 }
 
+#pragma Shader
 Shader::Shader(const char* pathVert, const char* pathFrag)
 {
     this->id = shader::createFromFile(pathVert, pathFrag);

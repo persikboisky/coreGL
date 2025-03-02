@@ -52,7 +52,7 @@ void Camera::getPos(float& x, float& y, float& z) const
 glm::mat4 Camera::getProj(int width, int height) const
 {
 	float aspect = (float)width / (float)height;
-	return glm::perspective(this->fov, aspect, 0.01f, 100.0f);
+	return glm::perspective(this->fov, aspect, 0.01f, 500.0f);
 }
 
 glm::mat4 Camera::getView() const

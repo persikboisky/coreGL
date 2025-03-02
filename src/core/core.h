@@ -22,6 +22,7 @@
 #include "graphics/shader.h"
 #include "graphics/Camera.h"
 #include "graphics/texture.h"
+#include "graphics/mesh.h"
 #include "util/vector.h"
 #include "util/string.h"
 #include "util/array.h"

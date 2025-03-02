@@ -28,17 +28,20 @@ int main()
 		Window window("openGL", 1280, 720);
 		window.setContext();
 
-		VAO* Ball = new VAO(vao::FileOBJtoVVO("./res/obj/bongo/10370_Bongo_v1_L3.obj", true), 6);
-		Ball->addAttribute(0, 3, 0);
-		Ball->addAttribute(1, 3, 3);
+		VAO* bongo = new VAO(vao::FileOBJtoVVO("./res/obj/ak-47/ak-47.obj", true, true), 8);
+		bongo->addAttribute(0, 3, 0);
+		bongo->addAttribute(1, 3, 3);
+		bongo->addAttribute(2, 2, 6);
 		 
-		Shader* shader = new Shader("./res/shaders/mainv.glsl", "./res/shaders/mainf.glsl");
-		//Shader* shader_2 = new Shader("./res/shaders/mainv.glsl", "./res/shaders/main2f.glsl");
+		//Shader* shader = new Shader("./res/shaders/mainv.glsl", "./res/shaders/mainf.glsl");
+		Shader* shader_2 = new Shader("./res/shaders/mainv.glsl", "./res/shaders/main2f.glsl");
+		unsigned int Texture = texture::load("./res/obj/ak-47/ak74m_2DView.png");
 
 		//creat player
 		Player persikboisky(0, 0, 4, 70);
 
 		glEnable(GL_DEPTH_TEST);
+		texture::bind(Texture);
 
 		//game Circle
 		while (!window.event->close())
@@ -77,22 +80,21 @@ int main()
 			if (tic >= 10000000) tic = 100;
 
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-			glClearColor(0, 0, 0, 0);
+			glClearColor(0.5, 0.5, 0.5, 0);
 
-			shader->use();
+			shader_2->use();
 
 			persikboisky.move(key);
 			persikboisky.render("view", "proj", window.width, window.height, mouseX, mouseY);
 
-			shader->Uniform3F(glm::vec3(0, 0, -2), "u_position");
-			shader->Uniform4F(glm::vec4(1, 0.8, 0.03, 1), "u_color");
-			Ball->draw(TRIANGLE_STRIP);
-			
-			//shader_2->use();
+			shader_2->Uniform3F(glm::vec3(0, 0, 0), "u_position");
+			shader_2->Uniform4F(glm::vec4(1, 1, 1, 1), "u_color");
+			bongo->draw(TRIANGLE_STRIP);
 
 			window.swapBuffers();
 			window.setSizeBuffer(window.width, window.height);
 		}
+		texture::DeleteALL();
 		vao::DeleteALL();
 		shader::DeleteALL();
 	}

@@ -4,13 +4,13 @@
 enum Cursor_mode;
 struct GLFWwindow;
 
-class Cursor 
+class Cursor
 {
 private:
-	GLFWwindow* window;
+	GLFWwindow *window;
 
 public:
-	Cursor(GLFWwindow& addrWindow);
+	Cursor(GLFWwindow &addrWindow);
 
 	void setCursorMode(int mode);
 	void showCursor(bool flag);
@@ -19,7 +19,7 @@ public:
 
 	double getCordCursorX();
 	double getCordCursorY();
-	void getCordCursor(double& x, double& y);
+	void getCordCursor(double &x, double &y);
 };
 
 #endif // !SRC_CORE_WINDOW_CURSOR_H

@@ -1,0 +1,22 @@
+# Blender 4.3.2 MTL File: 'None'
+# www.blender.org
+
+newmtl Eyes
+Ns 52.999996
+Ka 1.000000 1.000000 1.000000
+Ks 0.180000 0.180000 0.180000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd kangaroo/Kangaroo_diff.png
+
+newmtl Kangaroo
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Ks 0.090000 0.090000 0.090000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd kangaroo/Kangaroo_diff.png

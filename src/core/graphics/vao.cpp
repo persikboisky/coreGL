@@ -1,3 +1,4 @@
+#pragma vao
 #include "vao.h"
 #include "../util/vector.h"
 #include "../util/array.h"
@@ -49,7 +50,6 @@ std::vector<float> vao::FileOBJtoVVO(const char* pathToObj, bool normal, bool te
     for (unsigned int index = 0; index < f.size() / N_ELEMENT_TO_FACE; index++)
     {
         unsigned int v_index = f[index * N_ELEMENT_TO_FACE] - 1;
-
         result.push_back(v[v_index * N_ELEMENT_TO_VERT]);
         result.push_back(v[v_index * N_ELEMENT_TO_VERT + 1]);
         result.push_back(v[v_index * N_ELEMENT_TO_VERT + 2]);
@@ -242,6 +242,7 @@ void vao::draw(primitive Primitive, unsigned int VAO, int first_vert, int count_
     bind(0);
 }
 
+#pragma VAO
 VAO::VAO(float* data, int sizeOfByte, int elementToVert) : elementToVert(elementToVert), size(sizeOfByte / sizeof(float))
 {
     this->id = vao::create(data, sizeOfByte);

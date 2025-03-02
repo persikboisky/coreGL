@@ -14,3 +14,8 @@ public:
     static void Delete(unsigned int id);
     static void DeleteALL();
 };
+
+class Texture : private texture
+{
+
+};

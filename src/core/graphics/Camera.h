@@ -20,8 +20,8 @@ public:
     void resetRotate();
     void move(float x, float y, float z);
 
-    void getPos3f(glm::vec3& pos) const;
-    void getPos(float& x, float& y, float& z) const;
+    void getPos3f(glm::vec3 &pos) const;
+    void getPos(float &x, float &y, float &z) const;
 
     glm::mat4 getProj(int width, int height) const;
     glm::mat4 getView() const;

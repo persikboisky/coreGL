@@ -31,7 +31,7 @@ void obj::load(std::vector<float> &vert, std::vector<int> &face, std::vector<flo
 	{
 		if (fileCode[index] == 'v' && fileCode[index + 1] == ' ')
 		{
-			for (unsigned int index_2 = index + 1;; index_2++)
+			for (unsigned int index_2 = index + 2;; index_2++)
 			{
 				if (fileCode[index_2] == specSymbol[0])
 				{
@@ -87,6 +87,7 @@ void obj::load(std::vector<float> &vert, std::vector<int> &face, std::vector<flo
 						if (vertStr[i] == ' ' || vertStr[i] == specSymbol[0] || i == vertStr.length())
 						{
 							vert_normal.push_back(std::stof(result));
+							//std::cout << std::stof(result) << std::endl;
 							result = "";
 							continue;
 						}
@@ -100,9 +101,11 @@ void obj::load(std::vector<float> &vert, std::vector<int> &face, std::vector<flo
 		}
 		else if (fileCode[index] == 'v' && fileCode[index + 1] == 't')
 		{
-			for (unsigned int index_2 = index + 2 /*��� ���� "+ 1" ��� ����� �� ��������, ��� �� ��� ������� �������� ����������*/;; index_2++)
-			// ���������, ��� ����� 't' ����������� � ������, � ��������� �� ����� ���������� ������ � �����, �� ��� ������� ���������, ������� '+ 2' �� ����� '+ 1'
+			for (unsigned int index_2 = index + 2;; index_2++)
 			{
+				//std::cout << fileCode[index_2];
+				//Sleep(10);
+
 				if (fileCode[index_2] == specSymbol[0])
 				{
 					index = index_2;
@@ -120,6 +123,7 @@ void obj::load(std::vector<float> &vert, std::vector<int> &face, std::vector<flo
 						if (vertStr[i] == ' ' || vertStr[i] == specSymbol[0] || i == vertStr.length())
 						{
 							coord_texture.push_back(std::stof(result));
+							//std::cout << std::stof(result) << std::endl;
 							result = "";
 							continue;
 						}
@@ -129,6 +133,8 @@ void obj::load(std::vector<float> &vert, std::vector<int> &face, std::vector<flo
 					}
 				}
 			}
+			//std::cout << fileCode[index] << std::endl;
+			vertStr = "";
 		}
 		else if (fileCode[index] == 'f' && fileCode[index + 1] == ' ')
 		{
@@ -153,6 +159,7 @@ void obj::load(std::vector<float> &vert, std::vector<int> &face, std::vector<flo
 						{
 							face.push_back(std::stof(result));
 							face.push_back(0);
+							std::cout << result << std::endl;
 							i++;
 							result = "";
 							continue;
@@ -176,4 +183,5 @@ void obj::load(std::vector<float> &vert, std::vector<int> &face, std::vector<flo
 	}
 	//std::cout << vert[4] << std::endl;
 	std::cout << "OK: compile object, paligons: " << face.size() / 9 << ", path: " << path << std::endl;
+	//throw "f";
 }
