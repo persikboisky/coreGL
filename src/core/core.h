@@ -6,9 +6,12 @@
 #define WINDOW_RESIZABLE true
 
 #include <GL/glew.h>
+#include <AL/al.h>
+#include <AL/alc.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
+#include <thread>
 #include <iostream>
 #include "window/Window.h"
 #include "window/Event.h"
@@ -26,6 +29,9 @@
 #include "util/vector.h"
 #include "util/string.h"
 #include "util/array.h"
+#include "audio/audio.h"
+#include "audio/device.h"
+#include "audio/source.h"
 
 enum primitive {
 	TRIANGLE_STRIP = GL_TRIANGLES,

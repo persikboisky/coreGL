@@ -17,5 +17,11 @@ public:
 
 class Texture : private texture
 {
+private:
+    unsigned int id;
 
+public:
+    Texture(const char* path);
+    ~Texture();
+    void bind();
 };

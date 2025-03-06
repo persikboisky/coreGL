@@ -85,3 +85,19 @@ void texture::DeleteALL()
         id[i] = 0;
     }
 }
+
+#pragma Texture
+Texture::Texture(const char* path)
+{
+    this->id = texture::load(path);
+}
+
+Texture::~Texture()
+{
+    texture::Delete(this->id);
+}
+
+void Texture::bind()
+{
+    texture::bind(this->id);
+}

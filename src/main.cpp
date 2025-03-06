@@ -1,5 +1,11 @@
+#define WIDTH 20
+#define HEIGHT 4
+#define LENGTH 20
+
 #include "core/core.h"
 #include "Player.h"
+#include <glm/glm.hpp>
+#include <glm/ext.hpp>
 #include <vector>
 #include <array>
 #include <algorithm> 
@@ -9,13 +15,23 @@ bool key[7];
 bool cursor = false;
 int tic = 0;
 
-float v_r = -0.25f;
-float v_g = 0.0f;
-float v_b = 0.0f;
+glm::vec3 mesh[WIDTH][HEIGHT][LENGTH];
+glm::mat4 matrix[WIDTH][HEIGHT][LENGTH];
 
-float r = 1.0f;
-float g = 1.0f;
-float b = 1.0f;
+static void setup()
+{
+	for (unsigned int z = 0; z < LENGTH; z++)
+	{
+		for (unsigned int x = 0; x < WIDTH; x++)
+		{
+			for (unsigned int y = 0; y < HEIGHT; y++)
+			{
+				mesh[x][y][z] = glm::vec3(x * 0.1, y * 0.2, z * 0.1);
+				matrix[x][y][z] = glm::mat4(1.0f);
+			}
+		}
+	}
+}
 
 int main()
 {
@@ -28,26 +44,21 @@ int main()
 		Window window("openGL", 1280, 720);
 		window.setContext();
 
-		VAO* bongo = new VAO(vao::FileOBJtoVVO("./res/obj/ak-47/ak-47.obj", true, true), 8);
-		bongo->addAttribute(0, 3, 0);
-		bongo->addAttribute(1, 3, 3);
-		bongo->addAttribute(2, 2, 6);
-
 		VAO* Smoke = new VAO(vao::FileOBJtoVVO("./res/obj/smoke/smoke.obj", true, true), 8);
 		Smoke->addAttribute(0, 3, 0);
 		Smoke->addAttribute(1, 3, 3);
 		Smoke->addAttribute(2, 2, 6);
 		 
-		//Shader* shader = new Shader("./res/shaders/mainv.glsl", "./res/shaders/mainf.glsl");
 		Shader* shader_2 = new Shader("./res/shaders/mainv.glsl", "./res/shaders/main2f.glsl");
-
-		unsigned int Texture = texture::load("./res/obj/ak-47/ak74m_2DView.png");
-		unsigned int TextureSmoke = texture::load("./res/obj/smoke/BTV_1_BaseColor.png");
+		Texture* textureSmoke = new Texture("./res/obj/smoke/BTV_1_BaseColor.png");
 
 		//creat player
 		Player persikboisky(0, 0, 4, 70);
 
 		glEnable(GL_DEPTH_TEST);
+		setup();
+
+		audio::Device* device = new audio::Device();
 
 		//game Circle
 		while (!window.event->close())
@@ -89,18 +100,29 @@ int main()
 			glClearColor(0.5, 0.5, 0.5, 0);
 
 			shader_2->use();
+			textureSmoke->bind();
 
 			persikboisky.move(key);
 			persikboisky.render("view", "proj", window.width, window.height, mouseX, mouseY);
 
-			shader_2->Uniform3F(glm::vec3(0, 0, 0), "u_position");
+			//shader_2->Uniform3F(glm::vec3(0, 0, 0), "u_position");
+			//texture::bind(Texture);
+			//bongo->draw(TRIANGLE_STRIP);
 			shader_2->Uniform4F(glm::vec4(1, 1, 1, 1), "u_color");
-			texture::bind(Texture);
-			bongo->draw(TRIANGLE_STRIP);
+			for (unsigned int z = 0; z < WIDTH; z++)
+			{
+				for (unsigned int x = 0; x < HEIGHT; x++)
+				{
+					for (unsigned int y = 0; y < LENGTH; y++)
+					{
+						//matrix[x][y][z] = glm::rotate(matrix[x][y][z], 0.01f, glm::vec3(0, 0, 1));
 
-			shader_2->Uniform3F(glm::vec3(0, 0, -0.5), "u_position");
-			texture::bind(TextureSmoke);
-			Smoke->draw(TRIANGLE_STRIP);
+						shader_2->UniformMat4(matrix[x][y][z], "t_matrix");
+						shader_2->Uniform3F(mesh[x][y][z], "u_position");
+						Smoke->draw(TRIANGLE_STRIP);
+					}
+				}
+			}
 
 			window.swapBuffers();
 			window.setSizeBuffer(window.width, window.height);

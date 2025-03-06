@@ -44,8 +44,9 @@ Player::~Player()
 void Player::render(const char* nameUniformView, const char* nameUniformProj, int w_width, int w_height, double mouseX, double mouseY)
 {
 	this->review(w_width, w_height, mouseX, mouseY);
-	shader::UniformMat4(cam->getProj(w_width, w_height), nameUniformProj);
-	shader::UniformMat4(cam->getView(), nameUniformView);
+	shader::UniformMat4(cam->getProj(w_width, w_height) * cam->getView(), "view_proj");
+	//shader::UniformMat4(cam->getProj(w_width, w_height), nameUniformProj);
+	//shader::UniformMat4(cam->getView(), nameUniformView);
 }
 
 void Player::move(bool keyArray[])
