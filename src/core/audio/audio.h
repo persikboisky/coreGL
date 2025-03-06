@@ -3,5 +3,5 @@
 namespace audio
 {
 	class Device;
-	class Source;
+	class AudioBuffer;
 }
