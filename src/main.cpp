@@ -31,6 +31,8 @@ static void setup()
 			}
 		}
 	}
+
+	wav::load();
 }
 
 int main()

@@ -21,6 +21,7 @@
 #include "file/toml_file.h"
 #include "file/obj.h"
 #include "file/mtl.h"
+#include "file/wav.h"
 #include "graphics/vao.h"
 #include "graphics/shader.h"
 #include "graphics/Camera.h"
@@ -31,7 +32,7 @@
 #include "util/array.h"
 #include "audio/audio.h"
 #include "audio/device.h"
-#include "audio/source.h"
+#include "audio/buffer.h"
 
 enum primitive {
 	TRIANGLE_STRIP = GL_TRIANGLES,

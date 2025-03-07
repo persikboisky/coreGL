@@ -51,3 +51,4 @@ void audio::Device::setContext()
 		throw "FAILED_MAKE_AUDIO_CONTEXT";
 	}
 }
+

@@ -3,7 +3,7 @@
 #include <vector>
 #include <string>
 #include <iostream>
-#include <Windows.h>
+//#include <Windows.h>
 
 const std::string specSymbol = "\n";
 

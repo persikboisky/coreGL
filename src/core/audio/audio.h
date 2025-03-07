@@ -3,5 +3,9 @@
 namespace audio
 {
 	class Device;
-	class AudioBuffer;
+
+	struct buffer;
+	class Buffer;
+
+	class Source;
 }
