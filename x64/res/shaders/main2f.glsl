@@ -9,7 +9,7 @@ in vec2 v_textCoord;
 uniform vec4 u_color;
 uniform sampler2D tex_diffuse;
 
-vec3 light_pos = vec3(0, 5, -2);
+vec3 light_pos = vec3(0, 3, 0);
 
 void main() {
 	vec3 lightColor = vec3(1, 1, 1);
