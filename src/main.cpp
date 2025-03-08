@@ -10,6 +10,11 @@
 #include <array>
 #include <algorithm> 
 
+#include <string>
+#include <fstream>
+#include <sstream>
+#include <iostream>
+
 double mouseX, mouseY;
 bool key[7];
 bool cursor = false;
@@ -31,8 +36,6 @@ static void setup()
 			}
 		}
 	}
-
-	wav::load();
 }
 
 int main()
@@ -61,8 +64,14 @@ int main()
 		setup();
 
 		audio::Device* device = new audio::Device();
+		device->setContext();
+		unsigned int audioSource = audio::source::create(0, 0, 0, 0, 0, 1);
+		unsigned int audioBuffer = audio::buffer::create("./res/audio/sample-3s.wav");
+
+		audio::source::linkBuffer(audioSource, audioBuffer);
 
 		//game Circle
+		bool music = true;
 		while (!window.event->close())
 		{
 			window.event->update();
@@ -128,7 +137,18 @@ int main()
 
 			window.swapBuffers();
 			window.setSizeBuffer(window.width, window.height);
+
+			audio::source::play(audioSource);
+			ALint state = AL_PLAYING;
+
+			while (state == AL_PLAYING && music)
+			{
+				audio::source::GetSourceState(audioSource, state);
+			}
+			music = false;
 		}
+		audio::source::DeleteALL();
+		audio::buffer::DeleteALL();
 		texture::DeleteALL();
 		vao::DeleteALL();
 		shader::DeleteALL();

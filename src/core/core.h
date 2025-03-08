@@ -31,8 +31,9 @@
 #include "util/string.h"
 #include "util/array.h"
 #include "audio/audio.h"
-#include "audio/device.h"
+#include "audio/Device.h"
 #include "audio/buffer.h"
+#include "audio/source.h"
 
 enum primitive {
 	TRIANGLE_STRIP = GL_TRIANGLES,

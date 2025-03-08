@@ -1,22 +1,40 @@
 #include "audio.h"
 #include <glm/glm.hpp>
+#include <vector>
 
-class audio::Source
+typedef int ALint;
+
+struct audio::source
 {
 private:
-	glm::vec3 pos;
-	glm::vec3 direct;
-
-	unsigned int id;
-
-	const float Pitch = 1.f;
-	const float Gain = 1.f;
-	const bool LoopSound = false;
-	unsigned int Buffer = 0;
+	static std::vector<unsigned int> id;
 
 public:
-	Source(glm::vec3 pos, glm::vec3 direct);
-	~Source();
+	static unsigned int create(glm::vec3 pos, glm::vec3 direct);
+	static unsigned int create(float pos_x, float pos_y, float pos_z, float direct_x, float direct_y, float dirct_z);
 
-	void Play(const unsigned int audioBuffer);
+	static void linkBuffer(unsigned int source, unsigned int audioBuffer);
+
+	static void play(unsigned int source);
+	static void GetSourceState(unsigned int source, ALint& state);
+
+	static void Delete(unsigned int source);
+	static void DeleteALL();
 };
+
+//class audio::Source
+//{
+//private:
+//	glm::vec3 pos;
+//	glm::vec3 direct;
+//
+//	unsigned int id_source;
+//
+//public:
+//	Source(glm::vec3 pos, glm::vec3 direct);
+//	Source(float pos_x, float pos_y, float pos_z, float direct_x, float direct_y, float direct_z);
+//	~Source();
+//
+//	void linkBuffer(unsigned int audioBuffer);
+//	//void GetSourceState(ALint& state);
+//};

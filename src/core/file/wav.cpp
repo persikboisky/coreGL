@@ -20,8 +20,10 @@ static bool check(const std::string str1, const std::string str2)
 	return true;
 }
 
-static void loadWav(const char* path, std::uint8_t& channels, std::int32_t& sampleRate, std::uint8_t& bitsPerSample, ALsizei& size)
+static std::vector<char> readWav(const char* path, std::uint8_t& channels, std::int32_t& sampleRate, std::uint8_t& bitsPerSample, ALsizei& size)
 {
+	unsigned int infoByte = 0;
+
 	std::ifstream file(path, std::ios::binary);
 	if (!file.is_open())
 	{
@@ -32,79 +34,124 @@ static void loadWav(const char* path, std::uint8_t& channels, std::int32_t& samp
 
 	char symbolBuffer[4];
 	//---------------------------------------------------------------------------------------------
-	//проверка ChunkID 
-	if (!file.read(symbolBuffer, 4)) throw "FAILED_READ_WAV_FILE"; // 0
+	//проверка ChunkID (4)
+	if (!file.read(symbolBuffer, 4)) throw "FAILED_READ_WAV_FILE";
 	if (!check("RIFF", symbolBuffer))
 	{
 		std::cerr << "Error: chunkId isn't RIFF" << std::endl;
 		throw "ERROR_CHUNKID_ISN'T_RIFF";
 	}
 	if (DEBUG) std::cout << "Ok: chunkId is RIFF" << std::endl;
+	infoByte += 4;
 
-	//ChunkSize
-	if (!file.read(symbolBuffer, 4)) throw "FAILED_READ_WAV_FILE"; // 4
-	std::cout << symbolBuffer[0] << symbolBuffer[1] << std::endl;
+	//ChunkSize(4)
+	int ChunkSize = 0;
+	if (!file.read((char*)&ChunkSize, 4)) throw "FAILED_READ_WAV_FILE";
+	infoByte += 4;
 
-	//проверка формата
-	if (!file.read(symbolBuffer, 4)) throw "FAILED_READ_WAV_FILE"; // 8
+	//проверка формата(4)
+	if (!file.read(symbolBuffer, 4)) throw "FAILED_READ_WAV_FILE"; 
 	if (!check("WAVE", symbolBuffer))
 	{
 		std::cerr << "Error: chunkId isn't WAVE" << std::endl;
 		throw "ERROR_CHUNKID_ISN'T_WAVE";
 	}
 	if (DEBUG) std::cout << "Ok: chunkId is WAVE" << std::endl;
-
-	//"fmt " or "data"
-	if (!file.read(symbolBuffer, 4)) throw "FAILED_READ_WAV_FILE"; // 12
+	infoByte += 4;
 	//---------------------------------------------------------------------------------------------
-	//Subchunk1Size
-	if (!file.read(symbolBuffer, 4)) throw "FAILED_READ_WAV_FILE"; // 16
 
-	//AudioFormat
-	if (!file.read(symbolBuffer, 4)) throw "FAILED_READ_WAV_FILE"; // 20
+	//"fmt "(4)
+	if (!file.read(symbolBuffer, 4)) throw "FAILED_READ_WAV_FILE"; 
+	if (symbolBuffer[0] != 'f' || symbolBuffer[1] != 'm' || symbolBuffer[2] != 't')
+	{
+		std::cerr << "Error: format wav file isn't fmt" << std::endl;
+		throw "ERROR_FORMAT_WAV_FILE_ISN'T_FMT";
+	}
+	infoByte += 4;
+
+	//Subchunk1Size(4)
+	int Subchunk1Size = 0;
+	if (!file.read((char*)&Subchunk1Size, 4)) throw "FAILED_READ_WAV_FILE";
+	infoByte += 4;
+
+	//AudioFormat (PCM)
+	int AudioFormat = 0;
+	if (!file.read((char*)&AudioFormat, 2)) throw "FAILED_READ_WAV_FILE"; 
+	if (AudioFormat != 1)
+	{
+		std::cerr << "ERROR: wav file hasn't pcm format" << std::endl;
+		throw "ERROR_WAV_FILE_HASN'T_PCM_FORMAT";
+	}
+	infoByte += 2;
 
 	//NumChannels
-	if (!file.read(symbolBuffer, 2)) throw "FAILED_READ_WAV_FILE"; // 22
+	if (!file.read((char*)&channels, 2)) throw "FAILED_READ_WAV_FILE";
+	infoByte += 2;
 
-	//SampleRate
-	if (!file.read(symbolBuffer, 2)) throw "FAILED_READ_WAV_FILE"; // 24
+	//SampleRate(4)
+	if (!file.read((char*)&sampleRate, 4)) throw "FAILED_READ_WAV_FILE";
+	infoByte += 4;
 
-	//ByteRate
-	if (!file.read(symbolBuffer, 4)) throw "FAILED_READ_WAV_FILE"; // 28
-	//---------------------------------------------------------------------------------------------
+	//ByteRate(4)
+	if (!file.read(symbolBuffer, 4)) throw "FAILED_READ_WAV_FILE"; 
+	infoByte += 4;
 	
-	// BlockAlign
-	if (!file.read(symbolBuffer, 4)) throw "FAILED_READ_WAV_FILE"; // 32
+	// BlockAlign(2)
+	if (!file.read(symbolBuffer, 2)) throw "FAILED_READ_WAV_FILE"; 
+	infoByte += 2;
 
 	//BitsPerSample
-	if (!file.read(symbolBuffer, 2)) throw "FAILED_READ_WAV_FILE"; // 34
+	if (!file.read((char*)&bitsPerSample, 2)) throw "FAILED_READ_WAV_FILE";
+	infoByte += 2;
 
-	//Subchunk2ID 
-	if (!file.read(symbolBuffer, 2)) throw "FAILED_READ_WAV_FILE"; // 36
-
-	//Subchunk2Size
-	if (!file.read(symbolBuffer, 4)) throw "FAILED_READ_WAV_FILE"; // 40
-
-	//Data 
-	if (!file.read(symbolBuffer, 4)) throw "FAILED_READ_WAV_FILE"; // 44
 	//---------------------------------------------------------------------------------------------
 
-	file.close();
+	//SubchunkDATA
+	for (unsigned int byte = 0;; byte += 1)
+	{
+		infoByte += 2;
+		if (!file.read(symbolBuffer, 2)) throw "FAILED_READ_WAV_FILE";
+		if (symbolBuffer[0] != 'd' || symbolBuffer[1] != 'a') continue;
 
-	//std::ifstream file(path, std::ios::binary);
-	//for (unsigned int i = 0; i < 30; i++)
-	//{
+		char symbolBuffer_2[2];
+		if (!file.read(symbolBuffer_2, 2)) throw "FAILED_READ_WAV_FILE";
+		if (!check("ta", symbolBuffer_2)) throw "FAILED_READ_WAV_FILE";
 
-	//}
-	//file.close();
+		infoByte += 2;
+		break;
+	}
+
+	//Subchunk2Size
+	int Subchunk2Size;
+	if (!file.read((char*)&Subchunk2Size, 4)) throw "FAILED_READ_WAV_FILE";
+	size = Subchunk2Size;
+	infoByte += 4;
+
+	//samples
+
+	std::vector<char> data;
+	data.resize(size);
+
+	if (!file.read(data.data(), size)) throw "FAILED_READ_WAV_FILE";
+
+	//std::cout << ChunkSize << " : " << ChunkSize - Subchunk2Size << " : " << Subchunk2Size << std::endl;
+
+	//---------------------------------------------------------------------------------------------
+
+	file.close(); 
+	return data;
 }
 
-void wav::load()
+std::vector<char> wav::load(const char* path, std::uint8_t& channels, std::int32_t& sampleRate, std::uint8_t& bitsPerSample, ALsizei& size)
 {
-	std::uint8_t channels = 0;
-	std::int32_t sampleRate = 0;
-	std::uint8_t bitsPerSample = 0;
-	ALsizei size = 0;
+	std::vector<char> data = readWav(path, channels, sampleRate, bitsPerSample, size);
 
-	loadWav("./res/audio/song_start_film.wav", channels, sampleRate, bitsPerSample, size);
+	if (DEBUG)
+	{
+		std::cout << "\nINFO WAV FILE: \n" << "Path: " << path << std::endl;
+		std::cout << "Channels: " << int(channels) << "\nSampleRate: " << sampleRate << std::endl;
+		std::cout << "bitsPerSample: " << int(bitsPerSample) << "\nsize: " << size << std::endl;
+	}
+
+	return data;
 }

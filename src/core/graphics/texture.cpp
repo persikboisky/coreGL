@@ -82,7 +82,8 @@ void texture::DeleteALL()
     for (int i = 0; i < id.size(); i++)
     {
         glDeleteTextures(1, &id[i]);
-        id[i] = 0;
+        //id[i] = 0;
+        id.clear();
     }
 }
 

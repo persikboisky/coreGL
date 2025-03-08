@@ -9,11 +9,11 @@ private:
 public:
 	static unsigned int create(const char* path);
 
-	static void Delete(unsigned int id);
+	static void Delete(unsigned int buffer);
 	static void DeleteALL();
 };
 
-class audio::Buffer : private audio::buffer
-{
-
-};
+//class audio::Buffer : private audio::buffer
+//{
+//
+//};

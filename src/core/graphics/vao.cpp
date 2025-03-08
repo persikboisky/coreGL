@@ -226,7 +226,8 @@ void vao::DeleteALL()
     for (int i = 0; i < vao::id.size(); i++)
     {
         glDeleteVertexArrays(1, &vao::id[i]);
-        vao::id[i] = 0;
+        //vao::id[i] = 0;
+        vao::id.clear();
     }
 }
 
@@ -242,7 +243,6 @@ void vao::draw(primitive Primitive, unsigned int VAO, int first_vert, int count_
     bind(0);
 }
 
-#pragma VAO
 VAO::VAO(float* data, int sizeOfByte, int elementToVert) : elementToVert(elementToVert), size(sizeOfByte / sizeof(float))
 {
     this->id = vao::create(data, sizeOfByte);
