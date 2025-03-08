@@ -38,6 +38,17 @@ static void setup()
 	}
 }
 
+void playAudio(unsigned int audioS)
+{
+	audio::source::play(audioS);
+	ALint state = AL_PLAYING;
+
+	while (state == AL_PLAYING)
+	{
+		audio::source::GetSourceState(audioS, state);
+	}
+}
+
 int main()
 {
 
@@ -70,8 +81,10 @@ int main()
 
 		audio::source::linkBuffer(audioSource, audioBuffer);
 
+		std::thread playMusic(playAudio, audioBuffer);
+		//playMusic.join();
+
 		//game Circle
-		bool music = true;
 		while (!window.event->close())
 		{
 			window.event->update();
@@ -137,16 +150,8 @@ int main()
 
 			window.swapBuffers();
 			window.setSizeBuffer(window.width, window.height);
-
-			audio::source::play(audioSource);
-			ALint state = AL_PLAYING;
-
-			while (state == AL_PLAYING && music)
-			{
-				audio::source::GetSourceState(audioSource, state);
-			}
-			music = false;
 		}
+		playMusic.~thread();
 		audio::source::DeleteALL();
 		audio::buffer::DeleteALL();
 		texture::DeleteALL();
