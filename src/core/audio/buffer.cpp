@@ -1,4 +1,4 @@
-#define DEBUG false
+#define DEBUG true
 
 #include "buffer.h"
 #include "../file/wav.h"
@@ -71,7 +71,9 @@ unsigned int audio::buffer::create(const char* path)
 
 	dataAudio.clear();
 
-	if (DEBUG) std::cout << "OK: create audio buffer" << std::endl;
+	if (DEBUG) std::cout << "OK: create audio buffer: " << path << std::endl;
+
+	return buffer;
 }
 
 void audio::buffer::Delete(unsigned int buffer)

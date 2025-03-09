@@ -77,12 +77,17 @@ int main()
 		audio::Device* device = new audio::Device();
 		device->setContext();
 		unsigned int audioSource = audio::source::create(0, 0, 0, 0, 0, 1);
-		unsigned int audioBuffer = audio::buffer::create("./res/audio/sample-3s.wav");
+
+		unsigned int audioBuffer = audio::buffer::create("./res/audio/2.wav");
+		unsigned int audioBuffer_2 = audio::buffer::create("./res/audio/sample-3s.wav");
+
+		std::cout << audioBuffer << audioBuffer_2 << std::endl;
 
 		audio::source::linkBuffer(audioSource, audioBuffer);
 
-		std::thread playMusic(playAudio, audioBuffer);
-		//playMusic.join();
+		audio::source::setSpeed(audioSource, 1.0f);
+		audio::source::setVolume(audioSource, 0.5f);
+		audio::source::play(audioSource);
 
 		//game Circle
 		while (!window.event->close())
@@ -151,7 +156,7 @@ int main()
 			window.swapBuffers();
 			window.setSizeBuffer(window.width, window.height);
 		}
-		playMusic.~thread();
+		//playMusic.~thread();
 		audio::source::DeleteALL();
 		audio::buffer::DeleteALL();
 		texture::DeleteALL();

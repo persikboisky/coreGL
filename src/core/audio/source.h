@@ -15,6 +15,9 @@ public:
 
 	static void linkBuffer(unsigned int source, unsigned int audioBuffer);
 
+	static void setSpeed(unsigned int source, float value);
+	static void setVolume(unsigned int source, float value);
+
 	static void play(unsigned int source);
 	static void GetSourceState(unsigned int source, ALint& state);
 

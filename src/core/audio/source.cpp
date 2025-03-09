@@ -1,4 +1,4 @@
-#define BUILD true
+#define BUILD false
 
 #include "source.h"
 #include "../util/vector.h"
@@ -37,7 +37,7 @@ unsigned int audio::source::create(glm::vec3 pos, glm::vec3 direct)
 
 	if (BUILD) std::cout << "OK: create audio source, id = " << source << std::endl;
 
-	alSourcef(source, AL_PITCH, 1);
+	alSourcef(source, AL_PITCH, 1.0f);
 	alSourcef(source, AL_GAIN, 1.0f);
 	alSource3f(source, AL_POSITION, pos.x, pos.y, pos.z);
 	alSource3f(source, AL_VELOCITY, direct.x, direct.y, direct.z);
@@ -52,6 +52,16 @@ unsigned int audio::source::create(float pos_x, float pos_y, float pos_z, float 
 void audio::source::linkBuffer(unsigned int source, unsigned int audioBuffer)
 {
 	alSourcei(source, AL_BUFFER, audioBuffer);
+}
+
+void audio::source::setSpeed(unsigned int source, float value = 1.0f)
+{
+	alSourcef(source, AL_PITCH, value);
+}
+
+void audio::source::setVolume(unsigned int source, float value = 1.0f)
+{
+	alSourcef(source, AL_GAIN, value);
 }
 
 void audio::source::play(unsigned int source)

@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{473f101d-03c2-4670-9602-ed27362c874e}</ProjectGuid>
+    <ProjectGuid>{eae0a474-d18e-4ed0-b4b1-0ad40b043ecc}</ProjectGuid>
     <RootNamespace>core</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -71,7 +71,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(ProjectDir)x64</OutDir>
+    <OutDir>$(SolutionDir)$(Platform)</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -129,15 +129,21 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(ProjectDir)library/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3dll.lib;OpenAL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\core\audio\buffer.cpp" />
+    <ClCompile Include="src\core\audio\Device.cpp" />
+    <ClCompile Include="src\core\audio\source.cpp" />
+    <ClCompile Include="src\core\file\mtl.cpp" />
     <ClCompile Include="src\core\file\obj.cpp" />
     <ClCompile Include="src\core\file\png.cpp" />
     <ClCompile Include="src\core\file\text.cpp" />
     <ClCompile Include="src\core\file\toml_file.cpp" />
+    <ClCompile Include="src\core\file\wav.cpp" />
     <ClCompile Include="src\core\graphics\Camera.cpp" />
+    <ClCompile Include="src\core\graphics\mesh.cpp" />
     <ClCompile Include="src\core\graphics\shader.cpp" />
     <ClCompile Include="src\core\graphics\texture.cpp" />
     <ClCompile Include="src\core\graphics\vao.cpp" />
@@ -151,12 +157,19 @@
     <ClCompile Include="src\Player.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\core\audio\audio.h" />
+    <ClInclude Include="src\core\audio\buffer.h" />
+    <ClInclude Include="src\core\audio\Device.h" />
+    <ClInclude Include="src\core\audio\source.h" />
     <ClInclude Include="src\core\core.h" />
+    <ClInclude Include="src\core\file\mtl.h" />
     <ClInclude Include="src\core\file\obj.h" />
     <ClInclude Include="src\core\file\png.h" />
     <ClInclude Include="src\core\file\text.h" />
     <ClInclude Include="src\core\file\toml_file.h" />
+    <ClInclude Include="src\core\file\wav.h" />
     <ClInclude Include="src\core\graphics\Camera.h" />
+    <ClInclude Include="src\core\graphics\mesh.h" />
     <ClInclude Include="src\core\graphics\shader.h" />
     <ClInclude Include="src\core\graphics\texture.h" />
     <ClInclude Include="src\core\graphics\vao.h" />
@@ -167,10 +180,6 @@
     <ClInclude Include="src\core\window\Event.h" />
     <ClInclude Include="src\core\window\Window.h" />
     <ClInclude Include="src\Player.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="res\shaders\mainf.glsl" />
-    <None Include="res\shaders\mainv.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
