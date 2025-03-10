@@ -19,7 +19,12 @@ public:
 	static void setVolume(unsigned int source, float value);
 
 	static void play(unsigned int source);
+	static void stop(unsigned int source);
+	static void pause(unsigned int source);
+	static void Resume(unsigned int source);
+
 	static void GetSourceState(unsigned int source, ALint& state);
+	static bool isPlaying(unsigned int source);
 
 	static void Delete(unsigned int source);
 	static void DeleteALL();

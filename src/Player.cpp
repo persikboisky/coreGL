@@ -31,7 +31,7 @@ void Player::review(int w_width, int w_height, double mouseX, double mouseY)
 	//std::cout << deltaX << " : " << deltaY << std::endl;
 }
 
-Player::Player(float x, float y, float z, float fov)
+Player::Player(float x, float y, float z, float fov) : pos(x, y, z)
 {
 	this->cam = new Camera(x, y, z, fov);
 }
@@ -110,4 +110,13 @@ void Player::move(bool keyArray[])
 	else if (keyArray[3]) cam->move(moveZ, 0.0f, -moveX);
 	if (keyArray[4]) cam->move(0.0f, -SPEED_CAMERA, 0.0f);
 	else if (keyArray[6]) cam->move(0.0f, SPEED_CAMERA, 0.0f);
+
+	/*glm::vec3 p;
+	cam->getPos(p.x, p.y, p.z);
+	this->pos = p;*/
+}
+
+glm::vec3 Player::getPos() const
+{
+	return this->pos;
 }

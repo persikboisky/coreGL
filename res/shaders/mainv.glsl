@@ -10,10 +10,9 @@ out vec2 v_textCoord;
 
 uniform vec3 u_position;
 uniform mat4 view_proj;
-uniform mat4 t_matrix;
 
 void main() {
-	vec4 pos = view_proj * t_matrix * vec4(u_position + position, 1.0);
+	vec4 pos = view_proj * vec4(u_position + position, 1.0);
 	//pos = t_matrix * pos;
 	v_pos = pos.xyz;
 	v_normal = normal;

@@ -61,6 +61,8 @@ void audio::source::setSpeed(unsigned int source, float value = 1.0f)
 
 void audio::source::setVolume(unsigned int source, float value = 1.0f)
 {
+	if (value < 0.0f) value = 0.0f;
+	else if (value > 5.0f) value = 5.0f;
 	alSourcef(source, AL_GAIN, value);
 }
 
@@ -69,9 +71,31 @@ void audio::source::play(unsigned int source)
 	alSourcePlay(source);
 }
 
+void audio::source::stop(unsigned int source)
+{
+	alSourceStop(source);
+}
+
+void audio::source::pause(unsigned int source)
+{
+	alSourcePause(source);
+}
+
+void audio::source::Resume(unsigned int source)
+{
+	alSourcePlay(source);
+}
+
 void audio::source::GetSourceState(unsigned int source, ALint& state)
 {
 	alGetSourcei(source, AL_SOURCE_STATE, &state);
+}
+
+bool audio::source::isPlaying(unsigned int source)
+{
+	ALint playState;
+	GetSourceState(source, playState);
+	return (playState == AL_PLAYING);
 }
 
 void audio::source::Delete(unsigned int source)

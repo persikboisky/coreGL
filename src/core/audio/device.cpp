@@ -1,7 +1,10 @@
 #define DEBUG false
 
 #include "Device.h"
+#include <AL/al.h>
 #include <AL/alc.h>
+#include <glm/glm.hpp>
+#include <vector>
 #include <iostream>
 
 audio::Device::Device()
@@ -52,3 +55,39 @@ void audio::Device::setContext()
 	}
 }
 
+void audio::Device::setPosition(glm::vec3 pos)
+{
+	alListener3f(AL_POSITION, pos.x, pos.y, pos.z);
+	//AL_CheckAndThrow();
+}
+
+void audio::Device::setPosition(float x, float y, float z)
+{
+	alListener3f(AL_POSITION, x, y, z);
+}
+
+void audio::Device::setDirect(float atx, float aty, float atz, float upx, float upy, float upz)
+{
+	std::vector<float> direct;
+
+	direct.push_back(atx);
+	direct.push_back(aty);
+	direct.push_back(atz);
+	direct.push_back(upx);
+	direct.push_back(upy);
+	direct.push_back(upz);
+
+	alListenerfv(AL_ORIENTATION, direct.data());
+}
+
+void audio::Device::getPosition(glm::vec3& pos) const
+{
+	pos = this->pos;
+}
+
+void audio::Device::getPosition(float& x, float& y, float& z) const
+{
+	x = this->pos.x;
+	y = this->pos.y;
+	z = this->pos.z;
+}

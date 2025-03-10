@@ -11,7 +11,7 @@ vec3 light_pos = vec3(0, 5, 2);
 
 void main() {
 	vec3 lightColor = vec3(1, 1, 1);
-	float ambientStrength = 0.3f;
+	float ambientStrength = 0.6f;
 
     vec3 ambient = ambientStrength * lightColor;
 

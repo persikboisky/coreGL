@@ -1,6 +1,6 @@
-#define WIDTH 20
-#define HEIGHT 4
-#define LENGTH 20
+//#define WIDTH 20
+//#define HEIGHT 4
+//#define LENGTH 20
 
 #include "core/core.h"
 #include "Player.h"
@@ -20,35 +20,6 @@ bool key[7];
 bool cursor = false;
 int tic = 0;
 
-glm::vec3 mesh[WIDTH][HEIGHT][LENGTH];
-glm::mat4 matrix[WIDTH][HEIGHT][LENGTH];
-
-static void setup()
-{
-	for (unsigned int z = 0; z < LENGTH; z++)
-	{
-		for (unsigned int x = 0; x < WIDTH; x++)
-		{
-			for (unsigned int y = 0; y < HEIGHT; y++)
-			{
-				mesh[x][y][z] = glm::vec3(x * 0.1, y * 0.2, z * 0.1);
-				matrix[x][y][z] = glm::mat4(1.0f);
-			}
-		}
-	}
-}
-
-void playAudio(unsigned int audioS)
-{
-	audio::source::play(audioS);
-	ALint state = AL_PLAYING;
-
-	while (state == AL_PLAYING)
-	{
-		audio::source::GetSourceState(audioS, state);
-	}
-}
-
 int main()
 {
 
@@ -59,37 +30,38 @@ int main()
 		//create window
 		Window window("openGL", 1280, 720);
 		window.setContext();
+		window.setIcon("./res/png/cubes.png");
 
-		VAO* Smoke = new VAO(vao::FileOBJtoVVO("./res/obj/smoke/smoke.obj", true, true), 8);
-		Smoke->addAttribute(0, 3, 0);
-		Smoke->addAttribute(1, 3, 3);
-		Smoke->addAttribute(2, 2, 6);
-		 
-		Shader* shader_2 = new Shader("./res/shaders/mainv.glsl", "./res/shaders/main2f.glsl");
-		Texture* textureSmoke = new Texture("./res/obj/smoke/BTV_1_BaseColor.png");
+		VAO* source_audio_obj = new VAO(vao::FileOBJtoVVO("./res/obj/source_audio.obj", true), 6);
+		source_audio_obj->addAttribute(0, 3, 0);
+		source_audio_obj->addAttribute(1, 3, 3);
+
+		Shader* shader = new Shader("./res/shaders/mainv.glsl", "./res/shaders/mainf.glsl");
+
 
 		//creat player
-		Player persikboisky(0, 0, 4, 70);
+		Player persikboisky(0, 0, 0, 70);
 
 		glEnable(GL_DEPTH_TEST);
-		setup();
 
 		audio::Device* device = new audio::Device();
 		device->setContext();
-		unsigned int audioSource = audio::source::create(0, 0, 0, 0, 0, 1);
+
+
+//		device->setPosition(0, 0, 4);
+//		device->setDirect(-2, 0, -1, 2, 0, -1);
+		unsigned int audioSource = audio::source::create(0, 0, 0, 0, 0, 0);
+
 
 		unsigned int audioBuffer = audio::buffer::create("./res/audio/2.wav");
-		unsigned int audioBuffer_2 = audio::buffer::create("./res/audio/sample-3s.wav");
-
-		std::cout << audioBuffer << audioBuffer_2 << std::endl;
 
 		audio::source::linkBuffer(audioSource, audioBuffer);
 
-		audio::source::setSpeed(audioSource, 1.0f);
-		audio::source::setVolume(audioSource, 0.5f);
+		audio::source::setSpeed(audioSource, 3.0f);
+		audio::source::setVolume(audioSource, 0.2f);
 		audio::source::play(audioSource);
 
-		//game Circle
+//		//game Circle
 		while (!window.event->close())
 		{
 			window.event->update();
@@ -128,40 +100,39 @@ int main()
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			glClearColor(0.5, 0.5, 0.5, 0);
 
-			shader_2->use();
-			textureSmoke->bind();
+			shader->use();
 
 			persikboisky.move(key);
 			persikboisky.render("view", "proj", window.width, window.height, mouseX, mouseY);
 
-			//shader_2->Uniform3F(glm::vec3(0, 0, 0), "u_position");
-			//texture::bind(Texture);
-			//bongo->draw(TRIANGLE_STRIP);
-			shader_2->Uniform4F(glm::vec4(1, 1, 1, 1), "u_color");
-			for (unsigned int z = 0; z < WIDTH; z++)
-			{
-				for (unsigned int x = 0; x < HEIGHT; x++)
-				{
-					for (unsigned int y = 0; y < LENGTH; y++)
-					{
-						//matrix[x][y][z] = glm::rotate(matrix[x][y][z], 0.01f, glm::vec3(0, 0, 1));
+			shader->Uniform3F(glm::vec3(0, 0, 0), "u_position");
+			shader->Uniform4F(glm::vec4(1, 1, 1, 1), "u_color");
+			source_audio_obj->draw(TRIANGLE_STRIP);		
 
-						shader_2->UniformMat4(matrix[x][y][z], "t_matrix");
-						shader_2->Uniform3F(mesh[x][y][z], "u_position");
-						Smoke->draw(TRIANGLE_STRIP);
-					}
-				}
-			}
-
+//			for (unsigned int z = 0; z < WIDTH; z++)
+//			{
+//				for (unsigned int x = 0; x < HEIGHT; x++)
+//				{
+//					for (unsigned int y = 0; y < LENGTH; y++)
+//					{
+//						//matrix[x][y][z] = glm::rotate(matrix[x][y][z], 0.01f, glm::vec3(0, 0, 1));
+//
+//						shader_2->UniformMat4(matrix[x][y][z], "t_matrix");
+//						shader_2->Uniform3F(mesh[x][y][z], "u_position");
+//						Smoke->draw(TRIANGLE_STRIP);
+//					}
+//				}
+//			}
+//
 			window.swapBuffers();
 			window.setSizeBuffer(window.width, window.height);
 		}
-		//playMusic.~thread();
-		audio::source::DeleteALL();
-		audio::buffer::DeleteALL();
-		texture::DeleteALL();
-		vao::DeleteALL();
-		shader::DeleteALL();
+//		//playMusic.~thread();
+//		audio::source::DeleteALL();
+//		audio::buffer::DeleteALL();
+//		texture::DeleteALL();
+//		vao::DeleteALL();
+//		shader::DeleteALL();
 	}
 	catch (...)
 	{
@@ -171,4 +142,4 @@ int main()
 
 	core::Terminate();
 	return 0;
-};
+}
