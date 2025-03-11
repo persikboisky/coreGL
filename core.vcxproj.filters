@@ -86,73 +86,73 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Player.h">
+    <ClInclude Include="src\Player.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="src\core\core.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\window\Window.h">
+    <ClInclude Include="src\core\window\Window.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\window\Cursor.h">
+    <ClInclude Include="src\core\window\Cursor.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\window\Event.h">
+    <ClInclude Include="src\core\window\Event.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\util\array.h">
+    <ClInclude Include="src\core\util\array.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\util\string.h">
+    <ClInclude Include="src\core\util\string.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\util\vector.h">
+    <ClInclude Include="src\core\util\vector.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="src\core\graphics\Camera.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\graphics\mesh.h">
+    <ClInclude Include="src\core\graphics\mesh.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="src\core\graphics\shader.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\graphics\texture.h">
+    <ClInclude Include="src\core\graphics\texture.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="src\core\graphics\vao.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\file\mtl.h">
+    <ClInclude Include="src\core\file\mtl.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\file\obj.h">
+    <ClInclude Include="src\core\file\obj.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\file\png.h">
+    <ClInclude Include="src\core\file\png.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\file\text.h">
+    <ClInclude Include="src\core\file\text.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\file\toml_file.h">
+    <ClInclude Include="src\core\file\toml_file.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\file\wav.h">
+    <ClInclude Include="src\core\file\wav.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\audio\audio.h">
+    <ClInclude Include="src\core\audio\audio.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\audio\buffer.h">
+    <ClInclude Include="src\core\audio\buffer.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\audio\Device.h">
+    <ClInclude Include="src\core\audio\Device.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\audio\source.h">
+    <ClInclude Include="src\core\audio\source.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="src\core\graphics\GUI\GUI.hpp">

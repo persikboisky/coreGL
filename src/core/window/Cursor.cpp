@@ -1,4 +1,4 @@
-#include "Cursor.h"
+#include "Cursor.hpp"
 #include <GLFW/glfw3.h>
 
 Cursor::Cursor(GLFWwindow& addrWindow) : window(&addrWindow)

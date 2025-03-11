@@ -1,5 +1,5 @@
-#include "Window.h"
-#include "../file/png.h"
+#include "Window.hpp"
+#include "../file/png.hpp"
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <iostream>

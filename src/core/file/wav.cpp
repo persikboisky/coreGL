@@ -1,7 +1,7 @@
 #define DEBUG false
 
-#include "wav.h"
-#include "text.h"
+#include "wav.hpp"
+#include "text.hpp"
 #include <AL/al.h>
 #include <string>
 #include <fstream>

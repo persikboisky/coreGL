@@ -1,4 +1,4 @@
-#include "Event.h"
+#include "Event.hpp"
 #include <GLFW/glfw3.h>
 #include <iostream>
 

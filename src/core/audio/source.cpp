@@ -1,7 +1,7 @@
 #define BUILD false
 
-#include "source.h"
-#include "../util/vector.h"
+#include "source.hpp"
+#include "../util/vector.hpp"
 #include <AL/alext.h>
 #include <glm/glm.hpp>
 #include <iostream>

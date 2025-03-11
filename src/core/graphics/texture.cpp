@@ -1,6 +1,6 @@
-#include "texture.h"
-#include "../util/vector.h"
-#include "../file/png.h"
+#include "texture.hpp"
+#include "../util/vector.hpp"
+#include "../file/png.hpp"
 #include <GL/glew.h>
 #include <iostream>
 #include <vector>

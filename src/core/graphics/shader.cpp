@@ -1,7 +1,7 @@
 #pragma shader
 #include "shader.hpp"
-#include "../file/text.h"
-#include "../util/vector.h"
+#include "../file/text.hpp"
+#include "../util/vector.hpp"
 #include <GL/glew.h>
 #include <glm/gtc/type_ptr.hpp>
 #include <vector>

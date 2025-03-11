@@ -3,7 +3,7 @@
 //#define LENGTH 20
 
 #include "core/core.h"
-#include "Player.h"
+#include "Player.hpp"
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
 #include <vector>

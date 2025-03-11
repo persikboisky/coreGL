@@ -1,6 +1,6 @@
 #define DEBUG false
 
-#include "Device.h"
+#include "Device.hpp"
 #include <AL/al.h>
 #include <AL/alc.h>
 #include <glm/glm.hpp>

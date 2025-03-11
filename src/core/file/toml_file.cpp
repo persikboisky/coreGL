@@ -1,5 +1,5 @@
-#include "toml_file.h"
-#include "text.h"
+#include "toml_file.hpp"
+#include "text.hpp"
 #include <string>
 #include <iostream>
 

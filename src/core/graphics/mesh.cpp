@@ -1,5 +1,5 @@
-#include "mesh.h"
-#include "../file/mtl.h"
+#include "mesh.hpp"
+#include "../file/mtl.hpp"
 #include "../graphics/vao.hpp"
 #include <vector>
 

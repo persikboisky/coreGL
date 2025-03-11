@@ -1,8 +1,8 @@
 #define DEBUG true
 
-#include "buffer.h"
-#include "../file/wav.h"
-#include "../util/vector.h"
+#include "buffer.hpp"
+#include "../file/wav.hpp"
+#include "../util/vector.hpp"
 #include <AL/alext.h>
 #include <vector>
 #include <iostream>

@@ -1,5 +1,5 @@
-#ifndef SRC_CORE_GRAPHICS_VAO_H_
-#define SRC_CORE_GRAPHICS_VAO_H_
+#ifndef SRC_CORE_GRAPHICS_VAO_HPP_
+#define SRC_CORE_GRAPHICS_VAO_HPP_
 
 #include <vector>
 
@@ -52,4 +52,4 @@ public:
 	void draw(primitive Primitive, int first_vert = 0, int count_vert = 0);
 };
 
-#endif // !SRC_CORE_GRAPHICS_VAO_H_
+#endif // !SRC_CORE_GRAPHICS_VAO_HPP_

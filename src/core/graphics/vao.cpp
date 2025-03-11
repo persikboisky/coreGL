@@ -1,8 +1,8 @@
 #pragma vao
 #include "vao.hpp"
-#include "../util/vector.h"
-#include "../util/array.h"
-#include "../file/obj.h"
+#include "../util/vector.hpp"
+#include "../util/array.hpp"
+#include "../file/obj.hpp"
 #include <GL/glew.h>
 #include <iostream>
 #include <vector>

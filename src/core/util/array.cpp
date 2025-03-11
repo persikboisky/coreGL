@@ -1,4 +1,4 @@
-#include "array.h"
+#include "array.hpp"
 #include <vector>
 #include <algorithm> 
 
