@@ -1,26 +1,8 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(520,5): warning MSB8004: каталог Output заканчивается не косой чертой.  Этот экземпляр сборки добавит косую черту, поскольку она необходима для правильного определения каталога Output.
-  main.cpp
-C:\Users\kisly\Desktop\core\src\core\file\wav.h(1,9): warning C4068: неизвестная прагма "Wav"
-  (компиляция исходного файла "src/main.cpp")
-  
-C:\Users\kisly\Desktop\core\src\core\audio\audio.h(1,9): warning C4068: неизвестная прагма "Audio"
-  (компиляция исходного файла "src/main.cpp")
-  
-C:\Users\kisly\Desktop\core\src\core\audio\Device.h(1,9): warning C4068: неизвестная прагма "Device"
-  (компиляция исходного файла "src/main.cpp")
-  
-C:\Users\kisly\Desktop\core\src\core\audio\audio.h(1,9): warning C4068: неизвестная прагма "Audio"
-  (компиляция исходного файла "src/main.cpp")
-  
-C:\Users\kisly\Desktop\core\src\core\audio\audio.h(1,9): warning C4068: неизвестная прагма "Audio"
-  (компиляция исходного файла "src/main.cpp")
-  
-C:\Users\kisly\Desktop\core\src\core\audio\audio.h(1,9): warning C4068: неизвестная прагма "Audio"
-  (компиляция исходного файла "src/main.cpp")
-  
+  GUI.cpp
   Создание кода
-  1 of 756 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+  1 of 650 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    8 functions had inline decision re-evaluated but remain unchanged
+    9 functions had inline decision re-evaluated but remain unchanged
   Создание кода завершено
   core.vcxproj -> C:\Users\kisly\Desktop\core\x64\core.exe

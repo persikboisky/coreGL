@@ -1,5 +1,5 @@
 #pragma shader
-#include "shader.h"
+#include "shader.hpp"
 #include "../file/text.h"
 #include "../util/vector.h"
 #include <GL/glew.h>

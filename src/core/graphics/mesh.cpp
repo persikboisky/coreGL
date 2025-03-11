@@ -1,6 +1,6 @@
 #include "mesh.h"
 #include "../file/mtl.h"
-#include "../graphics/vao.h"
+#include "../graphics/vao.hpp"
 #include <vector>
 
 #pragma mesh

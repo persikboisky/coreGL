@@ -1,5 +1,5 @@
 #pragma vao
-#include "vao.h"
+#include "vao.hpp"
 #include "../util/vector.h"
 #include "../util/array.h"
 #include "../file/obj.h"

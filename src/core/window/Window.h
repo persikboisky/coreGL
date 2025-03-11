@@ -39,6 +39,8 @@ public:
 	void close();
 	void setContext();
 	void setSizeBuffer(int width, int height);
+
+	bool isContext();
 };
 
 #endif // !SRC_CORE_WINDOW_WINDOW_H_

@@ -133,6 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\core\graphics\GUI\GUI.cpp" />
     <ClCompile Include="src\core\audio\buffer.cpp" />
     <ClCompile Include="src\core\audio\Device.cpp" />
     <ClCompile Include="src\core\audio\source.cpp" />
@@ -157,6 +158,7 @@
     <ClCompile Include="src\Player.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\core\graphics\GUI\GUI.hpp" />
     <ClInclude Include="src\core\audio\audio.h" />
     <ClInclude Include="src\core\audio\buffer.h" />
     <ClInclude Include="src\core\audio\Device.h" />
@@ -168,11 +170,11 @@
     <ClInclude Include="src\core\file\text.h" />
     <ClInclude Include="src\core\file\toml_file.h" />
     <ClInclude Include="src\core\file\wav.h" />
-    <ClInclude Include="src\core\graphics\Camera.h" />
+    <ClInclude Include="src\core\graphics\Camera.hpp" />
     <ClInclude Include="src\core\graphics\mesh.h" />
-    <ClInclude Include="src\core\graphics\shader.h" />
+    <ClInclude Include="src\core\graphics\shader.hpp" />
     <ClInclude Include="src\core\graphics\texture.h" />
-    <ClInclude Include="src\core\graphics\vao.h" />
+    <ClInclude Include="src\core\graphics\vao.hpp" />
     <ClInclude Include="src\core\util\array.h" />
     <ClInclude Include="src\core\util\string.h" />
     <ClInclude Include="src\core\util\vector.h" />

@@ -81,3 +81,13 @@ void Window::setSizeBuffer(int width, int height)
 {
 	glViewport(0, 0, width, height);
 }
+
+bool Window::isContext()
+{
+	GLFWwindow* context = glfwGetCurrentContext();
+	if (context == this->window)
+	{
+		return true;
+	}
+	return false;
+}

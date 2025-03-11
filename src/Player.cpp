@@ -1,8 +1,8 @@
 #define PI 3.14
 
 #include "Player.h"
-#include "core/graphics/Camera.h"
-#include "core/graphics/shader.h"
+#include "core/graphics/Camera.hpp"
+#include "core/graphics/shader.hpp"
 #include <iostream>
 
 const float SPEED_MOUSE = 1.5f;
