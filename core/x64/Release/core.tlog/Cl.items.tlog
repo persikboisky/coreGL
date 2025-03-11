@@ -9,6 +9,7 @@ C:\Users\kisly\Desktop\core\src\core\file\text.cpp;C:\Users\kisly\Desktop\core\c
 C:\Users\kisly\Desktop\core\src\core\file\toml_file.cpp;C:\Users\kisly\Desktop\core\core\x64\Release\toml_file.obj
 C:\Users\kisly\Desktop\core\src\core\file\wav.cpp;C:\Users\kisly\Desktop\core\core\x64\Release\wav.obj
 C:\Users\kisly\Desktop\core\src\core\graphics\Camera.cpp;C:\Users\kisly\Desktop\core\core\x64\Release\Camera.obj
+C:\Users\kisly\Desktop\core\src\core\graphics\GUI\style.cpp;C:\Users\kisly\Desktop\core\core\x64\Release\style.obj
 C:\Users\kisly\Desktop\core\src\core\graphics\mesh.cpp;C:\Users\kisly\Desktop\core\core\x64\Release\mesh.obj
 C:\Users\kisly\Desktop\core\src\core\graphics\shader.cpp;C:\Users\kisly\Desktop\core\core\x64\Release\shader.obj
 C:\Users\kisly\Desktop\core\src\core\graphics\texture.cpp;C:\Users\kisly\Desktop\core\core\x64\Release\texture.obj
