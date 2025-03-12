@@ -84,8 +84,7 @@ void Window::setSizeBuffer(int width, int height)
 
 bool Window::isContext()
 {
-	GLFWwindow* context = glfwGetCurrentContext();
-	if (context == this->window)
+	if (this->window == glfwGetCurrentContext())
 	{
 		return true;
 	}

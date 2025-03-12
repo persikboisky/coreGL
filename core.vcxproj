@@ -144,7 +144,7 @@
     <ClCompile Include="src\core\file\toml_file.cpp" />
     <ClCompile Include="src\core\file\wav.cpp" />
     <ClCompile Include="src\core\graphics\Camera.cpp" />
-    <ClCompile Include="src\core\graphics\GUI\style.cpp" />
+    <ClCompile Include="src\core\graphics\GUI\Style.cpp" />
     <ClCompile Include="src\core\graphics\mesh.cpp" />
     <ClCompile Include="src\core\graphics\shader.cpp" />
     <ClCompile Include="src\core\graphics\texture.cpp" />
@@ -172,7 +172,7 @@
     <ClInclude Include="src\core\file\toml_file.hpp" />
     <ClInclude Include="src\core\file\wav.hpp" />
     <ClInclude Include="src\core\graphics\Camera.hpp" />
-    <ClInclude Include="src\core\graphics\GUI\style.hpp" />
+    <ClInclude Include="src\core\graphics\GUI\Style.hpp" />
     <ClInclude Include="src\core\graphics\mesh.hpp" />
     <ClInclude Include="src\core\graphics\shader.hpp" />
     <ClInclude Include="src\core\graphics\texture.hpp" />

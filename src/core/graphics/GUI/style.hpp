@@ -1,11 +1,15 @@
 #include <glm/glm.hpp>
+#include <string>
 
-struct style
+namespace GUI
 {
-	glm::vec4 color_1; // основной цет
-	glm::vec4 color_2; // цвет взаимодействия
-	glm::vec4 color_3; // цвет контура
-	glm::vec4 color_4; // цвет взаимодействия с контуром
-
-	int mode;		   // 0 - спрайт, 1 - кнопка, 2 - текст
-};
+	class Style
+	{
+	public:
+		//void load(const char* path);
+		glm::vec4 background;
+		glm::vec4 color;
+		std::string text;
+		bool flag;
+	};
+}

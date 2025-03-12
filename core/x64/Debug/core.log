@@ -1,0 +1,92 @@
+﻿  GUI.cpp
+  buffer.cpp
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\graphics\GUI\GUI.hpp(2,10): error C1083: Не удается открыть файл включение: glm/glm.hpp: No such file or directory,
+  (компиляция исходного файла "src/core/graphics/GUI/GUI.cpp")
+  
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\audio\audio.hpp(1,9): warning C4068: неизвестная прагма "Audio"
+  (компиляция исходного файла "src/core/audio/buffer.cpp")
+  
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\file\wav.hpp(1,9): warning C4068: неизвестная прагма "Wav"
+  (компиляция исходного файла "src/core/audio/buffer.cpp")
+  
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\audio\buffer.cpp(6,10): error C1083: Не удается открыть файл включение: AL/alext.h: No such file or directory,
+  Device.cpp
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\audio\Device.hpp(1,9): warning C4068: неизвестная прагма "Device"
+  (компиляция исходного файла "src/core/audio/Device.cpp")
+  
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\audio\audio.hpp(1,9): warning C4068: неизвестная прагма "Audio"
+  (компиляция исходного файла "src/core/audio/Device.cpp")
+  
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\audio\Device.hpp(4,10): error C1083: Не удается открыть файл включение: glm/glm.hpp: No such file or directory,
+  (компиляция исходного файла "src/core/audio/Device.cpp")
+  
+  source.cpp
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\audio\audio.hpp(1,9): warning C4068: неизвестная прагма "Audio"
+  (компиляция исходного файла "src/core/audio/source.cpp")
+  
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\audio\source.hpp(2,10): error C1083: Не удается открыть файл включение: glm/glm.hpp: No such file or directory,
+  (компиляция исходного файла "src/core/audio/source.cpp")
+  
+  mtl.cpp
+  obj.cpp
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\file\obj.cpp(160,32): warning C4244: аргумент: преобразование "float" в "_Ty", возможна потеря данных
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\file\obj.cpp(160,32): warning C4244:         with
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\file\obj.cpp(160,32): warning C4244:         [
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\file\obj.cpp(160,32): warning C4244:             _Ty=int
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\file\obj.cpp(160,32): warning C4244:         ]
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\file\obj.cpp(170,32): warning C4244: аргумент: преобразование "float" в "_Ty", возможна потеря данных
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\file\obj.cpp(170,32): warning C4244:         with
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\file\obj.cpp(170,32): warning C4244:         [
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\file\obj.cpp(170,32): warning C4244:             _Ty=int
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\file\obj.cpp(170,32): warning C4244:         ]
+  png.cpp
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\file\png.cpp(4,10): error C1083: Не удается открыть файл включение: stb/stb_image.h: No such file or directory,
+  text.cpp
+  toml_file.cpp
+  wav.cpp
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\file\wav.hpp(1,9): warning C4068: неизвестная прагма "Wav"
+  (компиляция исходного файла "src/core/file/wav.cpp")
+  
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\file\wav.cpp(5,10): error C1083: Не удается открыть файл включение: AL/al.h: No such file or directory,
+  Camera.cpp
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\graphics\Camera.hpp(1,10): error C1083: Не удается открыть файл включение: glm/glm.hpp: No such file or directory,
+  (компиляция исходного файла "src/core/graphics/Camera.cpp")
+  
+  style.cpp
+  mesh.cpp
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\graphics\mesh.cpp(6,9): warning C4068: неизвестная прагма "mesh"
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\graphics\mesh.cpp(18,9): warning C4068: неизвестная прагма "Mesh"
+  shader.cpp
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\graphics\shader.cpp(1,9): warning C4068: неизвестная прагма "shader"
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\graphics\shader.hpp(4,10): error C1083: Не удается открыть файл включение: glm/glm.hpp: No such file or directory,
+  (компиляция исходного файла "src/core/graphics/shader.cpp")
+  
+  texture.cpp
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\graphics\texture.cpp(4,10): error C1083: Не удается открыть файл включение: GL/glew.h: No such file or directory,
+  vao.cpp
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\graphics\vao.cpp(1,9): warning C4068: неизвестная прагма "vao"
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\graphics\vao.cpp(6,10): error C1083: Не удается открыть файл включение: GL/glew.h: No such file or directory,
+  array.cpp
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\util\array.cpp(7,33): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\util\array.cpp(7,20): warning C4267: инициализация: преобразование из "size_t" в "const int"; возможна потеря данных
+  string.cpp
+  vector.cpp
+  Cursor.cpp
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\window\Cursor.cpp(2,10): error C1083: Не удается открыть файл включение: GLFW/glfw3.h: No such file or directory,
+  Создание кода...
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\graphics\mesh.cpp(16,1): error C4716: mesh::create: должна возвращать значение
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\file\toml_file.cpp(9,1): error C4716: toml::getValue: должна возвращать значение
+  Компиляция...
+  Event.cpp
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\window\Event.cpp(2,10): error C1083: Не удается открыть файл включение: GLFW/glfw3.h: No such file or directory,
+  Window.cpp
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\window\Window.cpp(3,10): error C1083: Не удается открыть файл включение: GL/glew.h: No such file or directory,
+  main.cpp
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\core.h(8,10): error C1083: Не удается открыть файл включение: GL/glew.h: No such file or directory,
+  (компиляция исходного файла "src/main.cpp")
+  
+  Player.cpp
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\Player.hpp(1,10): error C1083: Не удается открыть файл включение: glm/glm.hpp: No such file or directory,
+  (компиляция исходного файла "src/Player.cpp")
+  
+  Создание кода...

@@ -1,28 +1,29 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(520,5): warning MSB8004: каталог Output заканчивается не косой чертой.  Этот экземпляр сборки добавит косую черту, поскольку она необходима для правильного определения каталога Output.
+  GUI.cpp
   main.cpp
-C:\Users\kisly\Desktop\core\src\core\file\wav.hpp(1,9): warning C4068: неизвестная прагма "Wav"
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\file\wav.hpp(1,9): warning C4068: неизвестная прагма "Wav"
   (компиляция исходного файла "src/main.cpp")
   
-C:\Users\kisly\Desktop\core\src\core\audio\audio.hpp(1,9): warning C4068: неизвестная прагма "Audio"
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\audio\audio.hpp(1,9): warning C4068: неизвестная прагма "Audio"
   (компиляция исходного файла "src/main.cpp")
   
-C:\Users\kisly\Desktop\core\src\core\audio\Device.hpp(1,9): warning C4068: неизвестная прагма "Device"
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\audio\Device.hpp(1,9): warning C4068: неизвестная прагма "Device"
   (компиляция исходного файла "src/main.cpp")
   
-C:\Users\kisly\Desktop\core\src\core\audio\audio.hpp(1,9): warning C4068: неизвестная прагма "Audio"
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\audio\audio.hpp(1,9): warning C4068: неизвестная прагма "Audio"
   (компиляция исходного файла "src/main.cpp")
   
-C:\Users\kisly\Desktop\core\src\core\audio\audio.hpp(1,9): warning C4068: неизвестная прагма "Audio"
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\audio\audio.hpp(1,9): warning C4068: неизвестная прагма "Audio"
   (компиляция исходного файла "src/main.cpp")
   
-C:\Users\kisly\Desktop\core\src\core\audio\audio.hpp(1,9): warning C4068: неизвестная прагма "Audio"
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\core\audio\audio.hpp(1,9): warning C4068: неизвестная прагма "Audio"
   (компиляция исходного файла "src/main.cpp")
   
-C:\Users\kisly\Desktop\core\src\main.cpp(38,32): warning C4305: аргумент: усечение из "double" в "float"
-C:\Users\kisly\Desktop\core\src\main.cpp(38,27): warning C4305: аргумент: усечение из "double" в "float"
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\main.cpp(39,30): warning C4305: аргумент: усечение из "double" в "float"
+C:\Users\kisly\Downloads\openGL-main\openGL-main\src\main.cpp(39,25): warning C4305: аргумент: усечение из "double" в "float"
   Создание кода
-  Previous IPDB and IOBJ mismatch, fall back to full compilation.
-C:\Users\kisly\Desktop\core\src\core\window\Event.cpp(55): warning C4715: Event::getKey: значение возвращается не при всех путях выполнения
-  All 650 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  133 of 515 functions (25.8%) were compiled, the rest were copied from previous compilation.
+    1 functions were new in current compilation
+    25 functions had inline decision re-evaluated but remain unchanged
   Создание кода завершено
-  core.vcxproj -> C:\Users\kisly\Desktop\core\x64\core.exe
+  core.vcxproj -> C:\Users\kisly\Downloads\openGL-main\openGL-main\x64\core.exe

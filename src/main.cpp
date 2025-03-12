@@ -34,9 +34,9 @@ int main()
 
 		glEnable(GL_DEPTH_TEST);
 
-		GUI::Body* gui = new GUI::Body();
-		gui->createButton(0, 0, 0.1, 0.1, 0);
-		gui->endCreate();
+		GUI::Style* style_1 = new GUI::Style();
+		GUI::Body* body = new GUI::Body();
+		body->addButton(0, 0, 0.1, 0.1);
 
 		//game Circle
 		while (!window.event->close())
@@ -77,11 +77,31 @@ int main()
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			glClearColor(0.5, 0.5, 0.5, 0);
 
-			gui->Render();
+			//gui->Render();
+			double m_X, m_Y;
+			window.cursor->getCordCursor(m_X, m_Y);
+
+			m_X -= window.width / 2;
+			m_Y -= window.height / 2;
+
+			m_X = m_X / double(window.width / 2);
+			m_Y = -m_Y / double(window.height / 2);
+
+			/*shader::use(shad);
+
+			shader::Uniform4F(glm::vec4(1, 1, 1, 1), "color");
+			std::cout << m_X << ":" << m_Y << std::endl;
+			if (m_X >= 0 && m_X <= 0.1 && m_Y <= 0 && m_Y >= -0.1)
+			{
+				shader::Uniform4F(glm::vec4(1, 0, 0, 1), "color");
+			}
+
+			Vao.draw(TRIANGLE_STRIP);*/
 
 			window.swapBuffers();
 			window.setSizeBuffer(window.width, window.height);
 		}
+		shader::DeleteALL();
 	}
 	catch (...)
 	{

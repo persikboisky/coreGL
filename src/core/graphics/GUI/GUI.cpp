@@ -3,16 +3,32 @@
 #define DEBUG true
 
 #include "GUI.hpp"
+#include "Style.hpp"
 #include "../vao.hpp"
 #include "../shader.hpp"
 #include <GL/glew.h>
+#include <glm/glm.hpp>
+#include <string>
 #include <vector>
 #include <iostream>
 
+// параметры по умолчанию
+const glm::vec4 BACKGROUNE = glm::vec4(1, 1, 1, 1);
+const glm::vec4 COLOR = glm::vec4(0.1, 0.1, 0.1, 1);
+const std::string TEXT = "";
+
 enum primitive
 {
-	TRIANGLE_STRIP = GL_TRIANGLES,
+	TRIANGLE_STRIP = GL_TRIANGLES
 };
+
+void GUI::Body::addElement(int x, int y, float width, float height, GUI::Style* style)
+{
+	this->id.push_back(this->SelectID);
+	this->cord_and_size.push_back(glm::vec4(x, y, width, height));
+	this->style.push_back(style);
+	this->SelectID++;
+}
 
 GUI::Body::Body()
 {
@@ -24,74 +40,42 @@ GUI::Body::~Body()
 
 }
 
-void GUI::Body::startCreate()
+void GUI::Body::addButton(int x, int y, float width, float height, void* function, GUI::Style* style)
 {
-
-}
-
-//void GUI::Body::addColor(float red, float green, float blue, float alhpa = 1)
-//{
-//	this->currentIndexSettings++;
-//}
-
-void GUI::Body::createButton(float x, float y, float width, float height, int id = 0)
-{
-	this->id.push_back(id);
-
-	std::vector<float> vert;
-
-	//вершина 1
-	vert.push_back(x);
-	vert.push_back(y);
-	//вершина 2
-	vert.push_back(x);
-	vert.push_back(y - height);
-	//вершина 3
-	vert.push_back(x + width);
-	vert.push_back(y - height);
-
-	//вершина 4
-	vert.push_back(x);
-	vert.push_back(y);
-	//вершина 5
-	vert.push_back(x + width);
-	vert.push_back(y);
-	//вершина 6
-	vert.push_back(x + width);
-	vert.push_back(y - height);
-
-	this->vertex.push_back(vert);
-	vert.clear();
-
-	if (DEBUG)
+	if (style == nullptr)
 	{
-		std::cout << "OK: create button to index = " << this->currentIndexElement << ", id = " << id << std::endl;
+		style = new Style();
+		style->background = BACKGROUNE;
+		style->color = COLOR;
+		style->text = TEXT;
+		style->flag = true;
 	}
-	this->currentIndexElement++;
-}
-
-void GUI::Body::endCreate()
-{
-	this->shader = new Shader(PATH_TO_VERTEX_SHADER, PATH_TO_FRAGMENT_SHADER);
-
-	std::vector<float> Vao;
-
-	for (unsigned int i = 0; i < this->vertex.size(); i++)
+	else
 	{
-		for (unsigned int j = 0; j < this->vertex[0].size(); j++)
-		{
-			Vao.push_back(this->vertex[i][j]);
-			std::cout << this->vertex[i][j] << std::endl;
-		}
-	}
 
-	this->vao = new VAO(Vao, 2);
-	this->vao->addAttribute(0, 2, 0);
-	Vao.clear();
+	}
+	//std::cout << style->background.x << std::endl;
+	this->addElement(x, y, width, height, style);
 }
 
-void GUI::Body::Render()
+void GUI::Body::compile()
 {
-	this->shader->use();
-	this->vao->draw(TRIANGLE_STRIP);
+	//x, y, u, v, 
+	std::vector<float> vao;
+
+	for (unsigned int ID = 0; ID < this->id.size(); ID++)
+	{
+
+	}
+}
+
+void GUI::Body::render()
+{
+	//if event 
+	//{
+	//	This->compile();
+	//}
+	//draw {
+	//	
+	//}
 }

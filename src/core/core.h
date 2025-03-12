@@ -26,7 +26,7 @@
 #include "graphics/shader.hpp"
 #include "graphics/Camera.hpp"
 #include "graphics/GUI/GUI.hpp"
-#include "graphics/GUI/style.hpp"
+#include "graphics/GUI/Style.hpp"
 #include "graphics/texture.hpp"
 #include "graphics/mesh.hpp"
 #include "util/vector.hpp"
