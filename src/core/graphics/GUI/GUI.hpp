@@ -3,6 +3,14 @@
 
 class VAO;
 
+enum Element {
+	NONE = 0,
+	BUTTON = 1,
+	TEXT = 2,
+	IMAGE = 3,
+	SLIDER = 4
+};
+
 namespace GUI
 {
 	class Style;

@@ -13,9 +13,9 @@
 #include <iostream>
 
 // параметры по умолчанию
-const glm::vec4 BACKGROUNE = glm::vec4(1, 1, 1, 1);
-const glm::vec4 COLOR = glm::vec4(0.1, 0.1, 0.1, 1);
-const std::string TEXT = "";
+const glm::vec4 S_BACKGROUNE = glm::vec4(1, 1, 1, 1);
+const glm::vec4 S_COLOR = glm::vec4(0.1, 0.1, 0.1, 1);
+const std::string S_TEXT = "";
 
 enum primitive
 {
@@ -45,15 +45,16 @@ void GUI::Body::addButton(int x, int y, float width, float height, void* functio
 	if (style == nullptr)
 	{
 		style = new Style();
-		style->background = BACKGROUNE;
-		style->color = COLOR;
-		style->text = TEXT;
+		style->background = S_BACKGROUNE;
+		style->color = S_COLOR;
+		style->text = S_TEXT;
 		style->flag = true;
 	}
 	else
 	{
 
 	}
+	style->index_element = BUTTON;
 	//std::cout << style->background.x << std::endl;
 	this->addElement(x, y, width, height, style);
 }
@@ -61,12 +62,38 @@ void GUI::Body::addButton(int x, int y, float width, float height, void* functio
 void GUI::Body::compile()
 {
 	//x, y, u, v, 
+	if (this->vao != nullptr)
+	{
+		this->vao->~VAO();
+	}
+
 	std::vector<float> vao;
 
-	for (unsigned int ID = 0; ID < this->id.size(); ID++)
+	for (unsigned int ID = 0; ID < this->style.size(); ID++)
 	{
-
+		switch (this->style[ID]->index_element)
+		{
+		case NONE:
+			//code
+			break;
+		case BUTTON:
+			//code
+			break;
+		case TEXT:
+			//code
+			break;
+		case SLIDER:
+			//code
+			break;
+		case IMAGE:
+			//code
+			break;
+		default:
+			break;
+		}
 	}
+
+	//this->vao = new VAO();
 }
 
 void GUI::Body::render()
