@@ -25,7 +25,7 @@ const std::string specSymbol = "\n";
 
 void obj::load(std::vector<float> &vert, std::vector<int> &face, std::vector<float>& vert_normal, std::vector<float> &coord_texture, const char* path)
 {
-	std::string fileCode = text::read(path);
+	std::string fileCode = text::load(path);
 	std::string vertStr = "";
 	for (unsigned int index = 0; index < fileCode.length() - 1; index++)
 	{

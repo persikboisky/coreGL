@@ -63,7 +63,7 @@ std::string string::searchFromString(std::string search_string, std::string stri
 
 std::string string::searchFromFile(std::string search_string, const char* path)
 {
-	std::string code = text::read(path);
+	std::string code = text::load(path);
 	const char* Code = code.c_str();
 	return searchFromString(search_string, Code);
 }

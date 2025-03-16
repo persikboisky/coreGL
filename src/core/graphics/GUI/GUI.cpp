@@ -4,8 +4,8 @@
 
 #include "GUI.hpp"
 #include "Style.hpp"
-#include "../vao.hpp"
-#include "../shader.hpp"
+#include "../commons/vao.hpp"
+#include "../commons/shader.hpp"
 #include <GL/glew.h>
 #include <glm/glm.hpp>
 #include <string>

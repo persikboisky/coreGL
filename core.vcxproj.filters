@@ -39,19 +39,19 @@
     <ClCompile Include="src\core\util\vector.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="src\core\graphics\Camera.cpp">
+    <ClCompile Include="src\core\graphics\commons\Camera.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="src\core\graphics\mesh.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="src\core\graphics\shader.cpp">
+    <ClCompile Include="src\core\graphics\commons\shader.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="src\core\graphics\texture.cpp">
+    <ClCompile Include="src\core\graphics\commons\texture.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="src\core\graphics\vao.cpp">
+    <ClCompile Include="src\core\graphics\commons\vao.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="src\core\file\mtl.cpp">
@@ -81,10 +81,19 @@
     <ClCompile Include="src\core\audio\source.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="src\core\graphics\GUI\GUI.cpp">
+    <ClCompile Include="src\core\graphics\gui\GUI.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="src\core\graphics\GUI\Style.cpp">
+    <ClCompile Include="src\core\graphics\gui\Style.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\graphics\commons\font.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\data\info.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\data\time.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -113,19 +122,19 @@
     <ClInclude Include="src\core\util\vector.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\graphics\Camera.hpp">
+    <ClInclude Include="src\core\graphics\commons\Camera.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="src\core\graphics\mesh.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\graphics\shader.hpp">
+    <ClInclude Include="src\core\graphics\commons\shader.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\graphics\texture.hpp">
+    <ClInclude Include="src\core\graphics\commons\texture.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\graphics\vao.hpp">
+    <ClInclude Include="src\core\graphics\commons\vao.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="src\core\file\mtl.hpp">
@@ -158,10 +167,19 @@
     <ClInclude Include="src\core\audio\source.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\graphics\GUI\GUI.hpp">
+    <ClInclude Include="src\core\graphics\gui\GUI.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\graphics\GUI\Style.hpp">
+    <ClInclude Include="src\core\graphics\gui\Style.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\graphics\commons\font.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\data\info.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\data\time.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

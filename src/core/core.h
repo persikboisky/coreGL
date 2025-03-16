@@ -1,10 +1,17 @@
 #ifndef SRC_CORE_CORE_H_
 #define SRC_CORE_CORE_H_
 
+// версия openGL(4.6)
 #define VERSION_MAJOR 4
 #define VERSION_MINOR 6
+
+// разрешить изменения размера окна(окон)
 #define WINDOW_RESIZABLE true
 
+// разрешить получение информации о состояние разных процессов
+#define CORE_INFO true
+
+// библиотеки
 #include <GL/glew.h>
 #include <AL/al.h>
 #include <AL/alc.h>
@@ -13,6 +20,8 @@
 #include <glm/ext.hpp>
 #include <thread>
 #include <iostream>
+
+// моё говно
 #include "window/Window.hpp"
 #include "window/Event.hpp"
 #include "window/Cursor.hpp"
@@ -22,12 +31,12 @@
 #include "file/obj.hpp"
 #include "file/mtl.hpp"
 #include "file/wav.hpp"
-#include "graphics/vao.hpp"
-#include "graphics/shader.hpp"
-#include "graphics/Camera.hpp"
+#include "graphics/commons/vao.hpp"
+#include "graphics/commons/shader.hpp"
+#include "graphics/commons/Camera.hpp"
+#include "graphics/commons/texture.hpp"
 #include "graphics/GUI/GUI.hpp"
 #include "graphics/GUI/Style.hpp"
-#include "graphics/texture.hpp"
 #include "graphics/mesh.hpp"
 #include "util/vector.hpp"
 #include "util/string.hpp"
@@ -36,6 +45,10 @@
 #include "audio/Device.hpp"
 #include "audio/buffer.hpp"
 #include "audio/source.hpp"
+#include "data/time.hpp"
+#include "data/info.hpp"
+
+bool coreInfo = CORE_INFO;
 
 enum primitive {
 	TRIANGLE_STRIP = GL_TRIANGLES,

@@ -15,28 +15,38 @@
 #include <sstream>
 #include <iostream>
 
-double mouseX, mouseY;
-bool key[7];
-bool cursor = false;
-int tic = 0;
+#include <math.h>
+
+#include <ctime>
+#include <chrono>
+
+std::vector<float> vertex;
 
 int main()
 {
 
 	try
 	{
-
 		core::Init();
 		//create window
 		Window window("openGL", 1280, 720);
 		window.setContext();
 		window.setIcon("./res/png/cubes.png");
 
-		glEnable(GL_DEPTH_TEST);
+		for (float a = -15; a < 15; a += 0.001)
+		{
+			vertex.push_back(a / 10);
+			vertex.push_back(cos(a) / 2);
+		}
 
-		GUI::Style* style_1 = new GUI::Style();
-		GUI::Body* body = new GUI::Body();
-		body->addButton(0, 0, 0.1, 0.1);
+		VAO* vao = new VAO(vertex, 2);
+		vao->addAttribute(0, 2, 0);
+		vao->addAttribute(1, 2, 0);
+
+		Shader* shader = new Shader("./src/vert.glsl", "./src/frag.glsl");
+		Texture* texture = new Texture("./res/png/cubes.png");
+
+		glEnable(GL_DEPTH_TEST);
 
 		//game Circle
 		while (!window.event->close())
@@ -47,56 +57,16 @@ int main()
 				window.close();
 			}
 
-			/*if (!cursor)
-			{
-				window.cursor->getCordCursor(mouseX, mouseY);
-				window.cursor->setPosition(0, 0);
-			}
-			window.cursor->disableCursor(!cursor);
-
-			key[0] = window.event->getKey(K_W);
-			key[1] = window.event->getKey(K_S);
-			key[2] = window.event->getKey(K_A);
-			key[3] = window.event->getKey(K_D);
-			key[6] = window.event->getKey(K_SPACE);
-			key[4] = window.event->getKey(K_LEFT_SHIFT);
-			key[5] = window.event->getKey(K_LEFT_CONTROL);
-
-			if (window.event->getKey(K_ESCAPE))
-			{
-				window.close();
-			}
-			if (window.event->getKey(K_F1) && tic > 75)
-			{
-				tic = 0;
-				cursor = !cursor;
-			}
-			tic += 1;
-			if (tic >= 10000000) tic = 100;*/
-
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-			glClearColor(0.5, 0.5, 0.5, 0);
+			//glClearColor(0.5, 0.5, 0.5, 0);
+			glClearColor(0, 0, 0, 0);
 
-			//gui->Render();
-			double m_X, m_Y;
-			window.cursor->getCordCursor(m_X, m_Y);
-
-			m_X -= window.width / 2;
-			m_Y -= window.height / 2;
-
-			m_X = m_X / double(window.width / 2);
-			m_Y = -m_Y / double(window.height / 2);
-
-			/*shader::use(shad);
-
-			shader::Uniform4F(glm::vec4(1, 1, 1, 1), "color");
-			std::cout << m_X << ":" << m_Y << std::endl;
-			if (m_X >= 0 && m_X <= 0.1 && m_Y <= 0 && m_Y >= -0.1)
-			{
-				shader::Uniform4F(glm::vec4(1, 0, 0, 1), "color");
-			}
-
-			Vao.draw(TRIANGLE_STRIP);*/
+			//texture->bind();
+			shader->use();
+			//shader->Uniform3F(glm::vec3(1, 1, 1), "color");
+			//shader->Uniform1I(glm::ivec1(2), "text");
+			glPointSize(2);
+			vao->draw(POINT);
 
 			window.swapBuffers();
 			window.setSizeBuffer(window.width, window.height);

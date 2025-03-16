@@ -133,7 +133,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\core\graphics\GUI\GUI.cpp" />
+    <ClCompile Include="src\core\data\info.cpp" />
+    <ClCompile Include="src\core\data\time.cpp" />
+    <ClCompile Include="src\core\graphics\commons\font.cpp" />
+    <ClCompile Include="src\core\graphics\gui\GUI.cpp" />
     <ClCompile Include="src\core\audio\buffer.cpp" />
     <ClCompile Include="src\core\audio\Device.cpp" />
     <ClCompile Include="src\core\audio\source.cpp" />
@@ -143,12 +146,12 @@
     <ClCompile Include="src\core\file\text.cpp" />
     <ClCompile Include="src\core\file\toml_file.cpp" />
     <ClCompile Include="src\core\file\wav.cpp" />
-    <ClCompile Include="src\core\graphics\Camera.cpp" />
-    <ClCompile Include="src\core\graphics\GUI\Style.cpp" />
+    <ClCompile Include="src\core\graphics\commons\Camera.cpp" />
+    <ClCompile Include="src\core\graphics\gui\Style.cpp" />
     <ClCompile Include="src\core\graphics\mesh.cpp" />
-    <ClCompile Include="src\core\graphics\shader.cpp" />
-    <ClCompile Include="src\core\graphics\texture.cpp" />
-    <ClCompile Include="src\core\graphics\vao.cpp" />
+    <ClCompile Include="src\core\graphics\commons\shader.cpp" />
+    <ClCompile Include="src\core\graphics\commons\texture.cpp" />
+    <ClCompile Include="src\core\graphics\commons\vao.cpp" />
     <ClCompile Include="src\core\util\array.cpp" />
     <ClCompile Include="src\core\util\string.cpp" />
     <ClCompile Include="src\core\util\vector.cpp" />
@@ -159,7 +162,10 @@
     <ClCompile Include="src\Player.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\core\graphics\GUI\GUI.hpp" />
+    <ClInclude Include="src\core\data\info.hpp" />
+    <ClInclude Include="src\core\data\time.hpp" />
+    <ClInclude Include="src\core\graphics\commons\font.hpp" />
+    <ClInclude Include="src\core\graphics\gui\GUI.hpp" />
     <ClInclude Include="src\core\audio\audio.hpp" />
     <ClInclude Include="src\core\audio\buffer.hpp" />
     <ClInclude Include="src\core\audio\Device.hpp" />
@@ -171,12 +177,12 @@
     <ClInclude Include="src\core\file\text.hpp" />
     <ClInclude Include="src\core\file\toml_file.hpp" />
     <ClInclude Include="src\core\file\wav.hpp" />
-    <ClInclude Include="src\core\graphics\Camera.hpp" />
-    <ClInclude Include="src\core\graphics\GUI\Style.hpp" />
+    <ClInclude Include="src\core\graphics\commons\Camera.hpp" />
+    <ClInclude Include="src\core\graphics\gui\Style.hpp" />
     <ClInclude Include="src\core\graphics\mesh.hpp" />
-    <ClInclude Include="src\core\graphics\shader.hpp" />
-    <ClInclude Include="src\core\graphics\texture.hpp" />
-    <ClInclude Include="src\core\graphics\vao.hpp" />
+    <ClInclude Include="src\core\graphics\commons\shader.hpp" />
+    <ClInclude Include="src\core\graphics\commons\texture.hpp" />
+    <ClInclude Include="src\core\graphics\commons\vao.hpp" />
     <ClInclude Include="src\core\util\array.hpp" />
     <ClInclude Include="src\core\util\string.hpp" />
     <ClInclude Include="src\core\util\vector.hpp" />

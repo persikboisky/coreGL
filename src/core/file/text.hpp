@@ -5,7 +5,7 @@
 
 struct text
 {
-	static std::string read(const char* path);
+	static std::string load(const char* path);
 };
 
 #endif // !SRC_CORE_LOADERS_TEXT_HPP_

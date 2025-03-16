@@ -4,7 +4,7 @@
 #include <sstream>
 #include <iostream>
 
-std::string text::read(const char* path)
+std::string text::load(const char* path)
 {
     std::string text = "";
     std::ifstream file(path, std::ios::in);
