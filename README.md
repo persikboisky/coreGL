@@ -239,4 +239,3 @@ v.draw(primitive Primitive, int first_vert = 0, int count_vert = 0);
 > QUADS, QUAD_STRIP, POLYGON в новой openGL, почему-то не работают
 
 ![](primitive.png)
-
