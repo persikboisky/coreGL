@@ -1,146 +1,103 @@
-## Инструкция
-```sh
-1. скачиваем и разархивируем архив
-2. открываем проект файл openGL.sln (должна быть установлена Visual Studio)
-3. проверяем что бы сверху стояло Reales x64 (если не стоит, то устанавливаем)
-4. запускаем (Вы увидите спрайт с логотипом ядра)
-5. теперь можете писать свои проекты
+## ядро coreGL
 
-```
-> [!WARNING]
->```sh
-> Требуется ос win x64
-> Работает по умолчанию на версии openGL 4.6
->```
-
-> [!TIP]
->
+> [!NOTE]
 > ```sh
-> Чтобы указать другую версию openGL заходим в файл core.h (src/core/core.h)
-> Находим эти строки (они в начале), и указываем версию
-> #define VERSION_MAJOR первое число
-> #define VERSION_MINOR второе число
+> Ядро coreGL это мой проект написанный на c++
+> Главная цель - уменьшить кол-во кода
+> Библиотеки использованные мной: openGL, glfw, glew, glm, openAL, stb_image
 > ```
 
-## Системы ядра
->[!NOTE]
+> [!WARNING]
 >```sh
-> в папке src/core расположены все системы и под системы ядра
-> в файле src/main.cpp написан демонстрационный код
-> По сути ядро находится в файле core и подключается заголовочным файлом core.h
-> Некоторые функции могут вызывать исключения, я ниже опишу значение всех исключений(вызвать их почти невозможно:))
+> Требуется windows x64
+> Работает по умолчанию на версии openGL 4.6(но это можно поменять)
 >```
 
-## Содержание ядра
+## Использование ядра
 ```sh
-1.window (отвечает за создание и взаимодействие окна)
-2.graphics (хз что писать:) )
-3.loaders (Загрузка файлов)
-4.util (Различный алгоритмы для упрощения жизни)
-```
+самый простой способ это открыть проект в visual studio(файл core.sh)
+второй способ для отчайных это скопировать содержимое из src/core в свой проект
 
-## Система window
-```sh
-Window(const char* title, int width, int height) конструктор создания окна(окон)
-Принимает заголовок, высоту окна, ширину окна
-
-Далее все методы рассматриваются относительно созданного вами объекта окна
-
-~Window() - деструктор удаляет окно
-width, height - эти переменые хранят текущий размер окна
-swapBuffers() - сменяет буфер окна
-setSizeBuffer(int width, int height) - Устанавливает размер буфера
-setIcon(const char* path) - Устанавливает png иконку для окна
-close() - вызывает закрытие окна, но не удаляет его
-setContext() - подключает openGL к окну
-
-event->update() - обновляет список эвентов
-event->close() - проверяет эвент закрытия окна (тип функции bool)
-event->GetMouseLeftButton() - возвращает состояние ЛКМ (тип функции bool)
-event->GetMouseRightButton() - возвращает состояние ПКМ (тип функции bool)
-event->getKey(int keyCode) - возвращает состояние клавиш (тип функции bool)
-принимает номер клавиши
-
-cursor->setCursorMode(int mode) - устанавливает режим курсора
-принимает номер режима
-cursor->showCursor(bool flag) - делает курсор невидимым
-принимает флаг
-cursor->disableCursor(bool flag) - выключает курсор
-принимает флаг
-cursor->setPosition(double x, double y) - устанавливает курсор на указаных координатах
-принимает координаты
-cursor->getCordCursorX() - возвращает координаты курсора по оси X (тип функции double)
-cursor->getCordCursorY() - возвращает координаты курсора по оси Y (тип функции double)
-cursor->getCordCursor(double& x, double& y) - передаёт координаты курсора в переменые
-принимает переменные для хранения координат
-```
-
-## Система graphics
-```sh
-vao::create(create(float vert[], int sizeOfFloat) создаёт вершиный буфер
-принимает массив вершин и размер массивы в байтах
-возвращает дескриптор(unsigned int)
-
-vao::addAttribute(unsigned int id, int index, int n, int size, int indentation) добавляет вершиный атрибут
-принимает дескриптор vao,
-индекс атрибута,
-количество элементов в атрибуте,
-количество элементов на всю вершину,
-отступ массиве элементов
-
-vao::Delete(unsigned int id) удаляет vao
-принимает дескриптор vao
-
-vao::DeleteALL() удаляет все vao
-
-vao::draw(primitive Primitive, int first_vert, int count_vert) отрисовывает примитив(ы)
-принимает примитив,
-номер первой вершины,
-номер последней вершины
-
-shader::createFromCode(const char* codeVert, const char* codeFrag) создаёт шейдер и возвращает дискриптор (unsigned int)
-принимает строку кода шейдера
-
-класс Camera
-Camera(float posX, float posY, float posZ, float fov);
-конструктор камеры,
-принимает координаты,
-принемает поле зрения
-
-rotate(float x, float y, float z);
-поворачивает камеру по указанным координатам
-
-move(float x, float y, float z);
-перемещает камеру по указанным координатам
-
-resetRotate();
-сбрасывает матрицу вращения
-
-getPos3f(glm::vec3& pos) const;
-получает координаты камеры,
-принимает вектор для хранения координат
-
-getPos(float& x, float& y, float& z) const;
-получает координаты камеры,
-как принимать переменные для хранения координат
-
-getProj(int width, int height) const;
-возвращает матрицу проекции (glm::mat4)
-принимаешь ширину высоты окна
-
-getView() const;
-возвращает матрицу вида (glm::mat4)
-
+и втом, и в другом случае для использования функций ядра, надо 
+подключать заголовочный файл src/core/core.hpp
 ```
 
 
+## Настройка проекта
+>[!NOTE]
+>```sh
+> если вы используете visual studio, убедитесь что режим компиляции - reales, а не debug
+>```
+
++ в заголовочный файле src/core/core.hpp можно произвести настройку ядра:
+```cpp
+4  // версия openGL(4.6)
+5  constexpr unsigned char VERSION_MAJOR = 4;
+6  constexpr unsigned char VERSION_MINOR = 6;
+7 
+8  // разрешить изменения размера окна(окон)
+9  constexpr bool WINDOW_RESIZABLE = true;
+10
+11 // разрешить получение информации о состояние разных процессов
+12 constexpr bool CORE_INFO = true;
+```
+
+## структура ядра
+:open_file_folder: core 
+>:file_folder: audio\
+>:file_folder: data\
+>:file_folder: graphics\
+>:file_folder: util\
+>:file_folder: window\
+>:page_facing_up: core.hpp
+
+core.hpp это заголовочный файл, включает все инструменты ядра\
+audio, data, file, graphics, util, window - это системы ядра, на каждой из них мы остановимя ниже
+
+## инициализация ядра
+``` cpp
+#include "core/core.hpp"
+
+int main()
+{
+    // инициализирует ядро
+    core::Init();
+
+    // ваш код
+    //gggfsd\hfrds\
+    //rh\ztzj
+    //\zrhjtz\
+
+    // освобождает память
+    core::Terminate();
+	return 0;
+}
+```
+
+## система window
+
+``` cpp
+Window window("openGL", 1280, 720);
+// этот конструктор создаёт объект окна и само окно с название openGL, и размером 1280x720
+
+winodw.~Window();
+// этот деструктор удаляет объект она и сам окно
+
+window.setContext();
+// устанавливает данный объект в качестве контекста(то где мы рендерим)
+
+window.swapBuffers();
+// сменяет буфферы
+// swapBuffers(bool fill = true, float red = 0, float green = 0, float blue = 0, float alhpa = 0)
+// а также она подгатавливает буффер закрашивая его в чёрный(по умолчанию)
+// fill - разрешает закрашивать буфер(по умолчанию true),
+// red, green, blue, alpha устанавливают цвет(от 0.0 до 1.0) (по умолчанию 0)
+
+window.setSizeBuffer(int width, int height);
+// устанавливает размер буфера(если что, это то, где мы рисуем)
+
+window.width, window.height
+// переменные(тип int), которые хранят текущий размер окна
 
 
-
-
-
-
-
-
-
-
+```
