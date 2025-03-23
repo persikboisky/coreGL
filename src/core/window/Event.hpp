@@ -22,6 +22,7 @@ public:
 	bool GetMouseLeftButton();
 	bool GetMouseRightButton();
 	bool getKey(Key_code key);
+	bool getKey(int key);
 };
 
 #endif // !SRC_CORE_WINDOW_EVENT_HPP_

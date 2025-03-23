@@ -1,11 +1,11 @@
-#define DEBUG true
-
 #include "texture.hpp"
 #include "../../util/vector.hpp"
 #include "../../file/png.hpp"
 #include <GL/glew.h>
 #include <iostream>
 #include <vector>
+
+extern bool coreInfo;
 
 std::vector<unsigned int> texture::id;
 
@@ -16,7 +16,8 @@ void texture::bind(unsigned int id)
 
 unsigned int texture::load(unsigned char* image, int width, int height, int channels)
 {
-    GLuint Texture; 
+    //glActiveTexture(GL_TEXTURE0);
+    GLuint Texture;
     glGenTextures(1, &Texture); 
 
     bool flag = true;
@@ -33,7 +34,7 @@ unsigned int texture::load(unsigned char* image, int width, int height, int chan
         if (Texture != 0)
         {
             texture::id.push_back(Texture);
-            if (DEBUG) std::cout << "OK: create texture id: " << Texture << std::endl;
+            if (coreInfo) std::cout << "OK: create texture id: " << Texture << std::endl;
         }
         else
         {
@@ -101,7 +102,7 @@ Texture::~Texture()
     texture::Delete(this->id);
 }
 
-void Texture::bind()
+void Texture::bind() const
 {
     texture::bind(this->id);
 }

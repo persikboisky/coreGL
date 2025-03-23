@@ -1,9 +1,18 @@
 #include "Cursor.hpp"
+#include "../file/png.hpp"
 #include <GLFW/glfw3.h>
+#include <iostream>
+
+extern bool coreInfo;
 
 Cursor::Cursor(GLFWwindow& addrWindow) : window(&addrWindow)
 {
 
+}
+
+Cursor::~Cursor()
+{
+	//this->DeleteALL();
 }
 
 void Cursor::setCursorMode(int mode)
@@ -45,4 +54,43 @@ double Cursor::getCordCursorY()
 void Cursor::getCordCursor(double& x, double& y)
 {
 	glfwGetCursorPos(this->window, &x, &y);
+}
+
+Cursor::custom_cursor::custom_cursor(const char* pathToPng, int x, int y, GLFWwindow* window) : addrWindow(*window)
+{
+	unsigned char* png = png::load(pathToPng);
+
+	GLFWimage* img = new GLFWimage;
+	img->height = png::height;
+	img->width = png::width;
+	img->pixels = &png[0];
+
+	this->cursor_objs = glfwCreateCursor(img, x, y);
+
+	if (this->cursor_objs == nullptr)
+	{
+		std::cerr << "Failed: create cursor obj";
+		throw "FAILED_CREATE_CURSOR_OBJ";
+	}
+
+	if (coreInfo) std::cout << "OK: created cursor > " << pathToPng << std::endl;
+}
+
+Cursor::custom_cursor::~custom_cursor()
+{
+	glfwDestroyCursor(this->cursor_objs);
+}
+
+Cursor::custom_cursor* Cursor::create(const char* path, int x, int y)
+{
+	return new Cursor::custom_cursor(path, x, y, this->window);
+}
+
+void Cursor::custom_cursor::use(GLFWwindow* window)
+{
+	if (window == nullptr)
+	{
+		window = &addrWindow;
+	}
+	glfwSetCursor(window, this->cursor_objs);
 }

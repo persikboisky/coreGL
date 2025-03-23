@@ -133,6 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\core\graphics\obj\OBJ.cpp" />
     <ClCompile Include="src\core\data\info.cpp" />
     <ClCompile Include="src\core\data\time.cpp" />
     <ClCompile Include="src\core\graphics\commons\font.cpp" />
@@ -141,17 +142,18 @@
     <ClCompile Include="src\core\audio\Device.cpp" />
     <ClCompile Include="src\core\audio\source.cpp" />
     <ClCompile Include="src\core\file\mtl.cpp" />
-    <ClCompile Include="src\core\file\obj.cpp" />
+    <ClCompile Include="src\core\file\obj_loaders.cpp" />
     <ClCompile Include="src\core\file\png.cpp" />
     <ClCompile Include="src\core\file\text.cpp" />
     <ClCompile Include="src\core\file\toml_file.cpp" />
     <ClCompile Include="src\core\file\wav.cpp" />
     <ClCompile Include="src\core\graphics\commons\Camera.cpp" />
     <ClCompile Include="src\core\graphics\gui\Style.cpp" />
-    <ClCompile Include="src\core\graphics\mesh.cpp" />
     <ClCompile Include="src\core\graphics\commons\shader.cpp" />
     <ClCompile Include="src\core\graphics\commons\texture.cpp" />
     <ClCompile Include="src\core\graphics\commons\vao.cpp" />
+    <ClCompile Include="src\core\graphics\obj\obj_compile.cpp" />
+    <ClCompile Include="src\core\graphics\obj\obj_mesh.cpp" />
     <ClCompile Include="src\core\util\array.cpp" />
     <ClCompile Include="src\core\util\string.cpp" />
     <ClCompile Include="src\core\util\vector.cpp" />
@@ -159,9 +161,9 @@
     <ClCompile Include="src\core\window\Event.cpp" />
     <ClCompile Include="src\core\window\Window.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\Player.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\core\graphics\obj\OBJ.hpp" />
     <ClInclude Include="src\core\data\info.hpp" />
     <ClInclude Include="src\core\data\time.hpp" />
     <ClInclude Include="src\core\graphics\commons\font.hpp" />
@@ -170,26 +172,26 @@
     <ClInclude Include="src\core\audio\buffer.hpp" />
     <ClInclude Include="src\core\audio\Device.hpp" />
     <ClInclude Include="src\core\audio\source.hpp" />
-    <ClInclude Include="src\core\core.h" />
+    <ClInclude Include="src\core\core.hpp" />
     <ClInclude Include="src\core\file\mtl.hpp" />
-    <ClInclude Include="src\core\file\obj.hpp" />
+    <ClInclude Include="src\core\file\obj_loaders.hpp" />
     <ClInclude Include="src\core\file\png.hpp" />
     <ClInclude Include="src\core\file\text.hpp" />
     <ClInclude Include="src\core\file\toml_file.hpp" />
     <ClInclude Include="src\core\file\wav.hpp" />
     <ClInclude Include="src\core\graphics\commons\Camera.hpp" />
     <ClInclude Include="src\core\graphics\gui\Style.hpp" />
-    <ClInclude Include="src\core\graphics\mesh.hpp" />
     <ClInclude Include="src\core\graphics\commons\shader.hpp" />
     <ClInclude Include="src\core\graphics\commons\texture.hpp" />
     <ClInclude Include="src\core\graphics\commons\vao.hpp" />
+    <ClInclude Include="src\core\graphics\obj\obj_compile.hpp" />
+    <ClInclude Include="src\core\graphics\obj\obj_mesh.hpp" />
     <ClInclude Include="src\core\util\array.hpp" />
     <ClInclude Include="src\core\util\string.hpp" />
     <ClInclude Include="src\core\util\vector.hpp" />
     <ClInclude Include="src\core\window\Cursor.hpp" />
     <ClInclude Include="src\core\window\Event.hpp" />
     <ClInclude Include="src\core\window\Window.hpp" />
-    <ClInclude Include="src\Player.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

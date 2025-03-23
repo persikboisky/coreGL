@@ -31,6 +31,7 @@ unsigned int shader::getSelectID()
     return SelectID;
 }
 
+#pragma region CREATE_SHADER
 unsigned int shader::createFromCode(const char* codeVert, const char* codeFrag)
 {
 	unsigned int vertexShaderID = glCreateShader(GL_VERTEX_SHADER);
@@ -73,7 +74,7 @@ unsigned int shader::createFromCode(const char* codeVert, const char* codeFrag)
     else
     {
         std::cout << "OK compile fragment shader"<< std::endl;
-        std::cout << coreInfo << std::endl;
+        //std::cout << coreInfo << std::endl;
     }
 
     unsigned int programID = glCreateProgram();
@@ -109,6 +110,7 @@ unsigned int shader::createFromCode(const char* codeVert, const char* codeFrag)
 
     return programID;
 }
+#pragma endregion CREATE_SHADER
 
 unsigned int shader::createFromFile(const char* pathVert, const char* pathFrag)
 {

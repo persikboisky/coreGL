@@ -18,9 +18,6 @@
     <ClCompile Include="src\main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="src\Player.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="src\core\window\Cursor.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
@@ -42,9 +39,6 @@
     <ClCompile Include="src\core\graphics\commons\Camera.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="src\core\graphics\mesh.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="src\core\graphics\commons\shader.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
@@ -57,7 +51,7 @@
     <ClCompile Include="src\core\file\mtl.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="src\core\file\obj.cpp">
+    <ClCompile Include="src\core\file\obj_loaders.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="src\core\file\png.cpp">
@@ -96,12 +90,18 @@
     <ClCompile Include="src\core\data\time.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="src\core\graphics\obj\OBJ.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\graphics\obj\obj_compile.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\graphics\obj\obj_mesh.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Player.hpp">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="src\core\core.h">
+    <ClInclude Include="src\core\core.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="src\core\window\Window.hpp">
@@ -125,9 +125,6 @@
     <ClInclude Include="src\core\graphics\commons\Camera.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\graphics\mesh.hpp">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="src\core\graphics\commons\shader.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
@@ -140,7 +137,7 @@
     <ClInclude Include="src\core\file\mtl.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\file\obj.hpp">
+    <ClInclude Include="src\core\file\obj_loaders.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="src\core\file\png.hpp">
@@ -180,6 +177,15 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="src\core\data\time.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\graphics\obj\OBJ.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\graphics\obj\obj_compile.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\graphics\obj\obj_mesh.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

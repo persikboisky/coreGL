@@ -23,5 +23,5 @@ private:
 public:
     Texture(const char* path);
     ~Texture();
-    void bind();
+    void bind() const;
 };

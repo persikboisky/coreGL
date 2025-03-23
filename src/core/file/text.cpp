@@ -4,6 +4,8 @@
 #include <sstream>
 #include <iostream>
 
+extern bool coreInfo;
+
 std::string text::load(const char* path)
 {
     std::string text = "";
@@ -21,5 +23,6 @@ std::string text::load(const char* path)
         throw "FAILED_READ_FILE";
     }
 
+    if (coreInfo) std::cout << "OK: read file: " << path << std::endl;
     return text;
 }

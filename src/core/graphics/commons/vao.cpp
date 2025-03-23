@@ -1,8 +1,7 @@
-#pragma vao
 #include "vao.hpp"
 #include "../../util/vector.hpp"
 #include "../../util/array.hpp"
-#include "../../file/obj.hpp"
+#include "../../file/obj_loaders.hpp"
 #include <GL/glew.h>
 #include <iostream>
 #include <vector>
@@ -45,7 +44,7 @@ std::vector<float> vao::FileOBJtoVVO(const char* pathToObj, bool normal, bool te
     std::vector<float> result;
     std::vector<int> f;
 
-    obj::load(v, f, v_n, v_t, pathToObj);
+    obj_loaders::load(v, f, v_n, v_t, pathToObj);
 
     for (unsigned int index = 0; index < f.size() / N_ELEMENT_TO_FACE; index++)
     {

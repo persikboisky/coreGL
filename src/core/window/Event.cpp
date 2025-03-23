@@ -53,3 +53,10 @@ bool Event::getKey(Key_code key)
 
 	else return Key[key];
 }
+
+bool Event::getKey(int key)
+{
+	if (key >= MAX_KEY_CODE || key < 0) std::cerr << "there is no such key in the buffer" << std::endl;
+
+	else return Key[key];
+}
