@@ -79,9 +79,10 @@ int main()
 ``` cpp
 Window window("openGL", 1280, 720);
 // этот конструктор создаёт объект окна и само окно с название openGL, и размером 1280x720
+// для тех кто не знаком с c++, window - это название объекто, туту может быть любое название
 
 winodw.~Window();
-// этот деструктор удаляет объект она и сам окно
+// этот деструктор удаляет объект окна и само окно
 
 window.setContext();
 // устанавливает данный объект в качестве контекста(то где мы рендерим)
@@ -89,7 +90,7 @@ window.setContext();
 window.swapBuffers();
 // сменяет буфферы
 // swapBuffers(bool fill = true, float red = 0, float green = 0, float blue = 0, float alhpa = 0)
-// а также она подгатавливает буффер закрашивая его в чёрный(по умолчанию)
+// а также она подгатавливает буфер закрашивая его в чёрный(по умолчанию)
 // fill - разрешает закрашивать буфер(по умолчанию true),
 // red, green, blue, alpha устанавливают цвет(от 0.0 до 1.0) (по умолчанию 0)
 
@@ -99,5 +100,56 @@ window.setSizeBuffer(int width, int height);
 window.width, window.height
 // переменные(тип int), которые хранят текущий размер окна
 
+window.setIcon(const char* path);
+// устанавливает иконку для окна, принимает путь к png файлу
+
+window.isContext();
+// если данное окно является контекстом, возвращает true, иначе false
+
+window.event->update();
+// обновляет буфер эвентов
+
+window.event->close();
+// возвращает true, если сработает эвент закрытия окна(кто то нажмёт на крестик), иначе false
+
+window.close();
+// заставляет функцию window.event->close() вернуть true 
+
+window.event->GetMouseLeftButton();
+// возвращает true если нажата ЛКМ, иначе false
+
+window.event->GetMouseRightButton();
+// возвращает true если нажата ПКМ, иначе false
+
+window.event->getKey(Key_code key);
+window.event->getKey(int key);
+// обе функции возвращают true если нажата клавиша
+// верхняя функция в разработке и она принимает названия K_ESCAPE, K_W и т.д.
+// нижняя принимает номер клавиши в стандарте библиотеки GLFW
+
+window.cursor->setCursorMode(int mode);
+// устанавливает режим курсора, номер режим соответствует стандарту библиотеки GLFW
+// (ни разу не использовал эту функцию:) )
+
+window.cursor->showCursor(bool flag);
+// делает курсор прозрачным если передать true
+
+window.cursor->disableCursor(bool flag);
+// выключает курсор ели передать true
+// русским языком, убирает ограничения(края монитора) для курсора, 
+// его можно будет передвигать за зону видимости
+
+window.cursor->setPosition(double x, double y);
+// устанавливает курсор на указанные координаты
+
+window.cursor->getCordCursorX();
+// возвращает координаты курсора по x
+
+window.cursor->getCordCursorY();
+// возвращает координаты курсора по y
+
+window.cursor->getCordCursor(double& x, double& y);
+// передаёт координаты курсора в переменные по их адресу
+```
 
 ```
