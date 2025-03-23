@@ -1,11 +1,11 @@
-#define DEBUG false
-
 #include "Device.hpp"
 #include <AL/al.h>
 #include <AL/alc.h>
 #include <glm/glm.hpp>
 #include <vector>
 #include <iostream>
+
+extern bool coreInfo;
 
 audio::Device::Device()
 {
@@ -36,7 +36,7 @@ audio::Device::Device()
 	{
 		name = alcGetString(this->alc_device, ALC_DEVICE_SPECIFIER);
 	}
-	if (DEBUG) std::cout << "Opened:" << name << std::endl;
+	if (coreInfo) std::cout << "Opened:" << name << std::endl;
 }
 
 audio::Device::~Device()

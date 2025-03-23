@@ -193,6 +193,9 @@
     <ClInclude Include="src\core\window\Event.hpp" />
     <ClInclude Include="src\core\window\Window.hpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\..\Downloads\1.wav" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

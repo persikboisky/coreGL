@@ -32,8 +32,8 @@ unsigned int audio::buffer::create(const char* path)
 		}
 		else
 		{
-			std::cerr << "Failed create Texture" << "\n";
-			throw "FAILED_CREATE_VAO";
+			std::cerr << "Failed create audio buffer" << "\n";
+			throw "FAILED_CREATE_AUDIO_BUFFER";
 		}
 	}
 

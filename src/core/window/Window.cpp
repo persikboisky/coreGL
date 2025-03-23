@@ -33,13 +33,16 @@ Window::~Window()
 	glfwDestroyWindow(this->window);
 }
 
-void Window::swapBuffers()
+void Window::swapBuffers(bool fill, float red, float green, float blue, float alhpa)
 {
 	glfwSwapBuffers(this->window);
 	this->getSizeWindow();
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	//glClearColor(0.5, 0.5, 0.5, 0);
-	glClearColor(0, 0, 0, 0);
+	if (fill)
+	{
+		glClearColor(red, green, blue, alhpa);
+	}
 }
 
 void Window::setIcon(const char* path)
@@ -78,6 +81,7 @@ void Window::setContext()
 		}
 		throw "FAILED_INIT_GLEW";
 	}
+	glEnable(GL_DEPTH_TEST);
 }
 
 void Window::setSizeBuffer(int width, int height)
