@@ -240,6 +240,9 @@ v.draw(primitive Primitive, int first_vert = 0, int count_vert = 0);
 
 ![](primitive.png)
 
+## Координаты в openGL
+![](Axis.png)
+
 ## Система shader
 >[!NOTE]
 > Что такое шейдер - это специальная промежуточная программа, которая ввполняется в ГПУ\
@@ -260,6 +263,8 @@ v.draw(primitive Primitive, int first_vert = 0, int count_vert = 0);
 
 шейдеры пишутся на языке glsl(GL shader language)\
 
+
++ Версии OpenGL для glsl
 
 | OpenGL |       GLSL        |
 | :----: | :---------------: |
