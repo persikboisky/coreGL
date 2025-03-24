@@ -241,7 +241,7 @@ v.draw(primitive Primitive, int first_vert = 0, int count_vert = 0);
 
 ## Координаты в openGL
 > [!WARNING]
-> Обратите внимание как задаются координаты в openGL
+> Обратите внимание как задаются координаты в openGL\
 > в openGL ось x повёрнута в противоположную сторону, это надо учесть
 > 
 > ![](png/Axis.png)
@@ -265,8 +265,7 @@ v.draw(primitive Primitive, int first_vert = 0, int count_vert = 0);
 + вершинный шейдер отвечает за вычисление положение вершин в пространстве
 + фрагментный шейдер отвечает за раскрашивание вершин и расчёт цветов
 
-шейдеры пишутся на языке glsl(GL shader language)\
-
+шейдеры пишутся на языке glsl(GL shader language)
 
 + Версии OpenGL для glsl
 
@@ -283,7 +282,7 @@ v.draw(primitive Primitive, int first_vert = 0, int count_vert = 0);
 |  4.2   |  от 1.40 до 4.20  |
 |  4.6   |  от 1.40 до 4.60  |
 
-синтаксис glsl\
+синтаксис glsl
 
 ``` glsl
 #version 460 core
