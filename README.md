@@ -237,14 +237,14 @@ v.draw(primitive Primitive, int first_vert = 0, int count_vert = 0);
 > [!WARNING]
 > Обратите внимания в каком порядке рисуются вершины\
 > QUADS, QUAD_STRIP, POLYGON в новой openGL, почему-то не работают
-> ![](primitive.png)
+> ![](png/primitive.png)
 
 ## Координаты в openGL
 > [!WARNING]
 > Обратите внимание как задаются координаты в openGL
 > в openGL ось x повёрнута в противоположную сторону, это надо учесть
 > 
-> ![](Axis.png)
+> ![](png/Axis.png)
 
 
 ## Система shader
