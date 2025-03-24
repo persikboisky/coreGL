@@ -261,7 +261,8 @@ v.draw(primitive Primitive, int first_vert = 0, int count_vert = 0);
 шейдеры пишутся на языке glsl(GL shader language)\
 в зависимоти от версии openGL отличается версия glsl
 
-+ Версии OpenGL для glsl\
++ Версии OpenGL для glsl
+
 | OpenGL |       GLSL        |
 | :----: | :---------------: |
 |  2.0   |       1.10        |
