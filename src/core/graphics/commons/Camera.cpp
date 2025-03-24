@@ -4,7 +4,7 @@
 #include <glm/ext.hpp>
 #include <iostream>
 
-Camera::Camera(float posX, float posY, float posZ, float fov)
+Camera::Camera(float posX, float posY, float posZ, float fov, float distance) : distance(distance)
 {
 	this->pos = glm::vec3(posX, posY, posZ);
 	this->fov = glm::radians(fov);
@@ -37,6 +37,16 @@ void Camera::move(float x, float y, float z)
 	this->pos.z += z;
 }
 
+void Camera::setPos3f(glm::vec3 pos)
+{
+	this->pos = pos;
+}
+
+void Camera::setPos(float x, float y, float z)
+{
+	this->pos = glm::vec3(x, y, z);
+}
+
 void Camera::getPos3f(glm::vec3& pos) const
 {
 	pos = this->pos;
@@ -52,7 +62,7 @@ void Camera::getPos(float& x, float& y, float& z) const
 glm::mat4 Camera::getProj(int width, int height) const
 {
 	float aspect = (float)width / (float)height;
-	return glm::perspective(this->fov, aspect, 0.01f, 500.0f);
+	return glm::perspective(this->fov, aspect, 0.01f, this->distance);
 }
 
 glm::mat4 Camera::getView() const
