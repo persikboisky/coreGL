@@ -237,8 +237,15 @@ v.draw(primitive Primitive, int first_vert = 0, int count_vert = 0);
 > [!WARNING]
 > Обратите внимания в каком порядке рисуются вершины\
 > QUADS, QUAD_STRIP, POLYGON в новой openGL, почему-то не работают
+> ![](png/primitive.png)
 
-![](primitive.png)
+## Координаты в openGL
+> [!WARNING]
+> Обратите внимание как задаются координаты в openGL
+> в openGL ось x повёрнута в противоположную сторону, это надо учесть
+> 
+> ![](png/Axis.png)
+
 
 ## Система shader
 >[!NOTE]
@@ -259,7 +266,7 @@ v.draw(primitive Primitive, int first_vert = 0, int count_vert = 0);
 + фрагментный шейдер отвечает за раскрашивание вершин и расчёт цветов
 
 шейдеры пишутся на языке glsl(GL shader language)\
-в зависимоти от версии openGL отличается версия glsl
+
 
 + Версии OpenGL для glsl
 
@@ -276,7 +283,7 @@ v.draw(primitive Primitive, int first_vert = 0, int count_vert = 0);
 |  4.2   |  от 1.40 до 4.20  |
 |  4.6   |  от 1.40 до 4.60  |
 
-синтаксис glsl
+синтаксис glsl\
 
 ``` glsl
 #version 460 core
