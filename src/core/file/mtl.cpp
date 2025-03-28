@@ -1,13 +1,14 @@
 #include "mtl.hpp"
 #include "text.hpp"
 #include <vector>
+#include <list>
 #include <string>
 #include <iostream>
 
 extern bool coreInfo;
 
 std::vector<unsigned char*> mtl::pathToTexture;
-std::vector<std::string> mtl::nameResources;
+std::list<std::string> mtl::nameResources;
 
 void mtl::load(const char* path)
 {

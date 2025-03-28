@@ -1,4 +1,5 @@
 #include "text.hpp"
+#include <GLFW/glfw3.h>
 #include <string>
 #include <fstream>
 #include <sstream>
@@ -23,6 +24,7 @@ std::string text::load(const char* path)
         throw "FAILED_READ_FILE";
     }
 
-    if (coreInfo) std::cout << "OK: read file: " << path << std::endl;
+    if (coreInfo) std::cout << "[" <<  glfwGetTime() << "] " 
+        << "OK: read file: " << path << std::endl;
     return text;
 }

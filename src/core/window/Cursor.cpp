@@ -5,6 +5,25 @@
 
 extern bool coreInfo;
 
+double cursor::getCordCursorX(GLFWwindow* window)
+{
+	double x, y;
+	glfwGetCursorPos(window, &x, &y);
+	return x;
+}
+
+double cursor::getCordCursorY(GLFWwindow* window)
+{
+	double x, y;
+	glfwGetCursorPos(window, &x, &y);
+	return y;
+}
+
+void cursor::getCordCursor(GLFWwindow* window, double& x, double& y)
+{
+	glfwGetCursorPos(window, &x, &y);
+}
+
 Cursor::Cursor(GLFWwindow& addrWindow) : window(&addrWindow)
 {
 

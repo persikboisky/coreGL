@@ -1,108 +1,146 @@
-#define PATH_TO_VERTEX_SHADER "./res/shaders/GUI/vert.glsl"
-#define PATH_TO_FRAGMENT_SHADER "./res/shaders/GUI/frag.glsl"
-#define DEBUG true
-
 #include "GUI.hpp"
-#include "Style.hpp"
+#include "gui_style.hpp"
+#include <GL/glew.h>
 #include "../commons/vao.hpp"
 #include "../commons/shader.hpp"
-#include <GL/glew.h>
-#include <glm/glm.hpp>
+#include "../../window/Window.hpp"
+#include <glm/vec2.hpp>
+#include <glm/vec4.hpp>
 #include <string>
 #include <vector>
 #include <iostream>
 
-// параметры по умолчанию
-const glm::vec4 S_BACKGROUNE = glm::vec4(1, 1, 1, 1);
-const glm::vec4 S_COLOR = glm::vec4(0.1, 0.1, 0.1, 1);
-const std::string S_TEXT = "";
+// путь к шейдерам для отрисовки gui контента
+constexpr const char* PATH_TO_VERTEX_SHADER = "./res/gui/main_gui_v.glsl";
+constexpr const char* PATH_TO_FRAGMENT_SHADER = "./res/gui/main_gui_f.glsl";
 
 enum primitive
 {
-	TRIANGLE_STRIP = GL_TRIANGLES
+	TRIANGLE = GL_TRIANGLES,
+	TRIANGLE_STRIP = GL_TRIANGLE_STRIP
 };
 
-void GUI::Body::addElement(int x, int y, float width, float height, GUI::Style* style)
+GUI::GUI(Window* window) : n_Elements(0), vao(nullptr), window(window)
 {
-	this->id.push_back(this->SelectID);
-	this->cord_and_size.push_back(glm::vec4(x, y, width, height));
-	this->style.push_back(style);
-	this->SelectID++;
+	this->shader = new Shader(PATH_TO_VERTEX_SHADER, PATH_TO_FRAGMENT_SHADER);
 }
 
-GUI::Body::Body()
+GUI::~GUI()
 {
+	delete this->shader;
+	delete this->vao;
 
+	this->style.clear();
 }
 
-GUI::Body::~Body()
+static void addVertexesToVector(std::vector<float>& vec, glm::vec4& data)
 {
+	vec.push_back(data.x);
+	vec.push_back(data.y);
 
+	vec.push_back(data.x);
+	vec.push_back(data.y - data.w);
+
+	vec.push_back(data.x + data.z);
+	vec.push_back(data.y - data.w);
+
+	vec.push_back(data.x);
+	vec.push_back(data.y);
+
+	vec.push_back(data.x + data.z);
+	vec.push_back(data.y - data.w);
+
+	vec.push_back(data.x + data.z);
+	vec.push_back(data.y);
 }
 
-void GUI::Body::addButton(int x, int y, float width, float height, void* function, GUI::Style* style)
+void GUI::compileVAO()
 {
-	if (style == nullptr)
-	{
-		style = new Style();
-		style->background = S_BACKGROUNE;
-		style->color = S_COLOR;
-		style->text = S_TEXT;
-		style->flag = true;
-	}
-	else
-	{
-
-	}
-	style->index_element = BUTTON;
-	//std::cout << style->background.x << std::endl;
-	this->addElement(x, y, width, height, style);
-}
-
-void GUI::Body::compile()
-{
-	//x, y, u, v, 
-	if (this->vao != nullptr)
-	{
-		this->vao->~VAO();
-	}
+	this->compileFlag = false;
 
 	std::vector<float> vao;
 
-	for (unsigned int ID = 0; ID < this->style.size(); ID++)
+	for (unsigned int index = 0; index < this->n_Elements; index++)
 	{
-		switch (this->style[ID]->index_element)
-		{
-		case NONE:
-			//code
-			break;
-		case BUTTON:
-			//code
-			break;
-		case TEXT:
-			//code
-			break;
-		case SLIDER:
-			//code
-			break;
-		case IMAGE:
-			//code
-			break;
-		default:
-			break;
-		}
+		glm::vec4 elementData = glm::vec4(
+			this->style[index].x, this->style[index].y,
+			this->style[index].width, this->style[index].height
+		);
+		addVertexesToVector(vao, elementData);
 	}
 
-	//this->vao = new VAO();
+	this->vao = new VAO(vao, 2);
+	this->vao->addAttribute(0, 2, 0);
 }
 
-void GUI::Body::render()
+void GUI::addButton(
+	gui_style* style,
+	void(*function)()
+)
 {
-	//if event 
-	//{
-	//	This->compile();
-	//}
-	//draw {
-	//	
-	//}
+	this->style.push_back(*style);
+	this->elements.push_back(BUTTON);
+	this->function.push_back(function);
+
+	n_Elements++;
+}
+
+void GUI::setWindow(Window* window)
+{
+	this->window = window;
+}
+
+void GUI::render()
+{
+	if (this->compileFlag)
+	{
+		this->compileVAO();
+	}
+
+	this->shader->use();
+	for (unsigned int index = 0; index < this->n_Elements; index++)
+	{
+		double MouseX, MouseY;
+
+		this->window->cursor->getCordCursor(MouseX, MouseY);
+
+		MouseX = MouseX / double(window->width / 2.0) - 1.0;
+		MouseY = -(MouseY / double(window->height / 2.0) - 1.0);
+
+		glm::vec4 background = glm::vec4(
+			this->style[index].background.red / 255.0f,
+			this->style[index].background.green / 255.0f,
+			this->style[index].background.blue / 255.0f,
+			this->style[index].background.alhpa / 255.0f
+		);
+
+		switch (this->elements[index])
+		{
+		case BUTTON:
+			if (
+				MouseX >= double(this->style[index].x) &&
+				MouseX <= double(this->style[index].x + this->style[index].width) &&
+				MouseY <= this->style[index].y &&
+				MouseY >= this->style[index].y - this->style[index].height &&
+				this->window->event->GetMouseLeftButton()
+			)
+			{
+				background = glm::vec4(
+					this->style[index].active_background.red / 255.0f,
+					this->style[index].active_background.green / 255.0f,
+					this->style[index].active_background.blue / 255.0f,
+					this->style[index].active_background.alhpa / 255.0f
+				);
+
+				if (this->function[index] != nullptr)
+				{
+					this->function[index]();
+				}
+			}
+			break;
+		}
+
+		this->shader->Uniform4F(glm::vec4(background), "background");
+		this->vao->draw(TRIANGLE, index * 6, index * 6 + 6);
+	}
 }

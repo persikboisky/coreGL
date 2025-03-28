@@ -18,6 +18,7 @@ constexpr bool CORE_INFO = true;
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 #include <thread>
 #include <iostream>
 
@@ -35,11 +36,12 @@ constexpr bool CORE_INFO = true;
 #include "graphics/commons/shader.hpp"
 #include "graphics/commons/Camera.hpp"
 #include "graphics/commons/texture.hpp"
+#include "graphics/commons/font.hpp"
 #include "graphics/obj/obj_compile.hpp"
 #include "graphics/obj/OBJ.hpp"
 #include "graphics/obj/obj_mesh.hpp"
-#include "graphics/GUI/GUI.hpp"
-#include "graphics/GUI/Style.hpp"
+#include "graphics/gui/GUI.hpp"
+#include "graphics/gui/gui_style.hpp"
 #include "util/vector.hpp"
 #include "util/string.hpp"
 #include "util/array.hpp"
@@ -86,6 +88,7 @@ struct core
 
 	static void Init();
 	static void Terminate();
+	static double GetTime();
 };
 
 void core::Init()
@@ -102,7 +105,8 @@ void core::Init()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, VERSION_MINOR);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	glfwWindowHint(GLFW_RESIZABLE, WINDOW_RESIZABLE);
-	if (coreInfo) std::cout << "OK init glfw" << std::endl;
+
+	if (coreInfo) std::cout << "[0.0]      " << "OK: init glfw" << std::endl;
 }
 
 void core::Terminate()
@@ -113,6 +117,11 @@ void core::Terminate()
 	                                     
 	glfwTerminate();
 	//delete date;
+}
+
+double core::GetTime()
+{
+	return glfwGetTime();
 }
 
 #endif // !SRC_CORE_CORE_H_

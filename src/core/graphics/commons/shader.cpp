@@ -3,14 +3,19 @@
 #include "../../file/text.hpp"
 #include "../../util/vector.hpp"
 #include <GL/glew.h>
+#include <GLFW/glfw3.h>
 #include <glm/gtc/type_ptr.hpp>
 #include <vector>
+#include <string>
 #include <iostream>
 
 extern bool coreInfo;
 
 std::vector<unsigned int> shader::id;
 unsigned int shader::SelectID;
+
+std::string VertPath = "";
+std::string FragPath = "";
 
 static GLint getLocateUniform(GLuint shader, const char* name)
 {
@@ -53,9 +58,11 @@ unsigned int shader::createFromCode(const char* codeVert, const char* codeFrag)
         delete[] errorMessage;
         throw "FAILED_COMPILE_VERTEX_SHADER";
     }
-    else
+
+    if (coreInfo)
     {
-        std::cout << "OK compile vertex shader"<< std::endl;
+        std::cout << "[" << glfwGetTime() << "] " << "OK: compile vertex shader"
+            ": " << VertPath << std::endl;
     }
 
     glShaderSource(fragmentShaderID, 1, &codeFrag, NULL);
@@ -73,7 +80,8 @@ unsigned int shader::createFromCode(const char* codeVert, const char* codeFrag)
     }
     else
     {
-        std::cout << "OK compile fragment shader"<< std::endl;
+        std::cout << "[" << glfwGetTime() << "] " << "OK: compile fragment shader"
+            ": " << FragPath << std::endl;
         //std::cout << coreInfo << std::endl;
     }
 
@@ -96,7 +104,8 @@ unsigned int shader::createFromCode(const char* codeVert, const char* codeFrag)
     glDeleteShader(vertexShaderID);
     glDeleteShader(fragmentShaderID);
 
-    std::cout << "OK create shader program, id > " << programID << std::endl;
+    std::cout << "[" << glfwGetTime() << "] " << "OK: create shader program, id = "
+        << programID << std::endl;
 
     bool flag = true;
     int index = vector::searchElemntForValue(shader::id, 0);
@@ -112,10 +121,13 @@ unsigned int shader::createFromCode(const char* codeVert, const char* codeFrag)
 }
 #pragma endregion CREATE_SHADER
 
-unsigned int shader::createFromFile(const char* pathVert, const char* pathFrag)
+unsigned int shader::createFromFile(const char* pathToVert, const char* pathToFrag)
 {
-    std::string vert = text::load(pathVert);
-    std::string frag = text::load(pathFrag);
+    VertPath = pathToVert;
+    FragPath = pathToFrag;
+
+    std::string vert = text::load(pathToVert);
+    std::string frag = text::load(pathToFrag);
 
     return createFromCode(vert.c_str(), frag.c_str());
 }   

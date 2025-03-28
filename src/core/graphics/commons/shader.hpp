@@ -15,7 +15,7 @@ protected:
 
 public:
 	static unsigned int createFromCode(const char* codeVert, const char* codeFrag);
-	static unsigned int createFromFile(const char* pathVert, const char* pathFrag);
+	static unsigned int createFromFile(const char* pathToVert, const char* pathToFrag);
 
 	static void use(unsigned int id);
 

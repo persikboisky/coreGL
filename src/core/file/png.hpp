@@ -11,6 +11,8 @@ struct png
 	static unsigned char* load(const char* path);
 
 	static void Delete(unsigned char* png);
+
+	static unsigned char* myLoader(const char* path, int& width, int& height, int& channels);
 };
 
 #endif // !SRC_CORE_LOADERS_PNG_HPP_

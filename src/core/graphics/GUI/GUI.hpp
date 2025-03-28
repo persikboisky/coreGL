@@ -1,42 +1,41 @@
 #include <vector>
-#include <glm/glm.hpp>
+#include <glm/vec2.hpp>
 
-class VAO;
-
-enum Element {
-	NONE = 0,
-	BUTTON = 1,
-	TEXT = 2,
-	IMAGE = 3,
-	SLIDER = 4
+enum GUI_ELEMENTS
+{
+	BUTTON
 };
 
-namespace GUI
+struct gui_style;
+class VAO;
+class Shader;
+class Window;
+
+class GUI
 {
-	class Style;
+private:
+	unsigned int n_Elements;
 
-	class Body
-	{
-	private:
-		VAO* vao;
+	std::vector<gui_style> style;
+	std::vector<GUI_ELEMENTS> elements;
+	std::vector<void(*)()> function;
 
-		std::vector<unsigned int> id;
-		std::vector<glm::vec4> cord_and_size;
-		std::vector<GUI::Style*> style;
+	void compileVAO();
+	bool compileFlag = true;
 
-		unsigned int SelectID = 0;
+	VAO* vao;
+	Shader* shader;
+	Window* window;
 
-		void addElement(int x, int y, float width, float height, GUI::Style* style);
+public:
+	GUI(Window* window);
+	~GUI();
 
-	public:
-		Body();
-		~Body();
+	void addButton(
+		gui_style* style,
+		void(*function)() = nullptr
+	);
 
-		void addButton(int x, int y, float width, float height, void* function = nullptr, GUI::Style* style = nullptr);
-		void compile();
-		void render();
-
-		void DeleteElement(unsigned int id);
-	};
-}
-
+	void setWindow(Window* window);
+	void render();
+};

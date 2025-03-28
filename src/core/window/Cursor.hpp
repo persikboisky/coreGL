@@ -7,6 +7,13 @@ enum Cursor_mode;
 struct GLFWwindow;
 struct GLFWcursor;
 
+struct cursor
+{
+	static double getCordCursorX(GLFWwindow* window);
+	static double getCordCursorY(GLFWwindow* window);
+	static void getCordCursor(GLFWwindow* window, double& x, double& y);
+};
+
 class Cursor
 {
 private:

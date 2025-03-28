@@ -4,6 +4,8 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
+extern bool coreInfo;
+
 inline void Window::getSizeWindow()
 {
 	glfwGetWindowSize(this->window, &this->width, &this->height);
@@ -18,9 +20,10 @@ Window::Window(const char* title, int width, int height) : width(width), height(
 		glfwTerminate();
 		throw "FAILED_CREATE_WINDOW";
 	}
-	else
+
+	if (coreInfo)
 	{
-		std::cout << "OK: to create GLFW Window" << std::endl;
+		std::cout << "[" << glfwGetTime() << "] " << "OK: to create GLFW Window" << std::endl;
 	}
 
 	this->Init();

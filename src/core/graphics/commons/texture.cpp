@@ -2,6 +2,7 @@
 #include "../../util/vector.hpp"
 #include "../../file/png.hpp"
 #include <GL/glew.h>
+#include <GLFW/glfw3.h>
 #include <iostream>
 #include <vector>
 
@@ -34,7 +35,8 @@ unsigned int texture::load(unsigned char* image, int width, int height, int chan
         if (Texture != 0)
         {
             texture::id.push_back(Texture);
-            if (coreInfo) std::cout << "OK: create texture id: " << Texture << std::endl;
+            if (coreInfo) std::cout << "[" << glfwGetTime() << "] " << 
+                "OK: create texture id = " << Texture << std::endl;
         }
         else
         {
@@ -45,13 +47,19 @@ unsigned int texture::load(unsigned char* image, int width, int height, int chan
 
     bind(Texture);
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-    if (channels == 3) 
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
-    else if (channels == 4) 
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); //(GL_LINEAR, GL_NEAREST)
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); //(GL_LINEAR, GL_NEAREST)
+    switch (channels)
+    {
+    case 3:
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+        break;
+    case 4:
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+        break;
+    }
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); //(GL_LINEAR, GL_NEAREST)
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST); //(GL_LINEAR, GL_NEAREST)
 
     bind(0);
 
