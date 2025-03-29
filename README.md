@@ -762,6 +762,16 @@ void main()
 вы получите
 ![](png/test_3.png)
 
+```cpp
+matrix = glm::rotate(
+	matrix,
+	glm::radians(float(core::GetTime() * 20.0)),
+	glm::vec3(1, 0, 1)
+);
+
+```
+Теперь мы можем наблюдать:\
+<video src='png/2025-03-30 00-04-26.mp4' width=700/>
 
 ## Система Camera
 >[!NOTE]
