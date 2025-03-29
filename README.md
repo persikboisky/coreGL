@@ -771,7 +771,7 @@ matrix = glm::rotate(
 
 ```
 Теперь мы можем наблюдать:\
-<video src='png/2025-03-30 00-04-26.mp4' width=700/>
+<video src='png/2025-03-30 00-04-26.mov' width=700/>
 
 ## Система Camera
 >[!NOTE]
