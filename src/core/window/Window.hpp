@@ -34,7 +34,7 @@ public:
 	Window(const char* title, int width, int height);
 	~Window();
 
-	void swapBuffers(bool fill = true, float red = 0, float green = 0, float blue = 0, float alhpa = 0);
+	void swapBuffers(bool fill = true, float red = 0, float green = 0, float blue = 0, float alhpa = 1.0f);
 	void setIcon(const char* path);
 	void close();
 	void setContext();

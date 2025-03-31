@@ -114,6 +114,8 @@ void core::Terminate()
 	shader::DeleteALL();
 	vao::DeleteALL();
 	mtl::Delete();
+	texture::DeleteALL();
+	//fonts::Text2D::DeleteALL();
 	                                     
 	glfwTerminate();
 	//delete date;

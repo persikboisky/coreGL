@@ -8,18 +8,20 @@
 
 extern bool coreInfo;
 
+#pragma region texture
 std::vector<unsigned int> texture::id;
 
-void texture::bind(unsigned int id)
+void texture::bind(unsigned int id, unsigned int Sample)
 {
-    glBindTexture(GL_TEXTURE_2D, id); 
+    glActiveTexture(GL_TEXTURE0 + Sample);
+    glBindTexture(GL_TEXTURE_2D, id);
 }
 
 unsigned int texture::load(unsigned char* image, int width, int height, int channels)
 {
     //glActiveTexture(GL_TEXTURE0);
     GLuint Texture;
-    glGenTextures(1, &Texture); 
+    glGenTextures(1, &Texture);
 
     bool flag = true;
     int index = vector::searchElemntForValue(id, 0);
@@ -35,7 +37,7 @@ unsigned int texture::load(unsigned char* image, int width, int height, int chan
         if (Texture != 0)
         {
             texture::id.push_back(Texture);
-            if (coreInfo) std::cout << "[" << glfwGetTime() << "] " << 
+            if (coreInfo) std::cout << "[" << glfwGetTime() << "] " <<
                 "OK: create texture id = " << Texture << std::endl;
         }
         else
@@ -61,13 +63,21 @@ unsigned int texture::load(unsigned char* image, int width, int height, int chan
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); //(GL_LINEAR, GL_NEAREST)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST); //(GL_LINEAR, GL_NEAREST)
 
+    glGenerateMipmap(GL_TEXTURE_2D);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+
     bind(0);
 
-    glEnable(GL_CULL_FACE);
+    //glEnable(GL_CULL_FACE);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     return Texture;
+}
+
+unsigned int texture::load(std::vector<unsigned char>& png_code, int width, int height, int channels)
+{
+    return texture::load(png_code.data(), width, height, channels);
 }
 
 unsigned int texture::load(const char* path)
@@ -98,8 +108,19 @@ void texture::DeleteALL()
         id.clear();
     }
 }
+#pragma endregion texture
 
-#pragma Texture
+#pragma region Texture
+Texture::Texture(unsigned char* png_code, int width, int height, int channels)
+{
+    this->id = texture::load(png_code, width, height, channels);
+}
+
+Texture::Texture(std::vector<unsigned char>& png_code, int width, int height, int channels)
+{
+    this->id = texture::load(png_code.data(), width, height, channels);
+}
+
 Texture::Texture(const char* path)
 {
     this->id = texture::load(path);
@@ -110,7 +131,9 @@ Texture::~Texture()
     texture::Delete(this->id);
 }
 
-void Texture::bind() const
+void Texture::bind(unsigned int Sample) const
 {
-    texture::bind(this->id);
+    texture::bind(this->id, Sample);
 }
+
+#pragma endregion Texture
