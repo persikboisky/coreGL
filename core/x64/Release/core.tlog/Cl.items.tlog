@@ -1,3 +1,4 @@
+C:\Users\kisly\Desktop\core\src\core\graphics\gui\gui_Mesh.cpp;C:\Users\kisly\Desktop\core\core\x64\Release\gui_Mesh.obj
 C:\Users\kisly\Desktop\core\src\core\graphics\obj\OBJ.cpp;C:\Users\kisly\Desktop\core\core\x64\Release\OBJ.obj
 C:\Users\kisly\Desktop\core\src\core\data\info.cpp;C:\Users\kisly\Desktop\core\core\x64\Release\info.obj
 C:\Users\kisly\Desktop\core\src\core\data\time.cpp;C:\Users\kisly\Desktop\core\core\x64\Release\time.obj
@@ -13,7 +14,7 @@ C:\Users\kisly\Desktop\core\src\core\file\text.cpp;C:\Users\kisly\Desktop\core\c
 C:\Users\kisly\Desktop\core\src\core\file\toml_file.cpp;C:\Users\kisly\Desktop\core\core\x64\Release\toml_file.obj
 C:\Users\kisly\Desktop\core\src\core\file\wav.cpp;C:\Users\kisly\Desktop\core\core\x64\Release\wav.obj
 C:\Users\kisly\Desktop\core\src\core\graphics\commons\Camera.cpp;C:\Users\kisly\Desktop\core\core\x64\Release\Camera.obj
-C:\Users\kisly\Desktop\core\src\core\graphics\gui\Style.cpp;C:\Users\kisly\Desktop\core\core\x64\Release\Style.obj
+C:\Users\kisly\Desktop\core\src\core\graphics\gui\gui_style.cpp;C:\Users\kisly\Desktop\core\core\x64\Release\gui_style.obj
 C:\Users\kisly\Desktop\core\src\core\graphics\commons\shader.cpp;C:\Users\kisly\Desktop\core\core\x64\Release\shader.obj
 C:\Users\kisly\Desktop\core\src\core\graphics\commons\texture.cpp;C:\Users\kisly\Desktop\core\core\x64\Release\texture.obj
 C:\Users\kisly\Desktop\core\src\core\graphics\commons\vao.cpp;C:\Users\kisly\Desktop\core\core\x64\Release\vao.obj
