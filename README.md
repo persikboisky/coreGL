@@ -1,4 +1,4 @@
-## ядро coreGL
+## ядро coreGL v025.03.31
 
 > [!NOTE]
 > ```sh
