@@ -11,8 +11,9 @@ inline void Window::getSizeWindow()
 	glfwGetWindowSize(this->window, &this->width, &this->height);
 }
 
-Window::Window(const char* title, int width, int height) : width(width), height(height)
+Window::Window(const char* title, int width, int height, bool resizable) : width(width), height(height)
 {
+	glfwWindowHint(GLFW_RESIZABLE, resizable);
 	this->window = glfwCreateWindow(width, height, title, nullptr, nullptr);
 	if (this->window == nullptr)
 	{

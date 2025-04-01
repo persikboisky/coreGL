@@ -7,9 +7,12 @@ enum GUI_ELEMENTS
 };
 
 struct gui_style;
+struct font;
+
 class VAO;
 class Shader;
 class Window;
+class BufferText2D;
 
 class GUI
 {
@@ -26,6 +29,9 @@ private:
 	VAO* vao;
 	Shader* shader;
 	Window* window;
+	font* TextFont;
+	BufferText2D* BT2D;
+
 
 public:
 	GUI(Window* window);

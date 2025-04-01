@@ -1,9 +1,12 @@
 #include "GUI.hpp"
 #include "gui_style.hpp"
-#include <GL/glew.h>
 #include "../commons/vao.hpp"
+#include "../commons/font.hpp"
 #include "../commons/shader.hpp"
+#include "../commons/BufferText2D.hpp"
 #include "../../window/Window.hpp"
+#include "../../data/structs.hpp"
+#include <GL/glew.h>
 #include <glm/vec2.hpp>
 #include <glm/vec4.hpp>
 #include <string>
@@ -23,13 +26,17 @@ enum primitive
 GUI::GUI(Window* window) : n_Elements(0), vao(nullptr), window(window)
 {
 	this->shader = new Shader(PATH_TO_VERTEX_SHADER, PATH_TO_FRAGMENT_SHADER);
+	this->TextFont = new font();
+	this->BT2D = new BufferText2D();
+	this->BT2D->linkFont(this->TextFont);
 }
 
 GUI::~GUI()
 {
 	delete this->shader;
 	delete this->vao;
-
+	delete this->TextFont;
+	delete this->BT2D;
 	this->style.clear();
 }
 
@@ -67,6 +74,17 @@ void GUI::compileVAO()
 			this->style[index].width, this->style[index].height
 		);
 		addVertexesToVector(vao, elementData);
+
+		if (this->style[index].text != "")
+		{
+			// доделать !!!
+			this->BT2D->addText(
+				this->style[index].text,
+				0,
+				0,
+				0.3f
+			);
+		}
 	}
 
 	this->vao = new VAO(vao, 2);
@@ -90,12 +108,20 @@ void GUI::setWindow(Window* window)
 	this->window = window;
 }
 
+bool flag = false;
 void GUI::render()
 {
 	if (this->compileFlag)
 	{
+		if (flag)
+			this->BT2D->DeleteText();
+		else 
+			flag = true;
+
 		this->compileVAO();
 	}
+
+	this->BT2D->render();
 
 	this->shader->use();
 	for (unsigned int index = 0; index < this->n_Elements; index++)
@@ -111,7 +137,7 @@ void GUI::render()
 			this->style[index].background.red / 255.0f,
 			this->style[index].background.green / 255.0f,
 			this->style[index].background.blue / 255.0f,
-			this->style[index].background.alhpa / 255.0f
+			this->style[index].background.alpha / 255.0f
 		);
 
 		switch (this->elements[index])
@@ -129,7 +155,7 @@ void GUI::render()
 					this->style[index].active_background.red / 255.0f,
 					this->style[index].active_background.green / 255.0f,
 					this->style[index].active_background.blue / 255.0f,
-					this->style[index].active_background.alhpa / 255.0f
+					this->style[index].active_background.alpha / 255.0f
 				);
 
 				if (this->function[index] != nullptr)

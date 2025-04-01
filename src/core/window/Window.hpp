@@ -31,7 +31,7 @@ public:
 	int width;
 	int height;
 
-	Window(const char* title, int width, int height);
+	Window(const char* title, int width, int height, bool resizable = true);
 	~Window();
 
 	void swapBuffers(bool fill = true, float red = 0, float green = 0, float blue = 0, float alhpa = 1.0f);

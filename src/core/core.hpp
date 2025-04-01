@@ -23,6 +23,9 @@ constexpr bool CORE_INFO = true;
 #include <iostream>
 
 // моё говно
+#include "data/time.hpp"
+#include "data/info.hpp"
+#include "data/structs.hpp"
 #include "window/Window.hpp"
 #include "window/Event.hpp"
 #include "window/Cursor.hpp"
@@ -37,11 +40,13 @@ constexpr bool CORE_INFO = true;
 #include "graphics/commons/Camera.hpp"
 #include "graphics/commons/texture.hpp"
 #include "graphics/commons/font.hpp"
+#include "graphics/commons/styleText.hpp"
 #include "graphics/obj/obj_compile.hpp"
 #include "graphics/obj/OBJ.hpp"
 #include "graphics/obj/obj_mesh.hpp"
 #include "graphics/gui/GUI.hpp"
 #include "graphics/gui/gui_style.hpp"
+#include "graphics/commons/BufferText2D.hpp"
 #include "util/vector.hpp"
 #include "util/string.hpp"
 #include "util/array.hpp"
@@ -49,8 +54,6 @@ constexpr bool CORE_INFO = true;
 #include "audio/Device.hpp"
 #include "audio/buffer.hpp"
 #include "audio/source.hpp"
-#include "data/time.hpp"
-#include "data/info.hpp"
 
 bool coreInfo = CORE_INFO;
 
