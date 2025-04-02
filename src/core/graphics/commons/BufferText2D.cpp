@@ -4,7 +4,7 @@
 #include "shader.hpp"
 #include "texture.hpp"
 #include "styleText.hpp"
-#include "../../data/structs.hpp"
+#include "../../util/structs.hpp"
 #include <GL/glew.h>
 #include <glm/ext.hpp>
 #include <glm/glm.hpp>
@@ -141,20 +141,20 @@ void BufferText2D::linkFont(font*& Font)
 }
 
 void BufferText2D::addText(std::string text, float x, float y, float length,
+	float RowingBetweenTheSymbols,
 	float c_red, float c_green, float c_blue, float c_alpha
 )
 {
 	//float decreaseWidthSymbol = -0.01;
 
 	// не забыть доделать:)
-	float decreaseWidthSymbol = 0.0;
 	float decreaseWidthTextureSymbol = 0.03;
 	// -------------------------------------
 
 	float rotate = 0.0;
 
 	const unsigned int n_symbol = text.length();
-	const float widthSymbol = (length / (float)n_symbol) - decreaseWidthSymbol;
+	const float widthSymbol = (length / (float)n_symbol) - RowingBetweenTheSymbols / 2.0f;
 	const float heightSymbol = widthSymbol * 2.0f;// / 1.25f;
 
 	for (unsigned int index = 0; index < text.length(); index++)
@@ -172,7 +172,7 @@ void BufferText2D::addText(std::string text, float x, float y, float length,
 			this->n_vertex += 6;
 			addPoligon(
 				this->vertexes,
-				position_2f(x + widthSymbol * (float)index, y),
+				position_2f(x + (widthSymbol + RowingBetweenTheSymbols) * (float)index, y),
 				size_2f(widthSymbol, heightSymbol),
 				position_2f(
 					this->Font->widthSymbol * (codeSymbol % 16) + 0.00001f,
@@ -191,7 +191,7 @@ void BufferText2D::addText(std::string text, float x, float y, float length,
 			this->n_vertex += 6;
 			addPoligon(
 				this->vertexes,
-				position_2f(x + widthSymbol * (float)index, y),
+				position_2f(x + (widthSymbol + RowingBetweenTheSymbols) * (float)index, y),
 				size_2f(widthSymbol, heightSymbol),
 				position_2f(
 					this->Font->widthSymbol * (codeSymbol % 16) + 0.00001f, 

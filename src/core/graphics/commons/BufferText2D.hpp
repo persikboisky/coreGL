@@ -35,6 +35,7 @@ public:
 		float x,
 		float y,
 		float length = 1.0,
+		float RowingBetweenTheSymbols = 0.0f,
 		float c_red = 1.0,
 		float c_green = 1.0,
 		float c_blue = 1.0,

@@ -23,9 +23,6 @@ constexpr bool CORE_INFO = true;
 #include <iostream>
 
 // моё говно
-#include "data/time.hpp"
-#include "data/info.hpp"
-#include "data/structs.hpp"
 #include "window/Window.hpp"
 #include "window/Event.hpp"
 #include "window/Cursor.hpp"
@@ -50,10 +47,13 @@ constexpr bool CORE_INFO = true;
 #include "util/vector.hpp"
 #include "util/string.hpp"
 #include "util/array.hpp"
+#include "util/structs.hpp"
 #include "audio/audio.hpp"
 #include "audio/Device.hpp"
 #include "audio/buffer.hpp"
 #include "audio/source.hpp"
+#include "data/time.hpp"
+#include "data/info.hpp"
 
 bool coreInfo = CORE_INFO;
 

@@ -62,6 +62,7 @@ static std::vector<char> readWav(const char* path, std::uint8_t& channels, std::
 
 	//"fmt "(4)
 	if (!file.read(symbolBuffer, 4)) throw "FAILED_READ_WAV_FILE"; 
+	//check
 	if (symbolBuffer[0] != 'f' || symbolBuffer[1] != 'm' || symbolBuffer[2] != 't')
 	{
 		std::cerr << "Error: format wav file isn't fmt" << std::endl;

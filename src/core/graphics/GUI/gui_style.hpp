@@ -1,5 +1,5 @@
 #include <string>
-#include "../../data/structs.hpp"
+#include "../../util/structs.hpp"
 
 struct gui_style
 {
@@ -12,6 +12,7 @@ struct gui_style
 	float height = 0;
 
 	std::string text = "";
+	//float textLength
 
 	gui_style() : 
 		background(color_rgba(255.0f, 255.0f, 255.0f, 255.0f)),

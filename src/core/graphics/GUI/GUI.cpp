@@ -5,7 +5,7 @@
 #include "../commons/shader.hpp"
 #include "../commons/BufferText2D.hpp"
 #include "../../window/Window.hpp"
-#include "../../data/structs.hpp"
+#include "../../util/structs.hpp"
 #include <GL/glew.h>
 #include <glm/vec2.hpp>
 #include <glm/vec4.hpp>
@@ -77,12 +77,16 @@ void GUI::compileVAO()
 
 		if (this->style[index].text != "")
 		{
+
+			float sizeFont = 0.00;
+
 			// доделать !!!
 			this->BT2D->addText(
 				this->style[index].text,
-				0,
-				0,
-				0.3f
+				this->style[index].x + sizeFont / 2.0f,
+				this->style[index].y,
+				this->style[index].width - sizeFont - 0.01f,
+				0.00f
 			);
 		}
 	}
@@ -121,9 +125,6 @@ void GUI::render()
 		this->compileVAO();
 	}
 
-	this->BT2D->render();
-
-	this->shader->use();
 	for (unsigned int index = 0; index < this->n_Elements; index++)
 	{
 		double MouseX, MouseY;
@@ -166,7 +167,10 @@ void GUI::render()
 			break;
 		}
 
+		this->shader->use();
 		this->shader->Uniform4F(glm::vec4(background), "background");
 		this->vao->draw(TRIANGLE, index * 6, index * 6 + 6);
 	}
+
+	this->BT2D->render();
 }
