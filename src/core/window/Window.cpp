@@ -41,11 +41,20 @@ void Window::swapBuffers(bool fill, float red, float green, float blue, float al
 {
 	glfwSwapBuffers(this->window);
 	this->getSizeWindow();
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	//glClearColor(0.5, 0.5, 0.5, 0);
+
 	if (fill)
 	{
-		glClearColor(red, green, blue, alhpa);
+		glClearColor(
+			red / 255.0f, 
+			green / 255.0f, 
+			blue / 255.0f, 
+			alhpa / 255.0f
+		);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	}
+	else
+	{
+		glClear(GL_DEPTH_BUFFER_BIT);
 	}
 }
 
