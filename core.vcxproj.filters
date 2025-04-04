@@ -78,7 +78,7 @@
     <ClCompile Include="src\core\graphics\gui\GUI.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="src\core\graphics\gui\Style.cpp">
+    <ClCompile Include="src\core\graphics\gui\gui_style.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="src\core\graphics\commons\font.cpp">
@@ -97,6 +97,12 @@
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="src\core\graphics\obj\obj_mesh.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\graphics\gui\gui_Mesh.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\graphics\commons\BufferText2D.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -167,7 +173,7 @@
     <ClInclude Include="src\core\graphics\gui\GUI.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\graphics\gui\Style.hpp">
+    <ClInclude Include="src\core\graphics\gui\gui_style.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="src\core\graphics\commons\font.hpp">
@@ -188,10 +194,26 @@
     <ClInclude Include="src\core\graphics\obj\obj_mesh.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="src\core\graphics\gui\gui_Mesh.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\graphics\commons\styleText.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\util\structs.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\graphics\commons\BufferText2D.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Media Include="..\..\Downloads\1.wav">
       <Filter>Файлы ресурсов</Filter>
     </Media>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="v.glsl" />
+    <None Include="f.glsl" />
   </ItemGroup>
 </Project>
