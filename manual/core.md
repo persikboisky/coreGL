@@ -31,8 +31,8 @@
 + в заголовочный файле src/core/core.hpp можно произвести настройку ядра:
 ```cpp
 4  // версия openGL(4.6), не советую изменять, пока не прочитаете про шейдеры
-5  constexpr unsigned char VERSION_MAJOR = 4;
-6  constexpr unsigned char VERSION_MINOR = 6;
+5  constexpr unsigned short VERSION_MAJOR = 4;
+6  constexpr unsigned short VERSION_MINOR = 6;
 7 
 8  // разрешить изменения размера окна(окон)
 9  constexpr bool WINDOW_RESIZABLE = true;
