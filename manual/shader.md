@@ -118,7 +118,81 @@ void main()
 }
 ```
 
-По мере чтения руководства будут появляться новые функции для шейдеров
++ По мере чтения руководства будут появляться новые функции для шейдеров
+
+> [!TIP]
+> Что бы хоть что то увидеть на экране,\
+> нам надо скомпилировать шейдеры в шейдерную программу\
+> и загрузить её в видеокарту\
+> Как и в случае с vao шейдерные программы имеют\
+> свои номера в памяти ГПУ
+
+тут есть два способа работы с шейдерами:
+
++ первый способ
+
+```cpp
+shader::createFromFile(const char* pathVert, const char* pathFrag);
+// функция принимает путь к вершинному и фрагментному шейдеру
+// компилирует их в ГПУ, и возвращает(unsigned int) номер шейдерной программы
+
+shader::use(unsigned int id);
+// говорит ГПУ какой шейдер использовать, принимает номер шейдерной программы
+
+shader::Delete(unsigned int id);
+// удаляет шейдерную программу, принимает номер шейдерной программы
+
+shader::DeleteALL();
+// удаляет все шейдерные программы
+
+// все функции которые ниже, позволяют передавать значения в переменные шейдера
+shader::UniformMat4(glm::mat4 matrix, const char* name);
+shader::Uniform1F(const float value, const char* name);
+shader::Uniform2F(glm::vec2 vec2, const char* name);
+shader::Uniform3F(glm::vec3 vec3, const char* name);
+shader::Uniform4F(glm::vec4 vec4, const char* name);
+
+shader::Uniform1I(glm::ivec1 value, const char* name);
+shader::Uniform2I(glm::ivec2 value, const char* name);
+```
+для этого в шейдере создаются unifrom переменные\
+**Пример**:
+```glsl
+uniform vec4 un_color;
+vec4 color = un_color;
+```
+
+Далее в с++ мы используем такую функцию(или другую из списка):
+```cpp
+shader::Uniform4F(glm::vec4(1, 1, 1, 1), "un_color");
+// этой функцией мы передали вектор glm::vec4(1, 1, 1, 1), в переменую color
+```
+Обратите внимания для работы с векторами и матрицами используется\
+библиотека glm(далее я расскажу про матричные\
+преобразования и библиотеку glm)
+
++ второй способ
+```cpp
+Shader shader(const char* pathVert, const char* pathFrag);
+// конструктор принимает путь к вершинному и фрагментному шейдеру
+// компилирует их в ГПУ, и создаёт объект shader(ну или с вашим названием)
+
+shader.~Shader();
+// деструктор удаляет шейдерную программу
+
+shader.use();
+// говорит ГПУ использовать данный шейдер
+
+// делают всё тоже что и в первом способе:
+shader.UniformMat4(glm::mat4 matrix, const char* name);
+shader.Uniform1F(const float value, const char* name);
+shader.Uniform2F(glm::vec2 vec2, const char* name);
+shader.Uniform3F(glm::vec3 vec3, const char* name);
+shader.Uniform4F(glm::vec4 vec4, const char* name);
+
+shader.Uniform1I(glm::ivec1 value, const char* name);
+shader.Uniform2I(glm::ivec2 value, const char* name);
+```
 
 + [дальше](va.md)
 + [назад](vao.md) 
