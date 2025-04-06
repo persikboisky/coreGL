@@ -1,4 +1,5 @@
 #include "../../util/structs.hpp"
+#include <string>
 
 struct GUIstyle
 {
@@ -9,4 +10,6 @@ struct GUIstyle
 
 	bool hover = false;
 	color_rgba hoverBackground = color_rgba(0, 0, 0, 0);
+
+	std::string text = "";
 };

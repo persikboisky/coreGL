@@ -3,18 +3,18 @@
 //font;
 
 class Window;
+struct font;
 
 class GUI
 {
 private:
 	Window* addrWindow;
+	font* objFont;
 
 	static unsigned int ShaderID;
 
-	//font* fonts;
-
 public:
-	GUI(Window& window);
+	GUI(Window& window, font& objFont);
 	~GUI();
 
 	Button* button = nullptr;

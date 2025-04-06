@@ -1,6 +1,7 @@
 #include "GUI.hpp"
 #include "../../window/Window.hpp"
 #include "../commons/shader.hpp"
+#include "../commons/font.hpp"
 
 // путь к шейдерам для интерфейса
 constexpr const char* PATH_TO_VERTEX_SHADER = "./res/gui/main_gui_v.glsl";
@@ -8,7 +9,8 @@ constexpr const char* PATH_TO_FRAGMENT_SHADER = "./res/gui/main_gui_f.glsl";
 
 unsigned int GUI::ShaderID = 0;
 
-GUI::GUI(Window& window) : addrWindow(&window), button(new Button())
+GUI::GUI(Window& window, font& objFont) : 
+	addrWindow(&window), objFont(&objFont), button(new Button())
 {
 	if (GUI::ShaderID == 0)
 	{
