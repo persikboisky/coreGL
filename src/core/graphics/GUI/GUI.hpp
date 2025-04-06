@@ -1,47 +1,23 @@
-#include <vector>
-#include <glm/vec2.hpp>
+#include "Elements/Button.hpp"
 
-enum GUI_ELEMENTS
-{
-	BUTTON
-};
+//font;
 
-struct gui_style;
-struct font;
-
-class VAO;
-class Shader;
 class Window;
-class BufferText2D;
 
 class GUI
 {
 private:
-	unsigned int n_Elements;
+	Window* addrWindow;
 
-	std::vector<gui_style> style;
-	std::vector<GUI_ELEMENTS> elements;
-	std::vector<void(*)()> function;
+	static unsigned int ShaderID;
 
-	void compileVAO();
-	bool compileFlag = true;
-
-	VAO* vao;
-	Shader* shader;
-	Window* window;
-	font* TextFont;
-	BufferText2D* BT2D;
-
+	//font* fonts;
 
 public:
-	GUI(Window* window);
+	GUI(Window& window);
 	~GUI();
 
-	void addButton(
-		gui_style* style,
-		void(*function)() = nullptr
-	);
+	Button* button = nullptr;
 
-	void setWindow(Window* window);
 	void render();
 };

@@ -2,8 +2,8 @@
 #define SRC_CORE_CORE_H_
 
 // версия openGL(4.6)
-constexpr unsigned char VERSION_MAJOR = 4;
-constexpr unsigned char VERSION_MINOR = 6;
+constexpr unsigned short VERSION_MAJOR = 4;
+constexpr unsigned short VERSION_MINOR = 6;
 
 // разрешить изменения размера окна(окон)
 constexpr bool WINDOW_RESIZABLE = true;
@@ -42,7 +42,7 @@ constexpr bool CORE_INFO = true;
 #include "graphics/obj/OBJ.hpp"
 #include "graphics/obj/obj_mesh.hpp"
 #include "graphics/gui/GUI.hpp"
-#include "graphics/gui/gui_style.hpp"
+#include "graphics/gui/GUI_Style.hpp"
 #include "graphics/commons/BufferText2D.hpp"
 #include "util/vector.hpp"
 #include "util/string.hpp"

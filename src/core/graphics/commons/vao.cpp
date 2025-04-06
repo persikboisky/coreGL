@@ -239,7 +239,7 @@ void vao::draw(primitive Primitive, unsigned int VAO, int first_vert, int count_
 {
     bind(VAO);
     glDrawArrays(Primitive, first_vert, count_vert);
-    bind(0);
+    //bind(0);
 }
 
 VAO::VAO(float* data, int sizeOfByte, int elementToVert) : elementToVert(elementToVert), size(sizeOfByte / sizeof(float))

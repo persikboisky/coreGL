@@ -1,25 +1,12 @@
-#include <string>
 #include "../../util/structs.hpp"
 
-struct gui_style
+struct GUIstyle
 {
-	color_rgba background;
-	color_rgba active_background;
+	position_2f pos = position_2f(0, 0);
+	size_2f size = size_2f(0, 0);
+	color_rgba background = color_rgba(0, 0, 0, 0);
+	color_rgba activeBackground = color_rgba(0, 0, 0, 0);
 
-	float x = 0;
-	float y = 0;
-	float width = 0;
-	float height = 0;
-
-	std::string text = "";
-	//float textLength
-
-	gui_style() : 
-		background(color_rgba(255.0f, 255.0f, 255.0f, 255.0f)),
-		active_background(color_rgba(255.0f, 0.0f, 0.0f, 255.0f))
-	{ }
-
-	~gui_style()
-	{
-	}
+	bool hover = false;
+	color_rgba hoverBackground = color_rgba(0, 0, 0, 0);
 };
