@@ -134,7 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\core\graphics\commons\BufferText2D.cpp" />
-    <ClCompile Include="src\core\graphics\gui\gui_Mesh.cpp" />
+    <ClCompile Include="src\core\graphics\gui\Elements\Button.cpp" />
     <ClCompile Include="src\core\graphics\obj\OBJ.cpp" />
     <ClCompile Include="src\core\data\info.cpp" />
     <ClCompile Include="src\core\data\time.cpp" />
@@ -150,7 +150,6 @@
     <ClCompile Include="src\core\file\toml_file.cpp" />
     <ClCompile Include="src\core\file\wav.cpp" />
     <ClCompile Include="src\core\graphics\commons\Camera.cpp" />
-    <ClCompile Include="src\core\graphics\gui\gui_style.cpp" />
     <ClCompile Include="src\core\graphics\commons\shader.cpp" />
     <ClCompile Include="src\core\graphics\commons\texture.cpp" />
     <ClCompile Include="src\core\graphics\commons\vao.cpp" />
@@ -166,9 +165,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\graphics\commons\BufferText2D.hpp" />
+    <ClInclude Include="src\core\graphics\gui\Elements\Button.hpp" />
+    <ClInclude Include="src\core\graphics\gui\GUI_Style.hpp" />
     <ClInclude Include="src\core\util\structs.hpp" />
     <ClInclude Include="src\core\graphics\commons\styleText.hpp" />
-    <ClInclude Include="src\core\graphics\gui\gui_Mesh.hpp" />
     <ClInclude Include="src\core\graphics\obj\OBJ.hpp" />
     <ClInclude Include="src\core\data\info.hpp" />
     <ClInclude Include="src\core\data\time.hpp" />
@@ -186,7 +186,6 @@
     <ClInclude Include="src\core\file\toml_file.hpp" />
     <ClInclude Include="src\core\file\wav.hpp" />
     <ClInclude Include="src\core\graphics\commons\Camera.hpp" />
-    <ClInclude Include="src\core\graphics\gui\gui_style.hpp" />
     <ClInclude Include="src\core\graphics\commons\shader.hpp" />
     <ClInclude Include="src\core\graphics\commons\texture.hpp" />
     <ClInclude Include="src\core\graphics\commons\vao.hpp" />
