@@ -71,6 +71,9 @@ Button::~Button()
 	this->vFunction.clear();
 	this->vStyle.clear();
 	this->vID.clear();
+	this->vHover.clear();
+	this->vActive.clear();
+
 	if (this->vaoID != 0)
 	{
 		vao::Delete(this->vaoID);
@@ -84,32 +87,68 @@ void Button::add(
 )
 {
 	bool flag = true;
-	for (unsigned int index = 0; index < this->vID.size(); index++)
-	{
-		if (this->vID[index] == "")
-		{
-			this->vID[index] = ID;
-			this->vStyle[index] = style;
-			this->vHover[index] = false;
-			this->vActive[index] = false;
-			this->vFunction[index] = function;
 
-			flag = false;
-			break;
-		}
-	}
-
-	if (flag)
-	{
-		this->vID.push_back(ID);
-		this->vStyle.push_back(style);
-		this->vHover.push_back(false);
-		this->vActive.push_back(false);
-		this->vFunction.push_back(function);
-	}
+	this->vID.push_back(ID);
+	this->vStyle.push_back(style);
+	this->vHover.push_back(false);
+	this->vActive.push_back(false);
+	this->vFunction.push_back(function);
 
 	this->flagCompileVAO = true;
 	this->nButton++;
+}
+
+void Button::setStyle(std::string ID, GUIstyle style)
+{
+	for (unsigned int index = 0; index < this->nButton; index++)
+	{
+		if (this->vID[index] == ID)
+		{
+			this->vStyle[index] = style;
+		}
+	}
+
+	this->flagCompileVAO = true;
+}
+
+void Button::Delete(std::string ID)
+{
+	for (unsigned int index = 0; index < this->nButton; index++)
+	{
+		if (this->vID[index] == ID)
+		{
+			std::vector<std::string>::const_iterator iterStr = this->vID.cbegin();
+			this->vID.erase(index + iterStr);
+
+			std::vector<GUIstyle>::const_iterator iterStyle = this->vStyle.cbegin();
+			this->vStyle.erase(index + iterStyle);
+
+			std::vector<void(*)()>::const_iterator iterVoid = this->vFunction.cbegin();
+			this->vFunction.erase(index + iterVoid);
+
+			std::vector<bool>::const_iterator iterBool_1 = this->vHover.cbegin();
+			this->vHover.erase(index + iterBool_1);
+
+			std::vector<bool>::const_iterator iterBool_2 = this->vActive.cbegin();
+			this->vActive.erase(index + iterBool_2);
+
+			index--;
+			this->nButton--;
+		}
+	}
+
+	this->flagCompileVAO = true;
+}
+
+void Button::DeleteALL()
+{
+	this->flagCompileVAO = true;
+	this->nButton = 0;
+	this->vFunction.clear();
+	this->vStyle.clear();
+	this->vID.clear();
+	this->vHover.clear();
+	this->vActive.clear();
 }
 
 void Button::compileVAO()
@@ -130,21 +169,21 @@ void Button::compileVAO()
 			this->vStyle[index].size.height
 		);
 
-		color_rgba bacground;
+		color_rgba background;
 		if (this->vActive[index])
 		{
-			bacground = this->vStyle[index].activeBackground;
+			background = this->vStyle[index].activeBackground;
 		}
 		else if (this->vStyle[index].hover && vHover[index])
 		{
-			bacground = this->vStyle[index].hoverBackground;
+			background = this->vStyle[index].hoverBackground;
 		}
 		else
 		{
-			bacground = this->vStyle[index].background;
+			background = this->vStyle[index].background;
 		}
 
-		addVertexesButton(vertexes, pos, bacground);
+		addVertexesButton(vertexes, pos, background);
 	}
 
 	this->vaoID = vao::create(vertexes);
@@ -170,6 +209,10 @@ void Button::update(double mouseX, double mouseY, bool LBM)
 		{
 			this->vActive[index] = LBM;
 			this->vHover[index] = true;
+			if (LBM)
+			{
+				this->vFunction[index]();
+			}
 		}
 		else
 		{

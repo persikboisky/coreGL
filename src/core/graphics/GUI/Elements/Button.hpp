@@ -32,6 +32,12 @@ public:
 		std::string ID = "button"
 	);
 
+	void setStyle(std::string ID, GUIstyle style);
+	//void setPos(std::string ID, float x, float y);
+
+	void Delete(std::string ID);
+	void DeleteALL();
+
 	void update(double mouseX, double mouseY, bool LBM);
 	void render();
 };
