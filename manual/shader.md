@@ -66,10 +66,10 @@ bool, int, uint, float, double
 // в примере буква 'N' это кол-во переменных от 2 до 4
 2. векторы:
 bvecN - вектор типа bool
-ivecn - вектор типа int
-uvecn - вектор типа uint
-vecn - вектор типа float
-dvecn - вектор типа double
+ivecN - вектор типа int
+uvecN - вектор типа uint
+vecN - вектор типа float
+dvecN - вектор типа double
 
 // Пример действий с вектором:
 
