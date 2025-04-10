@@ -9,7 +9,7 @@ Vector2::Vector2(float x, float y) : x(x), y(y)
 
 }
 
-inline Vector2 Vector2::operator + (Vector2 vector2)
+Vector2 Vector2::operator + (Vector2 vector2)
 {
 	return Vector2(
 		this->x + vector2.x,
@@ -17,7 +17,7 @@ inline Vector2 Vector2::operator + (Vector2 vector2)
 	);
 }
 
-inline Vector2 Vector2::operator - (Vector2 vector2)
+Vector2 Vector2::operator - (Vector2 vector2)
 {
 	return Vector2(
 		this->x - vector2.x,
@@ -25,7 +25,7 @@ inline Vector2 Vector2::operator - (Vector2 vector2)
 		);
 }
 
-inline Vector2 Vector2::operator * (Vector2 vector2)
+Vector2 Vector2::operator * (Vector2 vector2)
 {
 	return Vector2(
 		this->x * vector2.x,
@@ -33,7 +33,7 @@ inline Vector2 Vector2::operator * (Vector2 vector2)
 	);
 }
 
-inline Vector2 Vector2::operator / (Vector2 vector2)
+Vector2 Vector2::operator / (Vector2 vector2)
 {
 	return Vector2(
 		this->x / vector2.x,
