@@ -13,5 +13,5 @@ void main()
 {
 	v_color = l_color;
 	text_coord = text_c;
-	gl_Position = matrix * vec4(pos, -1.0f, 1.0f);
+	gl_Position = matrix * vec4(pos, 0.0f, 1.0f);
 }

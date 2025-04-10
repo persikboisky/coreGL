@@ -1,4 +1,6 @@
 #include "GUI.hpp"
+//#include "Elements/Button.hpp"
+//#include "Elements/Text.hpp"
 #include "../../window/Window.hpp"
 #include "../commons/shader.hpp"
 #include "../commons/font.hpp"
@@ -10,7 +12,7 @@ constexpr const char* PATH_TO_FRAGMENT_SHADER = "./res/gui/main_gui_f.glsl";
 unsigned int GUI::ShaderID = 0;
 
 GUI::GUI(Window& window, font& objFont) : 
-	addrWindow(&window), objFont(&objFont), button(new Button())
+	addrWindow(&window), objFont(&objFont), button(new Button())//, text(new Text())
 {
 	if (GUI::ShaderID == 0)
 	{

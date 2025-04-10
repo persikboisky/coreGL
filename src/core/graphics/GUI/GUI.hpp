@@ -1,6 +1,5 @@
 #include "Elements/Button.hpp"
-
-//font;
+//#include "Elements/Text.hpp"
 
 class Window;
 struct font;
@@ -18,6 +17,7 @@ public:
 	~GUI();
 
 	Button* button = nullptr;
+	//Text* text = nullptr;
 
 	void render();
 };
