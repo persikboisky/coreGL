@@ -41,15 +41,16 @@ private:
 	unsigned int id = 0;
 	unsigned int elementToVert;
 	int size;
-	void bind();
-
+	
 public:
+	void bind() const;
+
 	VAO(float* data, int sizeOfByte, int elementToVert);
 	VAO(std::vector<float> data, int elementToVert);
 	~VAO();
 
-	void addAttribute(int index, int n, int indentation);
-	void draw(primitive Primitive, int first_vert = 0, int count_vert = 0);
+	void addAttribute(int index, int n, int indentation) const;
+	void draw(primitive Primitive, int first_vert = 0, int count_vert = 0) const;
 };
 
 #endif // !SRC_CORE_GRAPHICS_VAO_HPP_

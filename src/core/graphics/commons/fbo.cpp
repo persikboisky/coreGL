@@ -22,7 +22,7 @@ unsigned int fbo::create()
 
 void fbo::Delete(unsigned int id)
 {
-	unsigned int index = vector::searchElemntForValue(fbo::id, id);
+	int index = vector::searchElemntForValue(fbo::id, id);
 	if (index == -1)
 	{
 		std::cerr << "FAILED: delete FBO" << std::endl;
