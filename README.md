@@ -1,3 +1,5 @@
+[Статичная версия ядра, тоесть без .dll файлов](https://github.com/persikboisky/coreGL_static)
+
 + [РУКОВОДСТВО](manual/manual.md)
 
 ## Система Camera
