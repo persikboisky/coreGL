@@ -133,6 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\core\graphics\commons\ebo.cpp" />
     <ClCompile Include="src\core\graphics\commons\fbo.cpp" />
     <ClCompile Include="src\core\util\math.cpp" />
     <ClCompile Include="src\core\audio\buffer.cpp" />
@@ -166,6 +167,7 @@
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\core\graphics\commons\ebo.hpp" />
     <ClInclude Include="src\core\graphics\commons\fbo.hpp" />
     <ClInclude Include="src\core\util\math.hpp" />
     <ClInclude Include="src\core\audio\audio.hpp" />
