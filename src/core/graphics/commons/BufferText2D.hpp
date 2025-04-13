@@ -3,6 +3,7 @@
 #include <vector>
 
 class Shader;
+class Window;
 
 struct position_2f;
 struct size_2f;
@@ -23,12 +24,17 @@ private:
 	unsigned int vao = 0;
 	unsigned int n_vertex = 0;
 
+	Window* window = nullptr;
+
 public:
 	BufferText2D();
 	~BufferText2D();
 
 	void linkFont(font& Font);
 	void linkFont(font*& Font);
+
+	void linkWindow(Window& window);
+	void linkWindow(Window*& window);
 
 	void addText(
 		std::string text,

@@ -5,6 +5,7 @@
 #include "texture.hpp"
 #include "styleText.hpp"
 #include "../../util/structs.hpp"
+#include "../../window/Window.hpp"
 #include <GL/glew.h>
 #include <glm/ext.hpp>
 #include <glm/glm.hpp>
@@ -146,6 +147,21 @@ void BufferText2D::linkFont(font*& Font)
 	this->Font = Font;
 }
 
+void BufferText2D::linkWindow(Window& window)
+{
+	this->window = &window;
+}
+
+void BufferText2D::linkWindow(Window*& window)
+{
+	if (window == nullptr)
+	{
+		std::cerr << "FAILED_LINK_WINDOW_FOR_BUFFER_TEXTURE_2D" << std::endl;
+		throw "FAILED_LINK_WINDOW_FOR_BUFFER_TEXTURE_2D";
+	}
+	this->window = window;
+}
+
 void BufferText2D::addText(std::string text, float x, float y, float length,
 	float RowingBetweenTheSymbols,
 	float c_red, float c_green, float c_blue, float c_alpha
@@ -273,13 +289,16 @@ void BufferText2D::render()
 	this->Font->textureFont->bind(0);
 	this->shader2D->Uniform1I(glm::ivec1(0), "text");
 	glm::mat4 matrix = glm::mat4(1.0f);
-	//matrix = glm::scale(matrix, glm::vec3(1.5, 1.5, 1));
-	//matrix = glm::translate(matrix, glm::vec3(0.4, 0, 0));
-	/*matrix = glm::rotate(
-		matrix,
-		glm::radians(180.0f),
-		glm::vec3(0, 0, 1)
-	);*/
+
+	if (this->window != NULL)
+	{
+		matrix = glm::scale(matrix, glm::vec3(
+			1, 
+			(float)this->window->width / (float)this->window->height, 
+			1)
+		);
+	}
+
 	this->shader2D->UniformMat4(matrix, "matrix");
 	vao::bind(this->vao);
 	vao::draw(TRIANGLE, 0, n_vertex);

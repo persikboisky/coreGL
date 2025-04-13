@@ -1,11 +1,10 @@
-#include "core/core.hpp"
+#include <core/core.hpp>
 
 int main()
 {
 	try
 	{
 		core::Init();
-		// ваш код
 	}
 	catch (...)
 	{

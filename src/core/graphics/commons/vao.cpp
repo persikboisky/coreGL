@@ -146,7 +146,7 @@ unsigned int vao::create(float* data, int sizeOfByte)
         }
         else
         {
-            std::cerr << "Failed create VAO"<< "\n";
+            std::cerr << "Failed create VAO: " << VAO << "\n";
             throw "FAILED_CREATE_VAO";
         }
     }
@@ -257,17 +257,17 @@ VAO::~VAO()
     vao::Delete(this->id);
 }
 
-void VAO::addAttribute(int index, int n, int indentation) const
+void VAO::addAttribute(int index, int n, int indentation)
 {
     vao::addAttribute(this->id, index, n, this->elementToVert, indentation);
 }
 
-void VAO::bind() const
+void VAO::bind()
 {
     vao::bind(this->id);
 }
 
-void VAO::draw(primitive Primitive, int first_vert, int count_vert) const
+void VAO::draw(primitive Primitive, int first_vert, int count_vert)
 {
     if (vao::getSelectId() != this->id)
     {
