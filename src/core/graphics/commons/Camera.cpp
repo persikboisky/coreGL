@@ -4,14 +4,19 @@
 #include <glm/ext.hpp>
 #include <iostream>
 
-Camera::Camera(float posX, float posY, float posZ, float fov, float distance) : distance(distance)
+Camera::Camera(float posX, float posY, float posZ, float fov, float distance) : 
+	distance(distance), mode(STATIC), startUP(glm::vec3(0, 1, 0)), startTARGET(glm::vec3(0, 0, -1))
 {
 	this->pos = glm::vec3(posX, posY, posZ);
 	this->fov = glm::radians(fov);
 
-	this->x = glm::vec3(rot * glm::vec4(1, 0, 0, 1));
-	this->y = glm::vec3(rot * glm::vec4(0, 1, 0, 1));
-	this->z = glm::vec3(rot * glm::vec4(0, 0, -1, 1));
+	this->up = glm::vec3(rot * glm::vec4(this->startUP, 1));
+	this->target = glm::vec3(rot * glm::vec4(this->startTARGET, 1));
+}
+
+void Camera::setMode(CAM_MODE mode)
+{
+	this->mode = mode;
 }
 
 void Camera::rotate(float x, float y, float z)
@@ -20,9 +25,8 @@ void Camera::rotate(float x, float y, float z)
 	this->rot = glm::rotate(this->rot, y, glm::vec3(0, 1, 0));
 	this->rot = glm::rotate(this->rot, z, glm::vec3(0, 0, 1));
 
-	this->x = glm::vec3(this->rot * glm::vec4(1, 0, 0, 1));
-	this->y = glm::vec3(this->rot * glm::vec4(0, 1, 0, 1));
-	this->z = glm::vec3(this->rot * glm::vec4(0, 0, -1, 1));
+	this->up = glm::vec3(this->rot * glm::vec4(this->startUP, 1));
+	this->target = glm::vec3(this->rot * glm::vec4(this->startTARGET, 1));
 }
 
 void Camera::resetRotate()
@@ -47,6 +51,16 @@ void Camera::setPos(float x, float y, float z)
 	this->pos = glm::vec3(x, y, z);
 }
 
+void Camera::setTarget(float tX, float tY, float tZ)
+{
+	this->startTARGET = glm::vec3(tX, tY, tZ);
+}
+
+void Camera::setTarget3f(glm::vec3 target)
+{
+	this->startTARGET = target;
+}
+
 void Camera::getPos3f(glm::vec3& pos) const
 {
 	pos = this->pos;
@@ -67,5 +81,10 @@ glm::mat4 Camera::getProj(int width, int height) const
 
 glm::mat4 Camera::getView() const
 {
-	return glm::lookAt(this->pos, this->pos + this->z, this->y);
+	if (this->mode == DYNAMIC)
+	{
+		return glm::lookAt(this->pos, this->target, this->up);
+	}
+
+	return glm::lookAt(this->pos, this->pos + this->target, this->up);
 }
