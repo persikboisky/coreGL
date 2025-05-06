@@ -57,7 +57,10 @@ audio, file, graphics, math, util, window - это системы ядра, на
 
 ## инициализация ядра
 ``` cpp
+// для vs
 #include <core/core.hpp>
+
+// в остальных случаях пишм путь к файлу core.hpp
 
 using namespace core;
 using namespace core::math;
