@@ -3,8 +3,8 @@
 > [!NOTE]
 > ```sh
 > Ядро coreGL это мой проект написанный на c++
-> Главная цель - уменьшить кол-во кода
-> Библиотеки использованные мной: openGL, glfw, glew, glm, openAL, stb_image
+> Главная цель - уростить разроботку приложений
+> Библиотеки использованные мной: openGL, glfw, glew, openAL, stb_image
 > ```
 
 > [!WARNING]
@@ -28,59 +28,64 @@
 > если вы используете visual studio, убедитесь что режим компиляции - reales, а не debug
 >```
 
-+ в заголовочный файле src/core/core.hpp можно произвести настройку ядра:
++ в заголовочный файле src/core/config.hpp можно произвести настройку ядра:
 ```cpp
-4  // версия openGL(4.6), не советую изменять, пока не прочитаете про шейдеры
-5  constexpr unsigned short VERSION_MAJOR = 4;
-6  constexpr unsigned short VERSION_MINOR = 6;
-7 
-8  // разрешить изменения размера окна(окон)
-9  constexpr bool WINDOW_RESIZABLE = true;
-10
-11 // разрешить получение информации о состояние разных процессов
-12 constexpr bool CORE_INFO = true;
+// версия openGL(4.6)
+constexpr unsigned short VERSION_MAJOR = 4;
+constexpr unsigned short VERSION_MINOR = 6;
+
+// по умолчанию разрешает изменять размер окна(окон)
+constexpr bool WINDOW_RESIZABLE = true;
+
+// разрешить получение информации о состояние различных процессов
+constexpr bool CORE_INFO = true;
+
 ```
 
 ## структура ядра
 :open_file_folder: core 
 >:file_folder: audio\
->:file_folder: data\
 >:file_folder: graphics\
+>>:file_folder: math\
 >:file_folder: util\
 >:file_folder: window\
+>:page_facing_up: config.hpp
 >:page_facing_up: core.hpp
 
 core.hpp это заголовочный файл, включает все инструменты ядра\
-audio, data, file, graphics, util, window - это системы ядра, на каждой из них мы остановимся ниже
+audio, file, graphics, math, util, window - это системы ядра, на каждой из них мы остановимся дальше
 
 ## инициализация ядра
 ``` cpp
-#include "core/core.hpp"
+#include <core/core.hpp>
+
+using namespace core;
+using namespace core::math;
 
 int main()
 {
 	try
 	{
         // инициализирует ядро
-		core::Init();
+		Core::Init();
 		
 		// ваш код
 	}
 	catch (...)
 	{
         // освобождает память и выключает ядро
-		core::Terminate();
+		Core::Terminate();
 		return -1;
 	}
 
     // освобождает память и выключает ядро
-    core::Terminate();
-	return 0;
+    Core::Terminate();
+    return 0;
 }
 ```
 
 ``` cpp
-core::GetTime();
+Core::GetTime();
 // возвращает(double) время в секундах с момента инициализации ядра
 ```
 
