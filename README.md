@@ -1,5 +1,5 @@
 # Скачать coreGL :inbox_tray:
-[скачать](https://github.com/persikboisky/CoreGL_lib](https://github.com/persikboisky/CoreGL-lib))
+[скачать](https://github.com/persikboisky/coreGL_lib)
 
 # Исходники 
 [скачать](https://github.com/persikboisky/coreGL_static)
